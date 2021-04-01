@@ -1,5 +1,18 @@
-const { ApolloServer, gql } = require('apollo-server')
+const { ApolloServer, UserInputError, gql } = require('apollo-server')
 const { v1: uuid } = require('uuid')
+const mongoose = require('mongoose')
+const Product = require('./models/product')
+const config = require('./utils/config')
+
+console.log('connecting to', config.MONGODB_URI)
+
+mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+  .then(() => {
+    console.log('connected to MongoDB')
+  })
+  .catch((error) => {
+    console.log('error connection to MongoDB:', error.message)
+  })
 
 
 let products = [
@@ -39,7 +52,7 @@ let products = [
 const typeDefs = gql`
   type Product {
     name: String!
-    price: Int!
+    price: Float!
     quantity: Int!
     categories: [String!]!
     id: ID!
@@ -54,7 +67,7 @@ const typeDefs = gql`
   type Mutation {
     addProduct(
       name: String!
-      price: Int!
+      price: Float!
       quantity: Int!
       categories: [String!]!
       description: String
@@ -68,19 +81,30 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-      productCount: () => products.length,
+      productCount: () => Product.collection.countDocuments(),
       allProducts: async (root, args) => {
+        const products = await Product.find({})
+        console.log('products, ', products)
+
         if (!args.category) {
-            return products
+          return products
         } else {
-            return products.filter(product => product.categories.includes(args.category))          
+          return products.filter(product => product.categories.includes(args.category))          
         }
       }
   },
   Mutation: {
-    addProduct: (root, args) => {
-      const product = { ...args, id: uuid() }
-      products = products.concat(product)
+    addProduct: async (root, args) => {
+      const product = new Product({ ...args })
+
+      try {
+        await product.save()
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args,
+        })
+      }
+
       return product
     },
     editProduct: (root, args) => {
