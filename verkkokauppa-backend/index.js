@@ -1,4 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server')
+const { v1: uuid } = require('uuid')
+
 
 let products = [
   {
@@ -48,6 +50,20 @@ const typeDefs = gql`
     productCount: Int!
     allProducts(category: String): [Product]!
   }
+
+  type Mutation {
+    addProduct(
+      name: String!
+      price: Int!
+      quantity: Int!
+      categories: [String!]!
+      description: String
+    ): Product
+    editProduct(    
+      name: String!    
+      quantity: Int! 
+    ): Product
+  }
 `
 
 const resolvers = {
@@ -60,6 +76,23 @@ const resolvers = {
             return products.filter(product => product.categories.includes(args.category))          
         }
       }
+  },
+  Mutation: {
+    addProduct: (root, args) => {
+      const product = { ...args, id: uuid() }
+      products = products.concat(product)
+      return product
+    },
+    editProduct: (root, args) => {
+      const product = products.find(p => p.name === args.name)
+        if (!product) {
+          return null
+        }
+
+      const updatedProduct = { ...product, quantity: args.quantity }
+      products = products.map(p => p.name === args.name ? updatedProduct : p)
+      return updatedProduct
+    }
   }
 }
 
