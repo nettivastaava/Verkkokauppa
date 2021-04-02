@@ -32,6 +32,7 @@ const typeDefs = gql`
   type Query {
     productCount: Int!
     allProducts(category: String): [Product]!
+    me: User
   }
 
   type User {
@@ -79,7 +80,10 @@ const resolvers = {
         } else {
           return products.filter(product => product.categories.includes(args.category))          
         }
-      }
+      },
+      me: (root, args, context) => {
+        return context.currentUser
+      },
   },
   Mutation: {
     addProduct: async (root, args) => {
@@ -109,24 +113,43 @@ const resolvers = {
       }
 
       return product
-    }
-  },
-  createUser: async (root, args) => {
-    const saltRounds = 10
-    const passwordHash = await bcrypt.hash(args.password, saltRounds)
+    },
+    createUser: async (root, args) => {
+      const saltRounds = 10
+      const passwordHash = await bcrypt.hash(args.password, saltRounds)
    
-    const user = new User({
-      username: args.username,
-      passwordHash,
-    })
+      const user = new User({
+        username: args.username,
+        passwordHash,
+      })
 
-    return user.save()
-      .catch(error => {
-        throw new UserInputError(error.message, {
+      return user.save()
+        .catch(error => {
+          throw new UserInputError(error.message, {
+            invalidArgs: args,
+          })
+        })
+    },
+    login: async (root, args) => {
+      const user = await User.findOne({ username: args.username })
+      const passwordCorrect = user === null
+        ? false
+        : await bcrypt.compare(args.password, user.passwordHash)
+
+      if (!(user && passwordCorrect)) {
+        throw new UserInputError("invalid credentials", {
           invalidArgs: args,
         })
-      })
-  },
+      }
+
+      const userForToken = {
+        username: user.username,
+        id: user._id,
+      }
+  
+      return { value: jwt.sign(userForToken, JWT_SECRET) }
+    }
+  }
 }
 
 const server = new ApolloServer({
