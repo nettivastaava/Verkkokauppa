@@ -3,6 +3,11 @@ import React, { useState } from 'react'
 const Products = (props) => {
     const products = props.products
     console.log(products)
+
+    if (!props.show) {
+      return null
+    }
+
     return (
         <div>
           <h2>Products</h2>
