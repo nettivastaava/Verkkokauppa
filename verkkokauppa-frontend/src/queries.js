@@ -1,17 +1,17 @@
 import { gql } from '@apollo/client'
 
 export const ALL_PRODUCTS = gql`
-query {
-  allProducts  {
-    name
-    price
-    quantity
-    id
-    categories
-    description
+  query {
+    allProducts  {
+      name
+      price
+      quantity
+      id
+      categories
+      description
+    }
   }
-}
-`
+  `
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
     login(username: $username, password: $password)  {
@@ -19,3 +19,11 @@ export const LOGIN = gql`
     }
   }
 `
+
+export const ME = gql`
+  query {
+    me {
+      username
+    }
+  }
+  `

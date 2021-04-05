@@ -3,10 +3,12 @@ import { useQuery, useApolloClient } from '@apollo/client'
 import { ALL_PRODUCTS } from './queries'
 import Products from './components/Products'
 import LoginForm from './components/LoginForm'
+import { ME } from './queries'
 
 const App = () =>  {
   const [page, setPage] = useState('products')
   const productResult = useQuery(ALL_PRODUCTS)
+  const userData = useQuery(ME)
   const [token, setToken] = useState(null)
   const client = useApolloClient()
   const [errorMessage, setErrorMessage] = useState(null)
@@ -18,28 +20,50 @@ const App = () =>  {
     }, 10000)
   }
 
-
-  if (productResult.loading) {
+  if (productResult.loading || userData.loading) {
     return(
       <div>loading...</div>
     )
+  }
+
+  const logout = () => {
+    setToken(null)
+    localStorage.clear()
+    client.resetStore()
+    setPage('login')
+  }
+
+  if (!token) {
+    return (
+      <div>
+        <div>
+          <button onClick={() => setPage('products')}>products</button>
+          <button onClick={() => setPage('login')}>login</button>
+        </div>
+        <Products
+          products={productResult.data.allProducts}
+          show={page === 'products'}
+        />
+        <LoginForm
+          setToken={setToken}
+          setError={notify}
+          show={page === 'login'}
+          setPage={setPage}
+        />
+      </div>
+    );
   }
 
   return (
     <div>
       <div>
         <button onClick={() => setPage('products')}>products</button>
-        <button onClick={() => setPage('login')}>login</button>
+        {userData.data.me.username} logged in
+        <button onClick={logout}>logout</button>
       </div>
       <Products
         products={productResult.data.allProducts}
         show={page === 'products'}
-      />
-      <LoginForm
-            setToken={setToken}
-            setError={notify}
-            show={page === 'login'}
-            setPage={setPage}
       />
     </div>
   );
