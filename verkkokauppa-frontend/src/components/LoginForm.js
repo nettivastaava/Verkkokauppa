@@ -51,6 +51,7 @@ const LoginForm = ({ setError, setToken, show, setPage }) => {
         </div>
         <button type='submit'>login</button>
       </form>
+      <p>New user? <button onClick={() => setPage('register')}>Click here to register</button></p>
     </div>
   )
 }
