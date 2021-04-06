@@ -7,4 +7,5 @@
 | 5.4.2021 | 5 | Kirjautumistoiminnallisuus front endiin (paljon debuggausta) |
 | 6.4.2021 | 2 | Rekisteröityminen front endiin |
 | 6.4.2021 | 3 | Tuotehaku kategorioittain |
-| yht | 20 | |
+| 6.4.2021 | 2 | Ostoskorin toiminnallisuuden suunnittelu ja alustus |
+| yht | 22 | |
