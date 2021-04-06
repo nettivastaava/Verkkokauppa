@@ -3,6 +3,7 @@ import { useQuery, useApolloClient } from '@apollo/client'
 import { ALL_PRODUCTS } from './queries'
 import Products from './components/Products'
 import LoginForm from './components/LoginForm'
+import RegistrationForm from './components/RegistrationForm'
 import { ME } from './queries'
 
 const App = () =>  {
@@ -48,6 +49,11 @@ const App = () =>  {
           setToken={setToken}
           setError={notify}
           show={page === 'login'}
+          setPage={setPage}
+        />
+        <RegistrationForm
+          setError={notify}
+          show={page === 'register'}
           setPage={setPage}
         />
       </div>
