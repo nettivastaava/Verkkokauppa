@@ -64,7 +64,6 @@ const App = () =>  {
     <div>
       <div>
         <button onClick={() => setPage('products')}>products</button>
-        {userData.data.me.username} logged in
         <button onClick={logout}>logout</button>
       </div>
       <Products

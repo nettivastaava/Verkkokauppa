@@ -8,14 +8,17 @@ const RegistrationForm = ({ setError, show, setPage }) => {
 
     const [ createUser, result ] = useMutation(CREATE_USER, {  
         onError: (error) => {
-          setError(error.graphQLErrors[0].message)
+          setError(error)
         },
-      })
+    })
 
     const submit = async (event) => {
         event.preventDefault()
     
         createUser({ variables: { username, password } })
+
+        setUsername('')
+        setPassword('')
       }
     
     if (!show) {

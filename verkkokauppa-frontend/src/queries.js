@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const ALL_PRODUCTS = gql`
-  query {
-    allProducts  {
+  query allProductsByCategory($category: String){
+    allProducts(category: $category) {
       name
       price
       quantity
@@ -14,12 +14,17 @@ export const ALL_PRODUCTS = gql`
   `
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password)  {
+    login(username: $username, password: $password) {
       value
     }
   }
 `
 
+export const ALL_CATEGORIES = gql`
+query {
+  allCategories
+}
+`
 export const ME = gql`
   query {
     me {
@@ -30,7 +35,7 @@ export const ME = gql`
 
 export const CREATE_USER = gql`
   mutation createUser($username: String!, $password: String!) {
-    createuser(username: $username, password: $password) {
+    createUser(username: $username, password: $password) {
       username
     }
   }
