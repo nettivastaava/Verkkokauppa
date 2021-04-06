@@ -86,9 +86,9 @@ const resolvers = {
         return context.currentUser
       },
       allCategories: async () => {
-        const products = Product.find({})
+        const products = await Product.find({})
         const categories = products.map(product => product.categories)
-          .reduce((previous, current) => previous.concat(current))
+        .reduce((previous, current) => previous.concat(current))
 
         const uniqueCategories = [...new Set(categories)];
         return uniqueCategories
