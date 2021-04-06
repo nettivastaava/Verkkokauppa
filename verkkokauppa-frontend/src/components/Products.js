@@ -71,6 +71,7 @@ const Products = (props) => {
               <td>{p.price}</td>
               <td>{p.description}</td>
               <td>{p.quantity}</td>
+              <td><button>view</button></td>
             </tr>
           )}
         </tbody>

@@ -64,6 +64,7 @@ const App = () =>  {
     <div>
       <div>
         <button onClick={() => setPage('products')}>products</button>
+        <button onClick={() => setPage('cart')}>shopping cart</button>
         <button onClick={logout}>logout</button>
       </div>
       <Products

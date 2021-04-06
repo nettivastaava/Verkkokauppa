@@ -54,9 +54,13 @@ const typeDefs = gql`
       categories: [String!]!
       description: String
     ): Product
-    editProduct(    
+    increaseQuantity(    
       name: String!    
       quantity: Int! 
+    ): Product
+    decreaseQuantity(
+      name: String!
+      quantity: Int!
     ): Product
     createUser(
       username: String!
@@ -108,10 +112,43 @@ const resolvers = {
 
       return product
     },
-    editProduct: async (root, args) => {
+    increaseQuantity: async (root, args) => {
       const product = await Product.findOne({ name: args.name })
 
-      product.quantity = args.quantity
+      if (args.quantity < 1) {
+        throw new UserInputError("Quantity can only be incremented by a positive integer", {
+          invalidArgs: args,
+        })
+      }
+
+      product.quantity = product.quantity + args.quantity
+
+      try {
+        await product.save()
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args,
+        })
+      }
+
+      return product
+    },
+    decreaseQuantity: async (root, args) => {
+      const product = await Product.findOne({ name: args.name })
+
+      if (args.quantity < 1) {
+        throw new UserInputError("Quantity can only be decremented by a positive integer", {
+          invalidArgs: args,
+        })
+      }
+
+      if (args.quantity > product.quantity) {
+        throw new UserInputError("Given value exceeds the quantity of the product", {
+          invalidArgs: args,
+        })
+      }
+
+      product.quantity = product.quantity - args.quantity
 
       try {
         await product.save()
