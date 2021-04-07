@@ -80,7 +80,7 @@ const Products = ({ show }) => {
           {products.map(p =>
             <tr key={p.name}>
               <td>{p.name}</td>
-              <td>{p.price}</td>
+              <td>{p.price}$</td>
               <td>{p.description}</td>
               <td>{p.quantity}</td>
               <td><button onClick={() => inspectProduct(p)}>view</button></td>

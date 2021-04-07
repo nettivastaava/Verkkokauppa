@@ -3,6 +3,7 @@ import { useQuery, useApolloClient } from '@apollo/client'
 import Products from './components/Products'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
+import ShoppingCart from './components/ShoppingCart'
 import { ME } from './queries'
 
 const App = () =>  {
@@ -66,6 +67,9 @@ const App = () =>  {
       </div>
       <Products
         show={page === 'products'}
+      />
+      <ShoppingCart
+      show={page === 'cart'}
       />
     </div>
   );
