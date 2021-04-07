@@ -9,4 +9,5 @@
 | 6.4.2021 | 3 | Tuotehaku kategorioittain |
 | 6.4.2021 | 2 | Ostoskorin toiminnallisuuden suunnittelu ja alustus |
 | 7.4.2021 | 3 | Tietyn tuotteen tietojen näyttäminen |
-| yht | 25 | |
+| 7.4.2021 | 4 | Ostoskorin prototyypin ensimmäiset toiminnallisuudet ja yleisiä parannuksia sovellukseen |
+| yht | 29 | |
