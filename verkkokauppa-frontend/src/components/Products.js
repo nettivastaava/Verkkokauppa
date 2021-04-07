@@ -48,7 +48,6 @@ const Products = ({ show }) => {
     setPage('product')
   }
   
-
   return (
     <div>
       <Product

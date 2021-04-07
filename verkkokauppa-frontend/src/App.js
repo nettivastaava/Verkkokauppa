@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useQuery, useApolloClient } from '@apollo/client'
-import { ALL_PRODUCTS } from './queries'
 import Products from './components/Products'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
@@ -8,7 +7,6 @@ import { ME } from './queries'
 
 const App = () =>  {
   const [page, setPage] = useState('products')
-  const productResult = useQuery(ALL_PRODUCTS)
   const userData = useQuery(ME)
   const [token, setToken] = useState(null)
   const client = useApolloClient()
@@ -21,7 +19,7 @@ const App = () =>  {
     }, 10000)
   }
 
-  if (productResult.loading || userData.loading) {
+  if (userData.loading) {
     return(
       <div>loading...</div>
     )

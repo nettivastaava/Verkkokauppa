@@ -65,6 +65,7 @@ const typeDefs = gql`
     createUser(
       username: String!
       password: String!
+      passwordConf: String!
     ): User
     login(
       username: String!
@@ -161,6 +162,12 @@ const resolvers = {
       return product
     },
     createUser: async (root, args) => {
+      if (args.password !== args.passwordConf) {
+        throw new UserInputError("make sure the passwords match", {
+          invalidArgs: args,
+        })
+      }
+
       const saltRounds = 10
       const passwordHash = await bcrypt.hash(args.password, saltRounds)
    

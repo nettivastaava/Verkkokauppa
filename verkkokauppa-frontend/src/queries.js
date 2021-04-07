@@ -34,8 +34,8 @@ export const ME = gql`
   `
 
 export const CREATE_USER = gql`
-  mutation createUser($username: String!, $password: String!) {
-    createUser(username: $username, password: $password) {
+  mutation createUser($username: String!, $password: String!, $passwordConf: String!) {
+    createUser(username: $username, password: $password, passwordConf: $passwordConf) {
       username
     }
   }

@@ -5,6 +5,7 @@ import { CREATE_USER } from '../queries'
 const RegistrationForm = ({ setError, show, setPage }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [passwordConf, setPasswordConf] = useState('')
 
     const [ createUser, result ] = useMutation(CREATE_USER, {  
         onError: (error) => {
@@ -15,10 +16,11 @@ const RegistrationForm = ({ setError, show, setPage }) => {
     const submit = async (event) => {
         event.preventDefault()
     
-        createUser({ variables: { username, password } })
+        createUser({ variables: { username, password, passwordConf } })
 
         setUsername('')
         setPassword('')
+        setPasswordConf('')
       }
     
     if (!show) {
@@ -40,6 +42,13 @@ const RegistrationForm = ({ setError, show, setPage }) => {
               type='password'
               value={password}
               onChange={({ target }) => setPassword(target.value)}
+            />
+          </div>
+          <div>
+            confirm password <input
+              type='password'
+              value={passwordConf}
+              onChange={({ target }) => setPasswordConf(target.value)}
             />
           </div>
           <button type='submit'>register</button>
