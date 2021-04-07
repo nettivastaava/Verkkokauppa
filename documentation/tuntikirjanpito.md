@@ -8,4 +8,5 @@
 | 6.4.2021 | 2 | Rekisteröityminen front endiin |
 | 6.4.2021 | 3 | Tuotehaku kategorioittain |
 | 6.4.2021 | 2 | Ostoskorin toiminnallisuuden suunnittelu ja alustus |
-| yht | 22 | |
+| 7.4.2021 | 3 | Tietyn tuotteen tietojen näyttäminen |
+| yht | 25 | |
