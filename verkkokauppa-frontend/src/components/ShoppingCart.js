@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 
+const AddToCart = (product, cart, setCart) => {
+  
+}
+
 const ShoppingCart = ({ show }) => {
   const [cart, setCart] = useState([])
 
@@ -12,12 +16,12 @@ const ShoppingCart = ({ show }) => {
   }
 
   if (cart.length < 1) {
-      return (
-          <div>
-            <h2>Your shopping cart</h2>
-            Your shopping cart is currently empty.
-          </div>
-      )
+    return (
+      <div>
+        <h2>Your shopping cart</h2>
+        Your shopping cart is currently empty.
+      </div>
+    )
   }
 
   return(
