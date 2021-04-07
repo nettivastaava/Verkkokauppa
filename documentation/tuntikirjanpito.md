@@ -6,4 +6,6 @@
 | 2.4.2021 | 1 | Bugin korjaaminen uuden käyttäjän luomisessa |
 | 5.4.2021 | 5 | Kirjautumistoiminnallisuus front endiin (paljon debuggausta) |
 | 6.4.2021 | 2 | Rekisteröityminen front endiin |
-| yht | 17 | |
+| 6.4.2021 | 3 | Tuotehaku kategorioittain |
+| 6.4.2021 | 2 | Ostoskorin toiminnallisuuden suunnittelu ja alustus |
+| yht | 22 | |
