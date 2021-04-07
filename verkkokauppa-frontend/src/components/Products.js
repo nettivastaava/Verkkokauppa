@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery, useLazyQuery } from '@apollo/client'
 import { ALL_PRODUCTS, ALL_CATEGORIES } from '../queries'
+import Product from './Product'
 
-const Products = (props) => {
+const Products = ({ show }) => {
   const categoriesResult = useQuery(ALL_CATEGORIES)
   const [getProducts, result] = useLazyQuery(ALL_PRODUCTS)
   const [category, setCategory] = useState('')
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
+  const [productToShow, setProductToShow] = useState(null)
+  const [page, setPage] = useState('')
 
   useEffect(() => {
     if (categoriesResult.data) {
@@ -26,7 +29,7 @@ const Products = (props) => {
     return <div>loading...</div>
   }
 
-  if (!props.show) {
+  if (!show) {
     return null
   }
 
@@ -40,8 +43,18 @@ const Products = (props) => {
     }
   }
 
+  const inspectProduct = (product) => {
+    setProductToShow(product)
+    setPage('product')
+  }
+  
+
   return (
     <div>
+      <Product
+      show={page === 'product'}
+      product={productToShow}
+      />
       <h2>Search products</h2>
       
       <div>
@@ -71,7 +84,7 @@ const Products = (props) => {
               <td>{p.price}</td>
               <td>{p.description}</td>
               <td>{p.quantity}</td>
-              <td><button>view</button></td>
+              <td><button onClick={() => inspectProduct(p)}>view</button></td>
             </tr>
           )}
         </tbody>

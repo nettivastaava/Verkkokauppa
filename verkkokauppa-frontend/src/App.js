@@ -42,7 +42,6 @@ const App = () =>  {
           <button onClick={() => setPage('login')}>login</button>
         </div>
         <Products
-          products={productResult.data.allProducts}
           show={page === 'products'}
         />
         <LoginForm
@@ -68,7 +67,6 @@ const App = () =>  {
         <button onClick={logout}>logout</button>
       </div>
       <Products
-        products={productResult.data.allProducts}
         show={page === 'products'}
       />
     </div>
