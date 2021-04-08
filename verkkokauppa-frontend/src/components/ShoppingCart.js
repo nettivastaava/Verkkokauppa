@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 const ShoppingCart = ({ show, items, removeFromCart }) => {
-  const [cart, setCart] = useState([])
 
   if (!show) {
       return null
@@ -16,6 +15,10 @@ const ShoppingCart = ({ show, items, removeFromCart }) => {
     )
   }
 
+  var total = 0
+  items.map(item => total += item.price * item.amount)
+  
+
   return(
     <div>
       <h2>Your shopping cart</h2>
@@ -24,7 +27,7 @@ const ShoppingCart = ({ show, items, removeFromCart }) => {
           <tr>
             <th></th>
             <th>
-              price
+              price per unit
             </th>
             <th>
               amount
@@ -39,11 +42,13 @@ const ShoppingCart = ({ show, items, removeFromCart }) => {
               <td><button onClick={() => removeFromCart(p)}>remove</button></td>
             </tr>
           )}
+          <div>grand total {total}</div>
         </tbody>
       </table>
       <button>checkout</button>
     </div>
   )
 }
+
 
 export default ShoppingCart
