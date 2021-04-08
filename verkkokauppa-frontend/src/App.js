@@ -30,15 +30,33 @@ const App = () =>  {
   const addToCart = (product) => {
     const productToCart = {
       name: product.name,
-      price: product.price
+      price: product.price,
+      amount: 1
     }
     console.log(productToCart)
 
-    const copy = [...myCart, productToCart]
-    console.log(copy)
-    setMyCart(copy)
+    var found = false;
+    for(var i = 0; i < myCart.length; i++) {
+      if (myCart[i].name === productToCart.name) {
+          found = true
+          const copy = [...myCart]
+          const updatedProduct = {
+            name: product.name,
+            price: product.price,
+            amount: myCart[i].amount + 1
+          }
+          copy[i] = updatedProduct
+          setMyCart(copy)
+          break
+      }
+    }
 
-    console.log(myCart)
+    if (!found) {
+      const copy = [...myCart, productToCart]
+      setMyCart(copy)
+      console.log(myCart)
+    } 
+
   }
 
   const logout = () => {

@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
 
-const AddToCart = (product, cart, setCart) => {
-  
-}
-
 const ShoppingCart = ({ show, items }) => {
   const [cart, setCart] = useState([])
 
@@ -42,12 +38,14 @@ const ShoppingCart = ({ show, items }) => {
           {items.map(p =>
             <tr key={p.name}>
               <td>{p.name}</td>
-              <td>{p.price}</td>
+              <td>{p.price}$</td>
+              <td>{p.amount}</td>
               <td><button onClick={() => removeFromCart(p)}>remove</button></td>
             </tr>
           )}
         </tbody>
       </table>
+      <button>checkout</button>
     </div>
   )
 }
