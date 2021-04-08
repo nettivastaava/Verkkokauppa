@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 
-const ShoppingCart = ({ show, items }) => {
+const ShoppingCart = ({ show, items, removeFromCart }) => {
   const [cart, setCart] = useState([])
 
   if (!show) {
       return null
-  }
-
-  const removeFromCart = (product) => {
-
   }
 
   if (items.length < 1) {

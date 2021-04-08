@@ -27,6 +27,23 @@ const App = () =>  {
     )
   }
 
+  const removeFromCart = (product) => {
+    const copy = [...myCart]
+    for (var i = 0; i < myCart.length; i++) {
+      if (myCart[i].name === product.name) {
+        if (myCart[i].amount > 1) {
+          copy[i].amount-=1
+          setMyCart(copy)
+          break
+        } else {
+          copy.splice(i, 1)
+          setMyCart(copy)
+          break
+        }
+      }
+    }
+  }
+
   const addToCart = (product) => {
     const productToCart = {
       name: product.name,
@@ -108,6 +125,7 @@ const App = () =>  {
       <ShoppingCart
       show={page === 'cart'}
       items={myCart}
+      removeFromCart={removeFromCart}
       />
     </div>
   );
