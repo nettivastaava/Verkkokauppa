@@ -4,7 +4,7 @@ const AddToCart = (product, cart, setCart) => {
   
 }
 
-const ShoppingCart = ({ show }) => {
+const ShoppingCart = ({ show, items }) => {
   const [cart, setCart] = useState([])
 
   if (!show) {
@@ -15,7 +15,7 @@ const ShoppingCart = ({ show }) => {
 
   }
 
-  if (cart.length < 1) {
+  if (items.length < 1) {
     return (
       <div>
         <h2>Your shopping cart</h2>
@@ -39,11 +39,10 @@ const ShoppingCart = ({ show }) => {
             </th>
             <th></th>
           </tr>
-          {cart.map(p =>
+          {items.map(p =>
             <tr key={p.name}>
               <td>{p.name}</td>
               <td>{p.price}</td>
-              <td>{p.amount}</td>
               <td><button onClick={() => removeFromCart(p)}>remove</button></td>
             </tr>
           )}

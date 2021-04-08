@@ -12,6 +12,7 @@ const App = () =>  {
   const [token, setToken] = useState(null)
   const client = useApolloClient()
   const [errorMessage, setErrorMessage] = useState(null)
+  const [myCart, setMyCart] = useState([])
 
   const notify = (message) => {
     setErrorMessage(message)
@@ -26,11 +27,26 @@ const App = () =>  {
     )
   }
 
+  const addToCart = (product) => {
+    const productToCart = {
+      name: product.name,
+      price: product.price
+    }
+    console.log(productToCart)
+
+    const copy = [...myCart, productToCart]
+    console.log(copy)
+    setMyCart(copy)
+
+    console.log(myCart)
+  }
+
   const logout = () => {
     setToken(null)
     localStorage.clear()
     client.resetStore()
     setPage('login')
+    setMyCart([])
   }
 
   if (!token) {
@@ -67,9 +83,13 @@ const App = () =>  {
       </div>
       <Products
         show={page === 'products'}
+        myCart={myCart}
+        setMyCart={setMyCart}
+        addToCart={addToCart}
       />
       <ShoppingCart
       show={page === 'cart'}
+      items={myCart}
       />
     </div>
   );

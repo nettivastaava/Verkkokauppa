@@ -1,24 +1,9 @@
 import React, { useState } from 'react'
 
-const Product = ({ show, product, token }) => {
-  const [myCart, setMyCart] = useState([])
+const Product = ({ show, product, myCart, setMyCart, addToCart }) => {
 
   if (!show) {
     return null
-  }
-
-  const addToCart = (product) => {
-    const productToCart = {
-      name: product.name,
-      price: product.price
-    }
-    console.log(productToCart)
-
-    const copy = [...myCart, productToCart]
-    console.log(copy)
-    setMyCart(copy)
-
-    console.log(myCart)
   }
 
   if (!localStorage.getItem('shop-user-token')) {
