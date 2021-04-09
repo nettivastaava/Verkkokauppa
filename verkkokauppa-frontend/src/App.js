@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useQuery, useApolloClient } from '@apollo/client'
+import { useQuery, useApolloClient, useLazyQuery } from '@apollo/client'
 import Products from './components/Products'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
-import { ME } from './queries'
+import { ME, DECREASE_QUANTITY, FIND_PRODUCT } from './queries'
 
 const App = () =>  {
   const [page, setPage] = useState('products')
@@ -21,10 +21,17 @@ const App = () =>  {
     }, 10000)
   }
 
-  if (userData.loading) {
+  if (userData.loading)  {
     return(
       <div>loading...</div>
     )
+  }
+
+
+  const checkout = () => {
+    for (var i = 0; i < myCart.length; i++) {
+      
+    }
   }
 
   const removeFromCart = (product) => {
@@ -55,7 +62,8 @@ const App = () =>  {
     var found = false;
     for(var i = 0; i < myCart.length; i++) {
       if (myCart[i].name === productToCart.name) {
-          found = true
+        found = true
+        if (myCart[i].amount < product.quantity) {
           const copy = [...myCart]
           const updatedProduct = {
             name: product.name,
@@ -65,10 +73,11 @@ const App = () =>  {
           copy[i] = updatedProduct
           setMyCart(copy)
           break
+        }
       }
     }
 
-    if (!found) {
+    if (!found && product.quantity > 0) {
       const copy = [...myCart, productToCart]
       setMyCart(copy)
       console.log(myCart)
@@ -126,6 +135,7 @@ const App = () =>  {
       show={page === 'cart'}
       items={myCart}
       removeFromCart={removeFromCart}
+      checkout={checkout}
       />
     </div>
   );

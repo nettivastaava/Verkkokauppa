@@ -40,3 +40,22 @@ export const CREATE_USER = gql`
     }
   }
 `
+
+export const DECREASE_QUANTITY = gql`
+  mutation decreaseQuantity($name: String!, $quantity: Int!) {
+    decreaseQuantity(name: $name, quantity: $quantity) {
+      name
+      quantity
+    }
+  }
+`
+
+export const FIND_PRODUCT = gql`
+  query findProduct($name: String!) {
+    findProduct(name: $name) {
+      name
+      price
+      quantity
+    }
+  }
+`

@@ -34,6 +34,7 @@ const typeDefs = gql`
     allProducts(category: String): [Product]!
     allCategories: [String]!
     me: User
+    findProduct(name: String): Product
   }
 
   type User {
@@ -97,6 +98,10 @@ const resolvers = {
 
         const uniqueCategories = [...new Set(categories)];
         return uniqueCategories
+      },
+      findProduct: async (root, args) => {
+        const product = await Product.findOne({ name: args.name })
+        return product
       }
   },
   Mutation: {
