@@ -11,4 +11,5 @@
 | 7.4.2021 | 3 | Tietyn tuotteen tietojen näyttäminen |
 | 7.4.2021 | 4 | Ostoskorin prototyypin runko ja yleisiä parannuksia sovellukseen |
 | 8.4.2021 | 5 | Ostoskorin refaktorointi ja poisto- ja lisäystoiminnallisuudet |
-| yht | 34 | |
+| 9.4.2021 | 2 | Estetty lisäämästä ostoskoriin yli varaston kapasiteetin |
+| yht | 36 | |
