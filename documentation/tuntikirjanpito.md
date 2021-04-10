@@ -12,4 +12,5 @@
 | 7.4.2021 | 4 | Ostoskorin prototyypin runko ja yleisiä parannuksia sovellukseen |
 | 8.4.2021 | 5 | Ostoskorin refaktorointi ja poisto- ja lisäystoiminnallisuudet |
 | 9.4.2021 | 2 | Estetty lisäämästä ostoskoriin yli varaston kapasiteetin |
-| yht | 36 | |
+| 10.4.2021 | 3 | Maksaminen vähentää ostoskorin tavarat tietokannasta |
+| yht | 39 | |
