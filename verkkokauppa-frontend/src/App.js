@@ -1,18 +1,25 @@
 import React, { useState } from 'react'
-import { useQuery, useApolloClient, useLazyQuery } from '@apollo/client'
+import { useQuery, useApolloClient, useMutation } from '@apollo/client'
 import Products from './components/Products'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
-import { ME, DECREASE_QUANTITY, FIND_PRODUCT } from './queries'
+import { ME, DECREASE_QUANTITY, ALL_PRODUCTS } from './queries'
 
 const App = () =>  {
   const [page, setPage] = useState('products')
+  const [errorMessage, setErrorMessage] = useState(null)
   const userData = useQuery(ME)
+  const [ decreaseQuantity, result ] = useMutation(DECREASE_QUANTITY, {
+    refetchQueries: [ { query: ALL_PRODUCTS } ],
+    onError: (error) => {
+      notify(error)
+    },
+  })
   const [token, setToken] = useState(null)
   const client = useApolloClient()
-  const [errorMessage, setErrorMessage] = useState(null)
   const [myCart, setMyCart] = useState([])
+
 
   const notify = (message) => {
     setErrorMessage(message)
@@ -28,10 +35,21 @@ const App = () =>  {
   }
 
 
-  const checkout = () => {
+  const checkout = async () => {
     for (var i = 0; i < myCart.length; i++) {
+      const productToBePaid = myCart[i]
       
+      const name = productToBePaid.name
+      const quantity = productToBePaid.amount
+
+
+      console.log(name)
+      console.log(quantity)
+
+      decreaseQuantity({ variables: { name, quantity } })
+  
     }
+    setMyCart([])
   }
 
   const removeFromCart = (product) => {
