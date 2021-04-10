@@ -1,13 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 
 const Product = ({ show, product, myCart, setMyCart, addToCart }) => {
+
+  useEffect(() => {
+    if (product === null) {
+      return
+    }
+
+    const buyButton =  document.getElementById('buy-button')
+
+    if (product.quantity < 1) {
+      buyButton.disabled = true
+    } else {
+      buyButton.disabled = false
+    }
+    
+  })
 
   if (!show) {
     return null
   }
 
   if (!localStorage.getItem('shop-user-token')) {
-    return(
+    return (
       <div>
         <h2>{product.name}</h2>
         <table>
@@ -35,8 +50,10 @@ const Product = ({ show, product, myCart, setMyCart, addToCart }) => {
       </div>
     )
   }
+  const button = <button id='buy-button' onClick={() => addToCart(product)}>add to cart</button>
 
-  return(
+  return (
+    
     <div>
       <h2>{product.name}</h2>
       <table>
@@ -59,7 +76,7 @@ const Product = ({ show, product, myCart, setMyCart, addToCart }) => {
             <td>{product.price}$</td>
             <td>{product.description}</td>
             <td>{product.quantity}</td>
-            <td><button onClick={() => addToCart(product)}>add to cart</button></td>
+            <td>{button}</td>
           </tr>
         </tbody>
       </table>

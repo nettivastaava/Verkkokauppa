@@ -20,7 +20,6 @@ const App = () =>  {
   const client = useApolloClient()
   const [myCart, setMyCart] = useState([])
 
-
   const notify = (message) => {
     setErrorMessage(message)
     setTimeout(() => {
@@ -34,17 +33,12 @@ const App = () =>  {
     )
   }
 
-
   const checkout = async () => {
     for (var i = 0; i < myCart.length; i++) {
       const productToBePaid = myCart[i]
       
       const name = productToBePaid.name
       const quantity = productToBePaid.amount
-
-
-      console.log(name)
-      console.log(quantity)
 
       decreaseQuantity({ variables: { name, quantity } })
   
