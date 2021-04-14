@@ -1,9 +1,10 @@
+import userEvent from '@testing-library/user-event'
 import React, { useEffect } from 'react'
 
 const Product = ({ show, product, myCart, setMyCart, addToCart }) => {
 
   useEffect(() => {
-    if (product === null) {
+    if (product === null || !localStorage.getItem('shop-user-token')) {
       return
     }
 
