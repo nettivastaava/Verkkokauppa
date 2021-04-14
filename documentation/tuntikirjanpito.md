@@ -13,4 +13,5 @@
 | 8.4.2021 | 5 | Ostoskorin refaktorointi ja poisto- ja lisäystoiminnallisuudet |
 | 9.4.2021 | 2 | Estetty lisäämästä ostoskoriin yli varaston kapasiteetin |
 | 10.4.2021 | 3 | Maksaminen vähentää ostoskorin tavarat tietokannasta |
-| yht | 39 | |
+| 10.4.2021 | 2 | Painikkeiden disableaminen tietyissä tilanteissa |
+| yht | 41 | |
