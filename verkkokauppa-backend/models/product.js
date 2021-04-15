@@ -23,7 +23,13 @@ const schema = new mongoose.Schema({
   description: {
       type: String,
       minLength: 3
-  }
+  },
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ]
 })
 
 module.exports = mongoose.model('Product', schema)

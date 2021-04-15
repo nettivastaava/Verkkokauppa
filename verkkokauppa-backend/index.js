@@ -3,6 +3,7 @@ const { v1: uuid } = require('uuid')
 const mongoose = require('mongoose')
 const Product = require('./models/product')
 const User = require('./models/user')
+const Comment = require('./models/comment')
 const config = require('./utils/config')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
@@ -27,6 +28,7 @@ const typeDefs = gql`
     categories: [String!]!
     id: ID!
     description: String 
+    comments: [String]!
   }
 
   type Query {
@@ -43,6 +45,13 @@ const typeDefs = gql`
     id: ID!
   }
 
+  type Comment {
+    user: String!
+    product: String!
+    content: String!
+    id: ID!
+  }
+
   type Token {
     value: String!
   }
@@ -54,6 +63,7 @@ const typeDefs = gql`
       quantity: Int!
       categories: [String!]!
       description: String
+      comments: [String]!
     ): Product
     increaseQuantity(    
       name: String!    
@@ -72,6 +82,11 @@ const typeDefs = gql`
       username: String!
       password: String!
     ): Token
+    addComment(
+      product: String!
+      user: String!
+      content: String!
+    ): Comment
   }
 `
 
@@ -208,6 +223,23 @@ const resolvers = {
       }
   
       return { value: jwt.sign(userForToken, JWT_SECRET) }
+    },
+    addComment: async (root, args, context) => {
+      const comment = new Comment({ ...args })
+      const product = await Product.findById(args.product)
+      console.log(product.id)
+      console.log(args.product)
+      try {
+        await comment.save()
+        product.comments = product.comments.concat(comment)      
+        await product.save()
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args,
+        })
+      }
+
+      return comment
     }
   }
 }
