@@ -16,4 +16,5 @@
 | 10.4.2021 | 2 | Painikkeiden disableaminen tietyissä tilanteissa |
 | 14.4.2021 | 1 | Manuaalista testailua ja jatkosuunnittelua |
 | 15.4.2021 | 5 | Epäonnistunut kokeilu kommentointitoiminnallisuuden toteuttamisessa |
-| yht | 47 | |
+| 15.4.2021 | 3 | (Toimiva) kommentointitoiminnallisuus back endiin |
+| yht | 50 | |
