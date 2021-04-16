@@ -34,6 +34,7 @@ export const ME = gql`
   query {
     me {
       username
+      id
     }
   }
   `
@@ -66,10 +67,10 @@ export const FIND_PRODUCT = gql`
 `
 
 export const ADD_COMMENT = gql`
-  mutation addComment($product: String!, $user: String!, $content: String!) {
-    addComment(product: $product, user: $user, content: $content) {
-      product
+  mutation addComment($user: String!, $product: String!, $content: String!) {
+    addComment(user: $user, product: $product, content: $content) {
       user
+      product
       content
     }
   }

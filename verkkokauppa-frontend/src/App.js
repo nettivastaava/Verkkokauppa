@@ -142,6 +142,7 @@ const App = () =>  {
         myCart={myCart}
         setMyCart={setMyCart}
         addToCart={addToCart}
+        setError={notify}
       />
       <ShoppingCart
       show={page === 'cart'}
