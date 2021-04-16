@@ -1,5 +1,8 @@
 import userEvent from '@testing-library/user-event'
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useQuery, useLazyQuery } from '@apollo/client'
+import Comments from './Comments'
+
 
 const Product = ({ show, product, myCart, setMyCart, addToCart }) => {
 
@@ -81,6 +84,9 @@ const Product = ({ show, product, myCart, setMyCart, addToCart }) => {
           </tr>
         </tbody>
       </table>
+      <Comments 
+        comments={product.comments}
+      />
     </div>
   )
 }

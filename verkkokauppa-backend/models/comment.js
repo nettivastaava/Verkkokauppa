@@ -7,9 +7,9 @@ const schema = new mongoose.Schema({
         ref: 'User'  
     },
     product: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,    
         required: true,
-        minlength: 4
+        ref: 'Product'
     },
     content: {
         type: String,

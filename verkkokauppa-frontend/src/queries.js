@@ -9,6 +9,11 @@ export const ALL_PRODUCTS = gql`
       id
       categories
       description
+      comments {
+        user
+        product
+        content
+      }
     }
   }
   `
@@ -56,6 +61,26 @@ export const FIND_PRODUCT = gql`
       name
       price
       quantity
+    }
+  }
+`
+
+export const ADD_COMMENT = gql`
+  mutation addComment($product: String!, $user: String!, $content: String!) {
+    addComment(product: $product, user: $user, content: $content) {
+      product
+      user
+      content
+    }
+  }
+`
+
+export const ALL_COMMENTS = gql`
+  query allCommentsByProduct($product: String){
+    allComments(product: $product) {
+      user
+      product
+      content
     }
   }
 `

@@ -28,7 +28,7 @@ const typeDefs = gql`
     categories: [String!]!
     id: ID!
     description: String 
-    comments: [String]!
+    comments: [Comment]!
   }
 
   type Query {
@@ -37,6 +37,7 @@ const typeDefs = gql`
     allCategories: [String]!
     me: User
     findProduct(name: String): Product
+    allComments(product: String): [Comment]!
   }
 
   type User {
@@ -94,7 +95,7 @@ const resolvers = {
   Query: {
       productCount: () => Product.collection.countDocuments(),
       allProducts: async (root, args) => {
-        const products = await Product.find({})
+        const products = await Product.find({}).populate('comments')
         console.log('products, ', products)
 
         if (!args.category) {
@@ -117,6 +118,12 @@ const resolvers = {
       findProduct: async (root, args) => {
         const product = await Product.findOne({ name: args.name })
         return product
+      },
+      allComments: async (root, args) => {
+        const comments = await Comment.find({})
+        console.log(comments)
+        
+        return comments
       }
   },
   Mutation: {
@@ -227,8 +234,7 @@ const resolvers = {
     addComment: async (root, args, context) => {
       const comment = new Comment({ ...args })
       const product = await Product.findById(args.product)
-      console.log(product.id)
-      console.log(args.product)
+
       try {
         await comment.save()
         product.comments = product.comments.concat(comment)      
