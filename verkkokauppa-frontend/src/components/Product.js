@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useQuery, useLazyQuery } from '@apollo/client'
 import Comments from './Comments'
 
-
-const Product = ({ show, product, myCart, setMyCart, addToCart, setError }) => {
+const Product = ({ show, product, myCart, setMyCart, addToCart, setError, userData }) => {
 
   useEffect(() => {
     if (product === null || !localStorage.getItem('shop-user-token')) {
@@ -52,7 +51,7 @@ const Product = ({ show, product, myCart, setMyCart, addToCart, setError }) => {
           </tbody>
         </table>
         <Comments 
-          comments={product.comments}
+          productToView={product}
         />
       </div>
     )
@@ -88,9 +87,9 @@ const Product = ({ show, product, myCart, setMyCart, addToCart, setError }) => {
         </tbody>
       </table>
       <Comments 
-        comments={product.comments}
-        product={product.id}
+        productToView={product}
         setError={setError}
+        loggedUser={userData.data.me}
       />
     </div>
   )

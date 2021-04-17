@@ -143,6 +143,7 @@ const App = () =>  {
         setMyCart={setMyCart}
         addToCart={addToCart}
         setError={notify}
+        userData={userData}
       />
       <ShoppingCart
       show={page === 'cart'}

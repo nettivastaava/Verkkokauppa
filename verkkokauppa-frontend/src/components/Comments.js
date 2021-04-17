@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useMutation, useQuery } from '@apollo/client'
+import { useMutation, useQuery, useLazyQuery } from '@apollo/client'
 import { ADD_COMMENT, ALL_PRODUCTS, ME } from '../queries'
 
-const Comments = ({ comments, product, setError }) => {
+const Comments = ({ productToView, setError, loggedUser }) => {
   const [content, setContent] = useState('')
-  const userData = useQuery(ME)
-  const [user, setUser] = useState('')
+  const [comments, setComments] = useState(productToView.comments)
 
   const [ createReview, result ] = useMutation(ADD_COMMENT, {  
     refetchQueries: [ { query: ALL_PRODUCTS } ],
@@ -15,19 +14,14 @@ const Comments = ({ comments, product, setError }) => {
   })
 
   useEffect(() => {    
-    if (userData.data) {      
-      setUser(userData.data.me.id)
-    }  
-  }, [userData])
+    setComments(productToView.comments) 
+  }, [comments])
 
-  if (userData.loading)  {
-    return(
-      <div>loading...</div>
-    )
-  }
 
   const postReview = async (event) => {
     event.preventDefault()
+    const user = loggedUser.id
+    const product = productToView.id
 
     createReview({ variables: { user, product, content } })
     setContent('')

@@ -3,7 +3,7 @@ import { useQuery, useLazyQuery } from '@apollo/client'
 import { ALL_PRODUCTS, ALL_CATEGORIES } from '../queries'
 import Product from './Product'
 
-const Products = ({ show, myCart, setMyCart, addToCart, setError }) => {
+const Products = ({ show, myCart, setMyCart, addToCart, setError, userData }) => {
   const categoriesResult = useQuery(ALL_CATEGORIES)
   const [getProducts, result] = useLazyQuery(ALL_PRODUCTS)
   const [category, setCategory] = useState('')
@@ -57,6 +57,7 @@ const Products = ({ show, myCart, setMyCart, addToCart, setError }) => {
       setMyCart={setMyCart}
       addToCart={addToCart}
       setError={setError}
+      userData={userData}
       />
       <h2>Search products</h2>
       
