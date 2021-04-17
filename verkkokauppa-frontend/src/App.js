@@ -105,7 +105,7 @@ const App = () =>  {
     setMyCart([])
   }
 
-  if (!token) {
+  if (!localStorage.getItem('shop-user-token')) {
     return (
       <div>
         <div>

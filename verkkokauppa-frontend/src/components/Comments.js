@@ -5,6 +5,8 @@ import { ADD_COMMENT, ALL_PRODUCTS, ME } from '../queries'
 const Comments = ({ productToView, setError, loggedUser }) => {
   const [content, setContent] = useState('')
   const [comments, setComments] = useState(productToView.comments)
+  const [getMe, meResult] = useLazyQuery(ME)
+  const [user, setUser] = useState('')
 
   const [ createReview, result ] = useMutation(ADD_COMMENT, {  
     refetchQueries: [ { query: ALL_PRODUCTS } ],
@@ -15,13 +17,21 @@ const Comments = ({ productToView, setError, loggedUser }) => {
 
   useEffect(() => {    
     setComments(productToView.comments) 
+    getMe()
+
+    if (meResult.data) {
+      setUser(meResult.data.me.id)
+    }
   }, [comments])
 
 
   const postReview = async (event) => {
     event.preventDefault()
-    const user = loggedUser.id
     const product = productToView.id
+
+    console.log(user)
+    console.log(product)
+
 
     createReview({ variables: { user, product, content } })
     setContent('')
