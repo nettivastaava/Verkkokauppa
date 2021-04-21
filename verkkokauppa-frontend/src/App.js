@@ -55,10 +55,18 @@ const App = () =>  {
         if (myCart[i].amount > 1) {
           copy[i].amount-=1
           setMyCart(copy)
+          setNotification(`Removed ${product.name} from cart`)
+          setTimeout(() => {
+            setNotification('')
+          }, 5000)
           break
         } else {
           copy.splice(i, 1)
           setMyCart(copy)
+          setNotification(`Removed ${product.name} from cart`)
+          setTimeout(() => {
+            setNotification('')
+          }, 5000)
           break
         }
       }
