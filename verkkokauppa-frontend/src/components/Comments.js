@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useMutation, useQuery, useLazyQuery } from '@apollo/client'
-import { ADD_COMMENT, ALL_PRODUCTS, ME } from '../queries'
+import { ADD_COMMENT, ALL_COMMENTS, ALL_PRODUCTS, ME } from '../queries'
 
 const Comments = ({ productToView, setError, loggedUser }) => {
   const [content, setContent] = useState('')
   const [comments, setComments] = useState(productToView.comments)
   const [getMe, meResult] = useLazyQuery(ME)
+  const [getComments, commentsResult] = useLazyQuery(ALL_COMMENTS)
   const [user, setUser] = useState('')
 
   const [ createReview, result ] = useMutation(ADD_COMMENT, {  
@@ -18,8 +19,9 @@ const Comments = ({ productToView, setError, loggedUser }) => {
   useEffect(() => {    
     setComments(productToView.comments) 
     getMe()
-
+    console.log('COMM', productToView.name)
     if (meResult.data) {
+      console.log(result.data.me)
       setUser(meResult.data.me.id)
     }
   }, [comments])
@@ -31,7 +33,6 @@ const Comments = ({ productToView, setError, loggedUser }) => {
 
     console.log(user)
     console.log(product)
-
 
     createReview({ variables: { user, product, content } })
     setContent('')
@@ -47,10 +48,10 @@ const Comments = ({ productToView, setError, loggedUser }) => {
     return(
       <div>
         {comments.map(c =>
-              <div key={c.id}>
-                  <div>{c.content}</div>
-              </div>
-            )}
+          <div key={c.id}>
+            <div>{c.content}</div>
+          </div>
+        )}
       </div>
     )
   }
@@ -72,10 +73,10 @@ const Comments = ({ productToView, setError, loggedUser }) => {
   return(
     <div>
       {comments.map(c =>
-            <div key={c.id}>
-                <div>{c.content}</div>
-            </div>
-          )}
+        <div key={c.id}>
+          <div>{c.content}</div>
+        </div>
+      )}
       <form onSubmit={postReview}>
         <textarea value={content} onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
         <div>

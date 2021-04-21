@@ -51,13 +51,13 @@ const Products = ({ show, myCart, setMyCart, addToCart, setError, userData }) =>
   return (
     <div>
       <Product
-      show={page === 'product'}
-      product={productToShow}
-      myCart={myCart}
-      setMyCart={setMyCart}
-      addToCart={addToCart}
-      setError={setError}
-      userData={userData}
+        show={page === 'product'}
+        product={productToShow}
+        myCart={myCart}
+        setMyCart={setMyCart}
+        addToCart={addToCart}
+        setError={setError}
+        userData={userData}
       />
       <h2>Search products</h2>
       

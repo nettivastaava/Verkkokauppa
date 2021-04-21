@@ -94,7 +94,6 @@ const App = () =>  {
       setMyCart(copy)
       console.log(myCart)
     } 
-
   }
 
   const logout = () => {
