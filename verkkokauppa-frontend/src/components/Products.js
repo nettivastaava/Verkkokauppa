@@ -52,12 +52,11 @@ const Products = ({ show, myCart, setMyCart, addToCart, setError, userData }) =>
     <div>
       <Product
         show={page === 'product'}
-        product={productToShow}
+        shownProduct={productToShow}
         myCart={myCart}
         setMyCart={setMyCart}
         addToCart={addToCart}
         setError={setError}
-        userData={userData}
       />
       <h2>Search products</h2>
       

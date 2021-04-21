@@ -1,19 +1,34 @@
 import userEvent from '@testing-library/user-event'
 import React, { useState, useEffect } from 'react'
-import { useQuery, useLazyQuery } from '@apollo/client'
+import { useQuery, useLazyQuery, useMutation } from '@apollo/client'
 import Comments from './Comments'
+import { ME, ALL_COMMENTS, ALL_PRODUCTS, ADD_COMMENT } from '../queries'
 
-const Product = ({ show, product, myCart, setMyCart, addToCart, setError, userData }) => {
+const Product = ({ show, shownProduct, myCart, setMyCart, addToCart, setError }) => {
+  const [content, setContent] = useState('')
+  const [comments, setComments] = useState([])
+  const [getMe, meResult] = useLazyQuery(ME)
+  const [getComments, commentsResult] = useLazyQuery(ALL_COMMENTS)
+  const userData = useQuery(ME)
+
+  const [ createReview, result ] = useMutation(ADD_COMMENT, {  
+    refetchQueries: [ { query: ALL_PRODUCTS } ],
+    onError: (error) => {
+      setError(error)
+    },
+  })
   
-  console.log('PROD', product)
+  console.log('PROD', shownProduct)
   useEffect(() => {
-    if (product === null || !localStorage.getItem('shop-user-token')) {
+    if (shownProduct === null || !localStorage.getItem('shop-user-token')) {
       return
     }
 
+    setComments(shownProduct.comments) 
+
     const buyButton =  document.getElementById('buy-button')
 
-    if (product.quantity < 1) {
+    if (shownProduct.quantity < 1) {
       buyButton.disabled = true
     } else {
       buyButton.disabled = false
@@ -25,12 +40,18 @@ const Product = ({ show, product, myCart, setMyCart, addToCart, setError, userDa
     return null
   }
 
-  console.log('comments: ', product.comments)
+  if (userData.loading)  {
+    return(
+      <div>loading...</div>
+    )
+  }
+
+  console.log('comments: ', shownProduct.comments)
 
   if (!localStorage.getItem('shop-user-token')) {
     return (
       <div>
-        <h2>{product.name}</h2>
+        <h2>{shownProduct.name}</h2>
         <table>
           <tbody>
             <tr>
@@ -46,25 +67,36 @@ const Product = ({ show, product, myCart, setMyCart, addToCart, setError, userDa
               </th>
             </tr>
             <tr>
-              <td>{product.name}</td>
-              <td>{product.price}$</td>
-              <td>{product.description}</td>
-              <td>{product.quantity}</td>
+              <td>{shownProduct.name}</td>
+              <td>{shownProduct.price}$</td>
+              <td>{shownProduct.description}</td>
+              <td>{shownProduct.quantity}</td>
             </tr>
           </tbody>
         </table>
-        <Comments 
-          productToView={product}
-        />
+        Log in to see the reviews for this product
       </div>
     )
   }
-  const button = <button id='buy-button' onClick={() => addToCart(product)}>add to cart</button>
+  const button = <button id='buy-button' onClick={() => addToCart(shownProduct)}>add to cart</button>
+
+  const postReview = async (event) => {
+    console.log('AAAAAA ,', userData.data)
+    event.preventDefault()
+    const product = shownProduct.id
+    const user = userData.data.me.id
+
+    console.log(user)
+    console.log(product)
+
+    createReview({ variables: { user, product, content } })
+    setContent('')
+  }
 
   return (
     
     <div>
-      <h2>{product.name}</h2>
+      <h2>{shownProduct.name}</h2>
       <table>
         <tbody>
           <tr>
@@ -81,20 +113,25 @@ const Product = ({ show, product, myCart, setMyCart, addToCart, setError, userDa
             <th></th>
           </tr>
           <tr>
-            <td>{product.name}</td>
-            <td>{product.price}$</td>
-            <td>{product.description}</td>
-            <td>{product.quantity}</td>
+            <td>{shownProduct.name}</td>
+            <td>{shownProduct.price}$</td>
+            <td>{shownProduct.description}</td>
+            <td>{shownProduct.quantity}</td>
             <td>{button}</td>
           </tr>
         </tbody>
       </table>
-      <Comments
-        show 
-        productToView={product}
-        setError={setError}
-        loggedUser={userData.data.me}
-      />
+      {comments.map(c =>
+        <div key={c.id}>
+          <div>{c.content}</div>
+        </div>
+      )}
+      <form onSubmit={postReview}>
+        <textarea value={content} onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
+        <div>
+          <button type='submit'>Review this product!</button>
+        </div>
+      </form>
     </div>
   )
 }

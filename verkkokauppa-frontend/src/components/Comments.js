@@ -19,12 +19,17 @@ const Comments = ({ productToView, setError, loggedUser }) => {
   useEffect(() => {    
     setComments(productToView.comments) 
     getMe()
+    if (meResult.loading) {
+      return(
+        <div>loading...</div>
+      )
+    }
     console.log('COMM', productToView.name)
     if (meResult.data) {
-      console.log(result.data.me)
+      console.log(meResult.data.me)
       setUser(meResult.data.me.id)
     }
-  }, [comments])
+  })
 
 
   const postReview = async (event) => {
