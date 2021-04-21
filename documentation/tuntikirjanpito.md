@@ -18,4 +18,6 @@
 | 15.4.2021 | 5 | Epäonnistunut kokeilu kommentointitoiminnallisuuden toteuttamisessa |
 | 16.4.2021 | 3 | (Toimiva) kommentointitoiminnallisuus back endiin |
 | 16.4.2021 | 3 | Suurpiirteinen prototyyppi kommentoinnista front endiin |
-| yht | 53 | |
+| 17.4.2021 | 3 | Kommentoinnin parantelua ja bugien metsästystä |
+| 17.4.2021 | 1 | Yritetty korjata bugia kommenttien näyttämisessä |
+| yht | 57 | |
