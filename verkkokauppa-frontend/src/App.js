@@ -4,11 +4,13 @@ import Products from './components/Products'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
+import Notification from './components/Notification'
 import { ME, DECREASE_QUANTITY, ALL_PRODUCTS } from './queries'
 
 const App = () =>  {
   const [page, setPage] = useState('products')
   const [errorMessage, setErrorMessage] = useState(null)
+  const [notification, setNotification] = useState('')
   const userData = useQuery(ME)
   const [ decreaseQuantity, result ] = useMutation(DECREASE_QUANTITY, {
     refetchQueries: [ { query: ALL_PRODUCTS } ],
@@ -84,6 +86,10 @@ const App = () =>  {
           }
           copy[i] = updatedProduct
           setMyCart(copy)
+          setNotification(`Added ${product.name} to cart`)
+          setTimeout(() => {
+            setNotification('')
+          }, 5000)
           break
         }
       }
@@ -92,6 +98,11 @@ const App = () =>  {
     if (!found && product.quantity > 0) {
       const copy = [...myCart, productToCart]
       setMyCart(copy)
+      setMyCart(copy)
+          setNotification(`Added ${product.name} to cart`)
+          setTimeout(() => {
+            setNotification('')
+      }, 5000)
       console.log(myCart)
     } 
   }
@@ -136,6 +147,7 @@ const App = () =>  {
         <button onClick={() => setPage('cart')}>shopping cart</button>
         <button onClick={logout}>logout</button>
       </div>
+      <Notification message={notification} />
       <Products
         show={page === 'products'}
         myCart={myCart}
