@@ -21,4 +21,5 @@
 | 17.4.2021 | 3 | Kommentoinnin parantelua ja bugien metsästystä |
 | 17.4.2021 | 1 | Yritetty korjata bugia kommenttien näyttämisessä |
 | 21.4.2021 | 3 | Kommenttien näyttäminen oikein front endissä |
-| yht | 60 | |
+| 21.4.2021 | 1 | Notifikaation toteuttaminen |
+| yht | 61 | |
