@@ -22,4 +22,5 @@
 | 17.4.2021 | 1 | Yritetty korjata bugia kommenttien näyttämisessä |
 | 21.4.2021 | 3 | Kommenttien näyttäminen oikein front endissä |
 | 21.4.2021 | 1 | Notifikaation toteuttaminen |
-| yht | 61 | |
+| 23.4.2021 | 1 | Korjattu bugi ostosten tekemisen jälkeisessä näkymässä |
+| yht | 62 | |
