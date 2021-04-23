@@ -9,6 +9,7 @@ import { ME, DECREASE_QUANTITY, ALL_PRODUCTS } from './queries'
 
 const App = () =>  {
   const [page, setPage] = useState('products')
+  const [showProduct, setShowProduct] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [notification, setNotification] = useState('')
   const userData = useQuery(ME)
@@ -29,6 +30,8 @@ const App = () =>  {
     }, 10000)
   }
 
+  console.log('heei')
+
   if (userData.loading)  {
     return(
       <div>loading...</div>
@@ -45,7 +48,13 @@ const App = () =>  {
       decreaseQuantity({ variables: { name, quantity } })
   
     }
+    setShowProduct(null)
+    setPage('products')
     setMyCart([])
+    setNotification(`Your purchase was successful`)
+      setTimeout(() => {
+        setNotification('')
+    }, 5000)
   }
 
   const removeFromCart = (product) => {
@@ -132,6 +141,8 @@ const App = () =>  {
         </div>
         <Products
           show={page === 'products'}
+          setShowProduct={setShowProduct}
+          showProduct={showProduct}
         />
         <LoginForm
           setToken={setToken}
@@ -158,6 +169,8 @@ const App = () =>  {
       <Notification message={notification} />
       <Products
         show={page === 'products'}
+        showProduct={showProduct}
+        setShowProduct={setShowProduct}
         myCart={myCart}
         setMyCart={setMyCart}
         addToCart={addToCart}
@@ -165,10 +178,10 @@ const App = () =>  {
         userData={userData}
       />
       <ShoppingCart
-      show={page === 'cart'}
-      items={myCart}
-      removeFromCart={removeFromCart}
-      checkout={checkout}
+        show={page === 'cart'}
+        items={myCart}
+        removeFromCart={removeFromCart}
+        checkout={checkout}
       />
     </div>
   );

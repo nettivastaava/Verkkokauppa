@@ -31,7 +31,6 @@ const Comments = ({ productToView, setError, loggedUser }) => {
     }
   })
 
-
   const postReview = async (event) => {
     event.preventDefault()
     const product = productToView.id

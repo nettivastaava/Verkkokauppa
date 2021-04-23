@@ -4,7 +4,7 @@ import { useQuery, useLazyQuery, useMutation } from '@apollo/client'
 import Comments from './Comments'
 import { ME, ALL_COMMENTS, ALL_PRODUCTS, ADD_COMMENT } from '../queries'
 
-const Product = ({ show, shownProduct, myCart, setMyCart, addToCart, setError }) => {
+const Product = ({ showProduct, shownProduct, addToCart, setError }) => {
   const [content, setContent] = useState('')
   const [comments, setComments] = useState([])
   const [getMe, meResult] = useLazyQuery(ME)
@@ -18,9 +18,8 @@ const Product = ({ show, shownProduct, myCart, setMyCart, addToCart, setError })
     },
   })
   
-  console.log('PROD', shownProduct)
   useEffect(() => {
-    if (shownProduct === null || !localStorage.getItem('shop-user-token')) {
+    if (!showProduct || shownProduct === null || !localStorage.getItem('shop-user-token')) {
       return
     }
 
@@ -36,9 +35,10 @@ const Product = ({ show, shownProduct, myCart, setMyCart, addToCart, setError })
     
   })
 
-  if (!show) {
+  if (!showProduct || !shownProduct) {
     return null
   }
+  console.log('PROD', shownProduct)
 
   if (userData.loading)  {
     return(

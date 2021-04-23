@@ -3,14 +3,13 @@ import { useQuery, useLazyQuery } from '@apollo/client'
 import { ALL_PRODUCTS, ALL_CATEGORIES } from '../queries'
 import Product from './Product'
 
-const Products = ({ show, myCart, setMyCart, addToCart, setError, userData }) => {
+const Products = ({ show, showProduct, setShowProduct, myCart, setMyCart, addToCart, setError, userData }) => {
   const categoriesResult = useQuery(ALL_CATEGORIES)
   const [getProducts, result] = useLazyQuery(ALL_PRODUCTS)
   const [category, setCategory] = useState('')
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
   const [productToShow, setProductToShow] = useState(null)
-  const [page, setPage] = useState('')
 
   useEffect(() => {
     if (categoriesResult.data) {
@@ -45,13 +44,13 @@ const Products = ({ show, myCart, setMyCart, addToCart, setError, userData }) =>
 
   const inspectProduct = (product) => {
     setProductToShow(product)
-    setPage('product')
+    setShowProduct('product')
   }
   
   return (
     <div>
       <Product
-        show={page === 'product'}
+        showProduct={showProduct}
         shownProduct={productToShow}
         myCart={myCart}
         setMyCart={setMyCart}
