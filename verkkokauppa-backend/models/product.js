@@ -29,7 +29,12 @@ const schema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Comment'
     }
-  ]
+  ],
+  units_sold: {
+    type: Number,
+    required: true,
+    min: 0
+  }
 })
 
 module.exports = mongoose.model('Product', schema)

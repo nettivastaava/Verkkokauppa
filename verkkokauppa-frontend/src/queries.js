@@ -14,6 +14,7 @@ export const ALL_PRODUCTS = gql`
         product
         content
       }
+      units_sold
     }
   }
   `

@@ -29,6 +29,7 @@ const typeDefs = gql`
     id: ID!
     description: String 
     comments: [Comment]!
+    units_sold: Int!
   }
 
   type Query {
@@ -65,6 +66,7 @@ const typeDefs = gql`
       categories: [String!]!
       description: String
       comments: [String]!
+      units_sold: Int!
     ): Product
     increaseQuantity(    
       name: String!    
@@ -99,7 +101,7 @@ const resolvers = {
         console.log('products, ', products)
 
         if (!args.category) {
-          return products
+          return products.sort((p1, p2) => p2.units_sold - p1.units_sold).slice(0, 5)
         } else {
           return products.filter(product => product.categories.includes(args.category))          
         }
@@ -177,6 +179,7 @@ const resolvers = {
       }
 
       product.quantity = product.quantity - args.quantity
+      product.units_sold = product.units_sold + args.quantity
 
       try {
         await product.save()

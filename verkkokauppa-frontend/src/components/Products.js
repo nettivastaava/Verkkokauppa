@@ -63,9 +63,8 @@ const Products = ({ show, showProduct, setShowProduct, myCart, setMyCart, addToC
         {categories.map(c => 
           <button onClick={() => showCategory(c)}>{c}</button>
         )}
-        <button onClick={() => showCategory('')}>clear filters</button>
+        <button onClick={() => showCategory('')}>trending</button>
       </div>
-      <p>Products in category</p>
       <table>
         <tbody>
           <tr>
