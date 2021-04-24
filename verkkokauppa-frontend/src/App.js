@@ -30,8 +30,6 @@ const App = () =>  {
     }, 10000)
   }
 
-  console.log('heei')
-
   if (userData.loading)  {
     return(
       <div>loading...</div>

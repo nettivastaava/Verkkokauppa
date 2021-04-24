@@ -106,8 +106,8 @@ const resolvers = {
           return products.filter(product => product.categories.includes(args.category))          
         }
       },
-      me: (root, args, context) => {
-        return context.currentUser
+      me: async (root, args, context) => {
+        return await context.currentUser
       },
       allCategories: async () => {
         const products = await Product.find({})
