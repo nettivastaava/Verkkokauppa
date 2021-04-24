@@ -24,4 +24,5 @@
 | 21.4.2021 | 1 | Notifikaation toteuttaminen |
 | 23.4.2021 | 1 | Korjattu bugi ostosten tekemisen jälkeisessä näkymässä |
 | 23.4.2021 | 2 | Ostetuimpien tuotteiden näyttäminen |
-| yht | 64 | |
+| 24.4.2021 | 4 | Yritetty yhdistää kirjautunut käyttäjä kirjoittamaansa kommentiin front endissä (toimii vain rajatuissa tilanteissa) |
+| yht | 68 | |
