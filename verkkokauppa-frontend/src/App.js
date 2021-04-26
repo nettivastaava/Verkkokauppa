@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useQuery, useApolloClient, useMutation } from '@apollo/client'
+import React, { useState, useEffect } from 'react'
+import { useQuery, useApolloClient, useMutation, useLazyQuery } from '@apollo/client'
 import Products from './components/Products'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
@@ -12,7 +12,6 @@ const App = () =>  {
   const [showProduct, setShowProduct] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [notification, setNotification] = useState('')
-  const userData = useQuery(ME)
   const [ decreaseQuantity, result ] = useMutation(DECREASE_QUANTITY, {
     refetchQueries: [ { query: ALL_PRODUCTS } ],
     onError: (error) => {
@@ -22,18 +21,11 @@ const App = () =>  {
   const [token, setToken] = useState(null)
   const client = useApolloClient()
   const [myCart, setMyCart] = useState([])
-
   const notify = (message) => {
     setErrorMessage(message)
     setTimeout(() => {
       setErrorMessage(null)
     }, 10000)
-  }
-
-  if (userData.loading)  {
-    return(
-      <div>loading...</div>
-    )
   }
 
   const checkout = async () => {
@@ -173,7 +165,6 @@ const App = () =>  {
         setMyCart={setMyCart}
         addToCart={addToCart}
         setError={notify}
-        userData={userData}
       />
       <ShoppingCart
         show={page === 'cart'}

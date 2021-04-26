@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery, useLazyQuery } from '@apollo/client'
 import { LOGIN, ME } from '../queries'
 
 const LoginForm = ({ setError, setToken, show, setPage }) => {
@@ -18,7 +18,9 @@ const LoginForm = ({ setError, setToken, show, setPage }) => {
       const token = result.data.login.value
       setToken(token)
       localStorage.setItem('shop-user-token', token)
+      localStorage.setItem('username', username)
       setPage('products')
+      window.location.reload()
     }  
   }, [result.data]) 
 

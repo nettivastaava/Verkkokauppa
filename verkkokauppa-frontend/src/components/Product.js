@@ -8,10 +8,9 @@ import { checkDocument } from '@apollo/client/utilities'
 const Product = ({ showProduct, shownProduct, addToCart, setError }) => {
   const [content, setContent] = useState('')
   const [comments, setComments] = useState([])
-  const [getMe, meResult] = useLazyQuery(ME)
+  const userData = useQuery(ME)
   const [getComments, commentsResult] = useLazyQuery(ALL_COMMENTS)
   const [user, setUser] = useState(null)
-  
 
   const [ createReview, result ] = useMutation(ADD_COMMENT, {  
     refetchQueries: [ { query: ALL_PRODUCTS } ],
@@ -19,11 +18,6 @@ const Product = ({ showProduct, shownProduct, addToCart, setError }) => {
       setError(error)
     },
   })
-
-  const getLoggedUser = () => {    
-    getMe()  
-  }
-  console.log('loggedUser: ', user)
   
   useEffect(() => {
     if (!showProduct || shownProduct === null || !localStorage.getItem('shop-user-token')) {
@@ -43,17 +37,20 @@ const Product = ({ showProduct, shownProduct, addToCart, setError }) => {
   })
 
   useEffect(() => {    
-    if (meResult.data) {    
-        setUser(meResult.data.me.id)    
+    if (userData.data && userData.data.me) {    
+      setUser(userData.data.me.id)    
     }  
-  }, [meResult])
+  }, [userData])
 
-  
+  if (userData.loading) {
+    return (
+      <div>loading...</div>
+    )
+  }
 
   if (!showProduct || !shownProduct) {
     return null
   }
-
 
   if (!localStorage.getItem('shop-user-token')) {
     return (
@@ -89,20 +86,10 @@ const Product = ({ showProduct, shownProduct, addToCart, setError }) => {
 
   const postReview = async (event) => {
     
-    console.log('AAAAAA')
     event.preventDefault()
     const product = shownProduct.id
-    
-    console.log(product)
-
     createReview({ variables: { user, product, content } })
     setContent('')
-  }
-
-  const check = (event) => {
-    event.preventDefault()
-    getLoggedUser()
-    
   }
 
   return (
@@ -143,7 +130,6 @@ const Product = ({ showProduct, shownProduct, addToCart, setError }) => {
           <button type='submit'>Review this product!</button>
         </div>
       </form>
-      <button onClick={check}>testi</button>
     </div>
   )
 }
