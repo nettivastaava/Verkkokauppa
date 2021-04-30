@@ -131,18 +131,22 @@ const App = () =>  {
         <h1>Web Store</h1>
         <Menu />
         <Switch>
-          <Route path="/products">
-            <Products 
-              setShowProduct={setShowProduct}
-              showProduct={showProduct}
-            />
-          </Route>
           <Route path= "/login">
             <LoginForm
               setToken={setToken}
               setError={notify}
-              show={page === 'login'}
             />      
+          </Route>
+          <Route path= "/register">
+            <RegistrationForm
+              setError={notify}
+            />
+          </Route>
+          <Route path= "/">
+            <Products 
+              setShowProduct={setShowProduct}
+              showProduct={showProduct}
+            />
           </Route>
         </Switch>
       </div>
@@ -152,42 +156,56 @@ const App = () =>  {
   return (
     <div>
       <div>
-        <button onClick={() => setPage('products')}>products</button>
-        <button onClick={() => setPage('cart')}>shopping cart</button>
-        <button onClick={logout}>logout</button>
+        <h1>Web Store</h1>
+        <Menu />
+        <Switch>
+          <Route path= "shopping-cart">
+          <ShoppingCart
+            items={myCart}
+            removeFromCart={removeFromCart}
+            checkout={checkout}
+          />
+          </Route>
+          <Route path= "/">
+            <Products 
+              setShowProduct={setShowProduct}
+              showProduct={showProduct}
+              myCart={myCart}
+              setMyCart={setMyCart}
+              addToCart={addToCart}
+              setError={notify}
+            />
+          </Route>
+          <button onClick={logout}>logout</button>
+        </Switch>
       </div>
-      <Notification message={notification} />
-      <Products
-        show={page === 'products'}
-        showProduct={showProduct}
-        setShowProduct={setShowProduct}
-        myCart={myCart}
-        setMyCart={setMyCart}
-        addToCart={addToCart}
-        setError={notify}
-      />
-      <ShoppingCart
-        show={page === 'cart'}
-        items={myCart}
-        removeFromCart={removeFromCart}
-        checkout={checkout}
-      />    
     </div>
     
   );
 }
 
-const Menu = () => {
+const Menu = ({ loggedIn }) => {
   const padding = {
     paddingRight: 5
+  }
+
+  if (!localStorage.getItem('shop-user-token')) {
+    return(
+      <div>
+        <a href='/products' style={padding}>products</a>
+        <a href='/login' style={padding}>login</a>
+      </div>
+    )
   }
 
   return(
     <div>
       <a href='/products' style={padding}>products</a>
-      <a href='/login' style={padding}>login</a>
+      <a href='/shopping-cart' style={padding}>shopping cart</a>
     </div>
   )
+
+  
 }
 
 export default App;

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useMutation, useQuery, useLazyQuery } from '@apollo/client'
 import { LOGIN, ME } from '../queries'
 import {
-  Switch, Route, Link, useRouteMatch
+  useHistory
 } from "react-router-dom"
 
 const LoginForm = ({ setError, setToken, show, setPage }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const history = useHistory()
 
   const [ login, result ] = useMutation(LOGIN, {
     refetchQueries: [ { query: ME } ],  
@@ -31,6 +32,7 @@ const LoginForm = ({ setError, setToken, show, setPage }) => {
     event.preventDefault()
 
     login({ variables: { username, password } })
+    history.push('/')
   }
 
   return (

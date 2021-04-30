@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '../queries'
+import {
+  useHistory
+} from "react-router-dom"
 
-const RegistrationForm = ({ setError, show, setPage }) => {
+const RegistrationForm = ({ setError }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConf, setPasswordConf] = useState('')
+    const history = useHistory()
 
     const [ createUser, result ] = useMutation(CREATE_USER, {  
         onError: (error) => {
@@ -21,11 +25,8 @@ const RegistrationForm = ({ setError, show, setPage }) => {
         setUsername('')
         setPassword('')
         setPasswordConf('')
+        history.push('/')
       }
-    
-    if (!show) {
-      return null
-    }
 
     return (
       <div>
