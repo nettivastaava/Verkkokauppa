@@ -157,14 +157,14 @@ const App = () =>  {
     <div>
       <div>
         <h1>Web Store</h1>
-        <Menu />
+        <Menu logout={logout}/>
         <Switch>
-          <Route path= "shopping-cart">
-          <ShoppingCart
-            items={myCart}
-            removeFromCart={removeFromCart}
-            checkout={checkout}
-          />
+          <Route path= "/shopping-cart">
+            <ShoppingCart
+              items={myCart}
+              removeFromCart={removeFromCart}
+              checkout={checkout}
+            />
           </Route>
           <Route path= "/">
             <Products 
@@ -176,7 +176,6 @@ const App = () =>  {
               setError={notify}
             />
           </Route>
-          <button onClick={logout}>logout</button>
         </Switch>
       </div>
     </div>
@@ -184,7 +183,7 @@ const App = () =>  {
   );
 }
 
-const Menu = ({ loggedIn }) => {
+const Menu = ({ logout }) => {
   const padding = {
     paddingRight: 5
   }
@@ -192,7 +191,7 @@ const Menu = ({ loggedIn }) => {
   if (!localStorage.getItem('shop-user-token')) {
     return(
       <div>
-        <a href='/products' style={padding}>products</a>
+        <a href='/' style={padding}>products</a>
         <a href='/login' style={padding}>login</a>
       </div>
     )
@@ -200,8 +199,9 @@ const Menu = ({ loggedIn }) => {
 
   return(
     <div>
-      <a href='/products' style={padding}>products</a>
+      <a href='/' style={padding}>products</a>
       <a href='/shopping-cart' style={padding}>shopping cart</a>
+      <a href='/' onClick={logout}>logout</a>
     </div>
   )
 

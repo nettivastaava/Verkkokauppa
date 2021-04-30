@@ -17,16 +17,21 @@ const RegistrationForm = ({ setError }) => {
         },
     })
 
+    useEffect(() => { 
+      if ( result.data ) {
+        setUsername('')
+        setPassword('')
+        setPasswordConf('')
+
+        history.push('/')
+      }  
+    }, [result.data]) 
+
     const submit = async (event) => {
         event.preventDefault()
     
         createUser({ variables: { username, password, passwordConf } })
-
-        setUsername('')
-        setPassword('')
-        setPasswordConf('')
-        history.push('/')
-      }
+    }
 
     return (
       <div>
@@ -55,8 +60,7 @@ const RegistrationForm = ({ setError }) => {
           <button type='submit'>register</button>
         </form>
       </div>
-    )
-    
+    )   
 }
 
 export default RegistrationForm

@@ -23,7 +23,7 @@ const LoginForm = ({ setError, setToken, show, setPage }) => {
       setToken(token)
       localStorage.setItem('shop-user-token', token)
       localStorage.setItem('username', username)
-      setPage('products')
+      history.push('/')
       window.location.reload()
     }  
   }, [result.data]) 
@@ -32,7 +32,6 @@ const LoginForm = ({ setError, setToken, show, setPage }) => {
     event.preventDefault()
 
     login({ variables: { username, password } })
-    history.push('/')
   }
 
   return (
