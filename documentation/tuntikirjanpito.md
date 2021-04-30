@@ -26,4 +26,5 @@
 | 23.4.2021 | 2 | Ostetuimpien tuotteiden näyttäminen |
 | 24.4.2021 | 4 | Yritetty yhdistää kirjautunut käyttäjä kirjoittamaansa kommentiin front endissä |
 | 26.4.2021 | 3 | Yhdistetty kirjautunut käyttäjä kirjoittamaansa kommenttiin |
-| yht | 71 | |
+| 30.4.2021 | 3 | Refaktoroitu sovellusta käyttämään react routeria |
+| yht | 74 | |
