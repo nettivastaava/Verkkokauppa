@@ -6,8 +6,13 @@ import './index.css'
 
 import { 
     ApolloClient, ApolloProvider, HttpLink, InMemoryCache
-  } from '@apollo/client' 
-  
+} from '@apollo/client' 
+import {
+  BrowserRouter as Router,
+} from "react-router-dom"
+
+
+
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('shop-user-token')
   return {    
@@ -25,7 +30,9 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </ApolloProvider>,
   document.getElementById('root')
 )

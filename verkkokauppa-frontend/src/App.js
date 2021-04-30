@@ -6,6 +6,9 @@ import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
 import Notification from './components/Notification'
 import { ME, DECREASE_QUANTITY, ALL_PRODUCTS } from './queries'
+import {
+  Switch, Route, Link, useRouteMatch
+} from "react-router-dom"
 
 const App = () =>  {
   const [page, setPage] = useState('products')
@@ -125,26 +128,23 @@ const App = () =>  {
   if (!localStorage.getItem('shop-user-token')) {
     return (
       <div>
-        <div>
-          <button onClick={() => setPage('products')}>products</button>
-          <button onClick={() => setPage('login')}>login</button>
-        </div>
-        <Products
-          show={page === 'products'}
-          setShowProduct={setShowProduct}
-          showProduct={showProduct}
-        />
-        <LoginForm
-          setToken={setToken}
-          setError={notify}
-          show={page === 'login'}
-          setPage={setPage}
-        />
-        <RegistrationForm
-          setError={notify}
-          show={page === 'register'}
-          setPage={setPage}
-        />
+        <h1>Web Store</h1>
+        <Menu />
+        <Switch>
+          <Route path="/products">
+            <Products 
+              setShowProduct={setShowProduct}
+              showProduct={showProduct}
+            />
+          </Route>
+          <Route path= "/login">
+            <LoginForm
+              setToken={setToken}
+              setError={notify}
+              show={page === 'login'}
+            />      
+          </Route>
+        </Switch>
       </div>
     );
   }
@@ -171,9 +171,23 @@ const App = () =>  {
         items={myCart}
         removeFromCart={removeFromCart}
         checkout={checkout}
-      />
+      />    
     </div>
+    
   );
+}
+
+const Menu = () => {
+  const padding = {
+    paddingRight: 5
+  }
+
+  return(
+    <div>
+      <a href='/products' style={padding}>products</a>
+      <a href='/login' style={padding}>login</a>
+    </div>
+  )
 }
 
 export default App;

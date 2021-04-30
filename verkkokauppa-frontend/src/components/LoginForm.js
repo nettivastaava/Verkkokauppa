@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useMutation, useQuery, useLazyQuery } from '@apollo/client'
 import { LOGIN, ME } from '../queries'
+import {
+  Switch, Route, Link, useRouteMatch
+} from "react-router-dom"
 
 const LoginForm = ({ setError, setToken, show, setPage }) => {
   const [username, setUsername] = useState('')
@@ -30,10 +33,6 @@ const LoginForm = ({ setError, setToken, show, setPage }) => {
     login({ variables: { username, password } })
   }
 
-  if (!show) {
-    return null
-  }
-
   return (
     <div>
       <h2>Login</h2>
@@ -53,7 +52,7 @@ const LoginForm = ({ setError, setToken, show, setPage }) => {
         </div>
         <button type='submit'>login</button>
       </form>
-      <p>New user? <button onClick={() => setPage('register')}>Click here to register</button></p>
+      <p>New user? Register <a href='/register'>here</a></p>
     </div>
   )
 }

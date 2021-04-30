@@ -29,10 +29,6 @@ const Products = ({ show, showProduct, setShowProduct, myCart, setMyCart, addToC
     return <div>loading...</div>
   }
 
-  if (!show) {
-    return null
-  }
-
   const showCategory = (category) => {    
     getProducts({ variables: { category: category } })  
     
