@@ -28,4 +28,5 @@
 | 26.4.2021 | 3 | Yhdistetty kirjautunut käyttäjä kirjoittamaansa kommenttiin |
 | 30.4.2021 | 4 | Refaktoroitu sovellusta käyttämään react routeria |
 | 3.5.2021 | 2 | Jatkettu refaktorointia |
-| yht | 77 | |
+| 3.5.2021 | 3 | Suunniteltu parempaa toteutusta ostoskorille |
+| yht | 80 | |
