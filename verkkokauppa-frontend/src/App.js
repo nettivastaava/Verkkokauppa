@@ -47,7 +47,7 @@ const App = () =>  {
     setNotification(`Your purchase was successful`)
       setTimeout(() => {
         setNotification('')
-    }, 5000)
+      }, 5000)
   }
 
   const removeFromCart = (product) => {
@@ -81,7 +81,7 @@ const App = () =>  {
       price: product.price,
       amount: 1
     }
-    console.log(productToCart)
+    console.log(myCart)
 
     var found = false;
     for(var i = 0; i < myCart.length; i++) {
@@ -142,10 +142,8 @@ const App = () =>  {
               setError={notify}
             />
           </Route>
-          <Route path= "/">
+          <Route path= "/products">
             <Products 
-              setShowProduct={setShowProduct}
-              showProduct={showProduct}
             />
           </Route>
         </Switch>
@@ -166,10 +164,8 @@ const App = () =>  {
               checkout={checkout}
             />
           </Route>
-          <Route path= "/">
+          <Route path= "/products">
             <Products 
-              setShowProduct={setShowProduct}
-              showProduct={showProduct}
               myCart={myCart}
               setMyCart={setMyCart}
               addToCart={addToCart}
@@ -191,7 +187,7 @@ const Menu = ({ logout }) => {
   if (!localStorage.getItem('shop-user-token')) {
     return(
       <div>
-        <a href='/' style={padding}>products</a>
+        <a href='/products' style={padding}>products</a>
         <a href='/login' style={padding}>login</a>
       </div>
     )
@@ -199,13 +195,11 @@ const Menu = ({ logout }) => {
 
   return(
     <div>
-      <a href='/' style={padding}>products</a>
+      <a href='/products' style={padding}>products</a>
       <a href='/shopping-cart' style={padding}>shopping cart</a>
       <a href='/' onClick={logout}>logout</a>
     </div>
   )
-
-  
 }
 
 export default App;

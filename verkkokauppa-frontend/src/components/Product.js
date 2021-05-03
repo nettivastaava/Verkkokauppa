@@ -1,11 +1,11 @@
-import userEvent from '@testing-library/user-event'
 import React, { useState, useEffect } from 'react'
 import { useQuery, useLazyQuery, useMutation } from '@apollo/client'
 import Comments from './Comments'
 import { ME, ALL_COMMENTS, ALL_PRODUCTS, ADD_COMMENT } from '../queries'
 import { checkDocument } from '@apollo/client/utilities'
+import { useRouteMatch } from 'react-router'
 
-const Product = ({ showProduct, shownProduct, addToCart, setError }) => {
+const Product = ({ shownProduct, addToCart, setError }) => {
   const [content, setContent] = useState('')
   const [comments, setComments] = useState([])
   const userData = useQuery(ME)
@@ -18,9 +18,10 @@ const Product = ({ showProduct, shownProduct, addToCart, setError }) => {
       setError(error)
     },
   })
+
   
   useEffect(() => {
-    if (!showProduct || shownProduct === null || !localStorage.getItem('shop-user-token')) {
+    if (!shownProduct || !localStorage.getItem('shop-user-token') || !document.getElementById('buy-button')) {
       return
     }
 
@@ -48,7 +49,7 @@ const Product = ({ showProduct, shownProduct, addToCart, setError }) => {
     )
   }
 
-  if (!showProduct || !shownProduct) {
+  if (!shownProduct) {
     return null
   }
 

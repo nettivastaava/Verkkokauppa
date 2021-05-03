@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useQuery, useLazyQuery } from '@apollo/client'
 import { ALL_PRODUCTS, ALL_CATEGORIES, ME } from '../queries'
 import Product from './Product'
+import { Switch, Route, useRouteMatch } from 'react-router'
 
-const Products = ({ show, showProduct, setShowProduct, myCart, setMyCart, addToCart, setError }) => {
+const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   const categoriesResult = useQuery(ALL_CATEGORIES)
   const [getProducts, result] = useLazyQuery(ALL_PRODUCTS)
   const [category, setCategory] = useState('')
@@ -25,7 +26,14 @@ const Products = ({ show, showProduct, setShowProduct, myCart, setMyCart, addToC
     }  
   }, [result])
 
-  if (categoriesResult.loading) {
+  const match = useRouteMatch('/products/:id')   
+  const product = match    
+    ? products.find(p => p.id === match.params.id)    
+    : null
+
+  console.log(product)
+
+  if (categoriesResult.loading || result.loading) {
     return <div>loading...</div>
   }
 
@@ -38,22 +46,20 @@ const Products = ({ show, showProduct, setShowProduct, myCart, setMyCart, addToC
       setCategory(category)
     }
   }
-
-  const inspectProduct = (product) => {
-    setProductToShow(product)
-    setShowProduct('product')
-  }
   
   return (
     <div>
-      <Product
-        showProduct={showProduct}
-        shownProduct={productToShow}
-        myCart={myCart}
-        setMyCart={setMyCart}
-        addToCart={addToCart}
-        setError={setError}
-      />
+      <Switch>
+        <Route path= "/products/:id">
+          <Product
+            shownProduct={product}
+            myCart={myCart}
+            setMyCart={setMyCart}
+            addToCart={addToCart}
+            setError={setError}
+          />
+        </Route>
+      </Switch>
       <h2>Search products</h2>
       
       <div>
@@ -78,11 +84,10 @@ const Products = ({ show, showProduct, setShowProduct, myCart, setMyCart, addToC
           </tr>
           {products.map(p =>
             <tr key={p.name}>
-              <td>{p.name}</td>
+              <td><a href={`/products/${p.id}`} >{p.name}</a></td>
               <td>{p.price}$</td>
               <td>{p.description}</td>
               <td>{p.quantity}</td>
-              <td><button onClick={() => inspectProduct(p)}>view</button></td>
             </tr>
           )}
         </tbody>
