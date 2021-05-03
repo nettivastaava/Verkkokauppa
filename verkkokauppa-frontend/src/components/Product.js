@@ -19,7 +19,6 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     },
   })
 
-  
   useEffect(() => {
     if (!shownProduct || !localStorage.getItem('shop-user-token') || !document.getElementById('buy-button')) {
       return

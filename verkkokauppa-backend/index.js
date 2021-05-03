@@ -101,7 +101,7 @@ const resolvers = {
         console.log('products, ', products)
 
         if (!args.category) {
-          return products.sort((p1, p2) => p2.units_sold - p1.units_sold).slice(0, 5)
+          return products.sort((p1, p2) => p2.units_sold - p1.units_sold)
         } else {
           return products.filter(product => product.categories.includes(args.category))          
         }

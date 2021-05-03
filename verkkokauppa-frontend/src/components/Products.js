@@ -31,8 +31,6 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
     ? products.find(p => p.id === match.params.id)    
     : null
 
-  console.log(product)
-
   if (categoriesResult.loading || result.loading) {
     return <div>loading...</div>
   }

@@ -11,8 +11,6 @@ import {
 } from "react-router-dom"
 
 const App = () =>  {
-  const [page, setPage] = useState('products')
-  const [showProduct, setShowProduct] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [notification, setNotification] = useState('')
   const [ decreaseQuantity, result ] = useMutation(DECREASE_QUANTITY, {
@@ -41,8 +39,6 @@ const App = () =>  {
       decreaseQuantity({ variables: { name, quantity } })
   
     }
-    setShowProduct(null)
-    setPage('products')
     setMyCart([])
     setNotification(`Your purchase was successful`)
       setTimeout(() => {
@@ -81,7 +77,7 @@ const App = () =>  {
       price: product.price,
       amount: 1
     }
-    console.log(myCart)
+    console.log('prod ', product)
 
     var found = false;
     for(var i = 0; i < myCart.length; i++) {
@@ -106,8 +102,9 @@ const App = () =>  {
     }
 
     if (!found && product.quantity > 0) {
+      console.log('POP')
       const copy = [...myCart, productToCart]
-      setMyCart(copy)
+      console.log(copy)
       setMyCart(copy)
           setNotification(`Added ${product.name} to cart`)
           setTimeout(() => {
@@ -121,7 +118,6 @@ const App = () =>  {
     setToken(null)
     localStorage.clear()
     client.resetStore()
-    setPage('login')
     setMyCart([])
   }
 
