@@ -11,6 +11,17 @@ const schema = new mongoose.Schema({
     passwordHash: {
       type: String,
       required: true,
+    },
+    cart: {
+      type:Array,
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+      },
+      amount: {
+        type: Number,
+        required: true
+      }
     }
 })
 

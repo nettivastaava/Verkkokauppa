@@ -71,13 +71,14 @@ const App = () =>  {
     }
   }
 
-  const addToCart = (product) => {
+  const addToCart =  (product) => {
     const productToCart = {
       name: product.name,
       price: product.price,
       amount: 1
     }
     console.log('prod ', product)
+    console.log('list', myCart)
 
     var found = false;
     for(var i = 0; i < myCart.length; i++) {
@@ -151,6 +152,7 @@ const App = () =>  {
     <div>
       <div>
         <h1>Web Store</h1>
+        <Notification message={notification} />
         <Menu logout={logout}/>
         <Switch>
           <Route path= "/shopping-cart">

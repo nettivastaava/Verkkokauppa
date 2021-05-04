@@ -36,6 +36,10 @@ export const ME = gql`
     me {
       username
       id
+      cart {
+        product
+        amount
+      }
     }
   }
   `

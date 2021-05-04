@@ -45,6 +45,12 @@ const typeDefs = gql`
     username: String!
     password: String!
     id: ID!
+    cart: [ProductInCart]!
+  }
+
+  type ProductInCart {
+    product: String!
+    amount: Int!
   }
 
   type Comment {
@@ -90,6 +96,10 @@ const typeDefs = gql`
       user: String!
       content: String!
     ): Comment
+    addToCart(
+      product: String!
+      user: String!
+    ): Product
   }
 `
 
@@ -193,7 +203,7 @@ const resolvers = {
     },
     createUser: async (root, args) => {
       if (args.password !== args.passwordConf) {
-        throw new UserInputError("make sure the passwords match", {
+        throw new UserInputError("make sure the password matches the confirmation", {
           invalidArgs: args,
         })
       }
@@ -204,9 +214,8 @@ const resolvers = {
       const user = new User({
         username: args.username,
         passwordHash,
+        cart: []
       })
-
-      console.log(user)
 
       return user.save()
         .catch(error => {
@@ -249,6 +258,59 @@ const resolvers = {
       }
 
       return comment
+    },
+    addToCart: async (root, args, context) => {
+      const user = await User.findById(args.user)
+      const product = await Product.findById(args.product)
+
+      const productToCart = {
+        product: args.product,
+        amount: 1
+      }
+
+      var found = false;
+
+      for(var i = 0; i < user.cart.length; i++) {
+        if (user.cart[i].product === productToCart.product) {
+          found = true
+          if (user.cart[i].amount < product.quantity) {
+            let updatedCart = []
+            for (var j = 0; j < user.cart.length; j++) {
+              if (i === j) {
+                const updatedProductToCart = {
+                  product: args.product,
+                  amount: user.cart[i].amount+=1
+                }
+                updatedCart = updatedCart.concat(updatedProductToCart)
+              } else {
+                updatedCart = updatedCart.concat(user.cart[j])
+              }
+            }
+            const newUser = {...user, cart: updatedCart}
+            try {
+              const updatedUser = await User.findByIdAndUpdate(user.id, newUser, {new: true})
+            } catch (error) {
+              throw new UserInputError(error.message, {
+                invalidArgs: args,
+              })
+            }
+
+            break
+          }
+        }
+      }
+
+      if (!found && product.quantity > 0) {
+        user.cart = user.cart.concat(productToCart)
+      } 
+
+      try {
+        await user.save()
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args,
+        })
+      }
     }
   }
 }
@@ -263,7 +325,7 @@ const server = new ApolloServer({
         auth.substring(7), JWT_SECRET
       )      
       const currentUser = await User
-        .findById(decodedToken.id)
+        .findById(decodedToken.id).populate('product')
         return { currentUser }
     }
   }
