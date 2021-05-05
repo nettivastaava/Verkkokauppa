@@ -39,6 +39,7 @@ export const ME = gql`
       cart {
         product
         amount
+        price
       }
     }
   }
@@ -88,5 +89,29 @@ export const ALL_COMMENTS = gql`
       product
       content
     }
+  }
+`
+
+export const ADD_TO_CART = gql`
+  mutation addToCart($productName: String!, $price: Float!) {
+    addToCart(productName: $productName, price: $price) {
+      productName
+      price
+    }
+  }
+`
+
+export const REMOVE_FROM_CART = gql`
+  mutation removeFromCart($user: String!, $product: String!) {
+    removeFromCart(user: $user, product: $product) {
+      user
+      product
+    }
+  }
+`
+
+export const TOTAL_PRICE = gql`
+  query {
+    totalPrice
   }
 `

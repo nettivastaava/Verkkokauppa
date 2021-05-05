@@ -5,7 +5,7 @@ import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
 import Notification from './components/Notification'
-import { ME, DECREASE_QUANTITY, ALL_PRODUCTS } from './queries'
+import { ME, DECREASE_QUANTITY, ALL_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, TOTAL_PRICE } from './queries'
 import {
   Switch, Route, Link, useRouteMatch
 } from "react-router-dom"
@@ -13,7 +13,20 @@ import {
 const App = () =>  {
   const [errorMessage, setErrorMessage] = useState(null)
   const [notification, setNotification] = useState('')
+  const userData = useQuery(ME)
   const [ decreaseQuantity, result ] = useMutation(DECREASE_QUANTITY, {
+    refetchQueries: [ { query: ALL_PRODUCTS } ],
+    onError: (error) => {
+      notify(error)
+    },
+  })
+  const [ addToCart, addResult ] = useMutation(ADD_TO_CART, {
+    refetchQueries: [ { query: ALL_PRODUCTS } ],
+    onError: (error) => {
+      notify(error)
+    },
+  })
+  const [ removeFromCart, removeResult ] = useMutation(REMOVE_FROM_CART, {
     refetchQueries: [ { query: ALL_PRODUCTS } ],
     onError: (error) => {
       notify(error)
@@ -27,6 +40,12 @@ const App = () =>  {
     setTimeout(() => {
       setErrorMessage(null)
     }, 10000)
+  }
+
+  if (userData.loading) {
+    return(
+      <div>loading...</div>
+    )
   }
 
   const checkout = async () => {
@@ -46,7 +65,7 @@ const App = () =>  {
       }, 5000)
   }
 
-  const removeFromCart = (product) => {
+  const removeProductFromCart = (product) => {
     const copy = [...myCart]
     for (var i = 0; i < myCart.length; i++) {
       if (myCart[i].name === product.name) {
@@ -71,48 +90,16 @@ const App = () =>  {
     }
   }
 
-  const addToCart =  (product) => {
-    const productToCart = {
-      name: product.name,
-      price: product.price,
-      amount: 1
-    }
+  const addProductToCart =  (productToBeAdded) => {
+    const product = productToBeAdded.name
+    const price = productToBeAdded.price
     console.log('prod ', product)
-    console.log('list', myCart)
-
-    var found = false;
-    for(var i = 0; i < myCart.length; i++) {
-      if (myCart[i].name === productToCart.name) {
-        found = true
-        if (myCart[i].amount < product.quantity) {
-          const copy = [...myCart]
-          const updatedProduct = {
-            name: product.name,
-            price: product.price,
-            amount: myCart[i].amount + 1
-          }
-          copy[i] = updatedProduct
-          setMyCart(copy)
-          setNotification(`Added ${product.name} to cart`)
-          setTimeout(() => {
-            setNotification('')
-          }, 5000)
-          break
-        }
-      }
-    }
-
-    if (!found && product.quantity > 0) {
-      console.log('POP')
-      const copy = [...myCart, productToCart]
-      console.log(copy)
-      setMyCart(copy)
-          setNotification(`Added ${product.name} to cart`)
-          setTimeout(() => {
-            setNotification('')
+    addToCart({ variables: { product, price } })
+    setNotification(`Added ${productToBeAdded.name} to cart`)
+      setTimeout(() => {
+        setNotification('')
       }, 5000)
-      console.log(myCart)
-    } 
+
   }
 
   const logout = () => {
@@ -158,7 +145,8 @@ const App = () =>  {
           <Route path= "/shopping-cart">
             <ShoppingCart
               items={myCart}
-              removeFromCart={removeFromCart}
+              user={userData.data.me}
+              removeFromCart={removeProductFromCart}
               checkout={checkout}
             />
           </Route>
@@ -166,7 +154,7 @@ const App = () =>  {
             <Products 
               myCart={myCart}
               setMyCart={setMyCart}
-              addToCart={addToCart}
+              addToCart={addProductToCart}
               setError={notify}
             />
           </Route>

@@ -50,7 +50,7 @@ const typeDefs = gql`
   }
 
   type ProductInCart {
-    product: String!
+    productName: String!
     price: Float!
     amount: Int!
   }
@@ -99,13 +99,11 @@ const typeDefs = gql`
       content: String!
     ): Comment
     addToCart(
-      user: String!
-      product: String!
+      productName: String!
       price: Float!
     ): Product
     removeFromCart(
-      product: String!
-      user: String!
+      productName: String!
     ): Product
   }
 `
@@ -277,11 +275,13 @@ const resolvers = {
       return comment
     },
     addToCart: async (root, args, context) => {
-      const user = await User.findById(args.user)
-      const product = await Product.findOne({name: args.product})
+      const user = await context.currentUser
+      const product = await Product.findOne({name: args.productName})
+
+      console.log("TÄSSÄ ", user)
 
       const productToCart = {
-        product: args.product,
+        productName: args.productName,
         amount: 1,
         price: args.price
       }
@@ -289,7 +289,7 @@ const resolvers = {
       var found = false;
 
       for(var i = 0; i < user.cart.length; i++) {
-        if (user.cart[i].product === productToCart.product) {
+        if (user.cart[i].productName === productToCart.productName) {
           found = true
           if (user.cart[i].amount < product.quantity) {
             let updatedCart = []
@@ -331,19 +331,19 @@ const resolvers = {
       }
     },
     removeFromCart: async (root, args, context) => {
-      const user = await User.findById(args.user)
-      const product = await Product.findOne({name: args.product})
+      const user = await context.currentUser
+      const product = await Product.findOne({name: args.productName})
       var remove = false
 
       const copy = [...user.cart]
       for (var i = 0; i < copy.length; i++) {
-        if (user.cart[i].product === args.product) {
+        if (user.cart[i].productName === args.productName) {
           if (user.cart[i].amount > 1) {
             copy[i].amount-=1
             break
           } else {
             remove = true
-            const removeFromUser = await User.findByIdAndUpdate(user.id, { $pull: { "cart": { product: args.product } } }, {new: true})
+            const removeFromUser = await User.findByIdAndUpdate(user.id, { $pull: { "cart": { productName: args.productName } } }, {new: true})
             break
           }
         }
