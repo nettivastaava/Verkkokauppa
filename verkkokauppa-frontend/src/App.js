@@ -65,37 +65,21 @@ const App = () =>  {
       }, 5000)
   }
 
-  const removeProductFromCart = (product) => {
-    const copy = [...myCart]
-    for (var i = 0; i < myCart.length; i++) {
-      if (myCart[i].name === product.name) {
-        if (myCart[i].amount > 1) {
-          copy[i].amount-=1
-          setMyCart(copy)
-          setNotification(`Removed ${product.name} from cart`)
-          setTimeout(() => {
-            setNotification('')
-          }, 5000)
-          break
-        } else {
-          copy.splice(i, 1)
-          setMyCart(copy)
-          setNotification(`Removed ${product.name} from cart`)
-          setTimeout(() => {
-            setNotification('')
-          }, 5000)
-          break
-        }
-      }
-    }
+  const removeProductFromCart = (productToBeRemoved) => {
+    const productName = productToBeRemoved.name
+    removeFromCart({ variables: { productName }})
+    setNotification(`Removed ${productName} from cart`)
+      setTimeout(() => {
+        setNotification('')
+      }, 5000) 
   }
 
   const addProductToCart =  (productToBeAdded) => {
-    const product = productToBeAdded.name
+    const productName = productToBeAdded.name
     const price = productToBeAdded.price
-    console.log('prod ', product)
-    addToCart({ variables: { product, price } })
-    setNotification(`Added ${productToBeAdded.name} to cart`)
+    console.log('prod ', productName)
+    addToCart({ variables: { productName, price } })
+    setNotification(`Added ${productName} to cart`)
       setTimeout(() => {
         setNotification('')
       }, 5000)
@@ -108,6 +92,8 @@ const App = () =>  {
     client.resetStore()
     setMyCart([])
   }
+
+  
 
   if (!localStorage.getItem('shop-user-token')) {
     return (
@@ -144,8 +130,7 @@ const App = () =>  {
         <Switch>
           <Route path= "/shopping-cart">
             <ShoppingCart
-              items={myCart}
-              user={userData.data.me}
+              user = {userData.data.me}
               removeFromCart={removeProductFromCart}
               checkout={checkout}
             />

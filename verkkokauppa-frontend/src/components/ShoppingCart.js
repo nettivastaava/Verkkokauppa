@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ShoppingCart = ({ items, user, removeFromCart, checkout }) => {
+const ShoppingCart = ({ user, removeFromCart, checkout }) => {
 
   if (user.cart.length < 1) {
     return (

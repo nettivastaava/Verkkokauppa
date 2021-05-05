@@ -37,7 +37,7 @@ export const ME = gql`
       username
       id
       cart {
-        product
+        productName
         amount
         price
       }
@@ -95,8 +95,12 @@ export const ALL_COMMENTS = gql`
 export const ADD_TO_CART = gql`
   mutation addToCart($productName: String!, $price: Float!) {
     addToCart(productName: $productName, price: $price) {
-      productName
-      price
+      username
+      cart {
+        productName
+        price
+        amount
+      }
     }
   }
 `
@@ -104,8 +108,12 @@ export const ADD_TO_CART = gql`
 export const REMOVE_FROM_CART = gql`
   mutation removeFromCart($user: String!, $product: String!) {
     removeFromCart(user: $user, product: $product) {
-      user
-      product
+      username
+      cart {
+        productName
+        price
+        amount
+      }
     }
   }
 `
