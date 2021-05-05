@@ -30,4 +30,5 @@
 | 3.5.2021 | 2 | Jatkettu refaktorointia |
 | 3.5.2021 | 3 | Suunniteltu parempaa toteutusta ostoskorille |
 | 4.5.2021 | 5 | Ostoskorin toiminnallisuus muutettu käyttämään tietokantaa |
-| yht | 85 | |
+| 5.5.2021 | 5 | Uudistetun ostoskorin toiminnallisuus front-endissä |
+| yht | 90 | |
