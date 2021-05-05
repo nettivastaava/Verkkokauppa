@@ -15,12 +15,18 @@ const schema = new mongoose.Schema({
     cart: {
       type:Array,
       product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
+        type: String,
+        required: true
       },
       amount: {
         type: Number,
-        required: true
+        required: true,
+        min: 0
+      },
+      price: {
+        type: Number,
+        required: true,
+        min: 0.05
       }
     }
 })

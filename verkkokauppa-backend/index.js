@@ -39,6 +39,7 @@ const typeDefs = gql`
     me: User
     findProduct(name: String): Product
     allComments(product: String): [Comment]!
+    totalPrice: Float!
   }
 
   type User {
@@ -50,6 +51,7 @@ const typeDefs = gql`
 
   type ProductInCart {
     product: String!
+    price: Float!
     amount: Int!
   }
 
@@ -97,6 +99,11 @@ const typeDefs = gql`
       content: String!
     ): Comment
     addToCart(
+      user: String!
+      product: String!
+      price: Float!
+    ): Product
+    removeFromCart(
       product: String!
       user: String!
     ): Product
@@ -136,6 +143,16 @@ const resolvers = {
         console.log(comments)
         
         return comments
+      },
+      totalPrice: async (root, args, context) => {
+        const shoppingCart = await context.currentUser.cart
+        var total = 0
+
+        for (var i = 0; i < shoppingCart.length; i++) {
+          total += (shoppingCart[i].amount * shoppingCart[i].price)
+        }
+
+        return total
       }
   },
   Mutation: {
@@ -261,11 +278,12 @@ const resolvers = {
     },
     addToCart: async (root, args, context) => {
       const user = await User.findById(args.user)
-      const product = await Product.findById(args.product)
+      const product = await Product.findOne({name: args.product})
 
       const productToCart = {
         product: args.product,
-        amount: 1
+        amount: 1,
+        price: args.price
       }
 
       var found = false;
@@ -278,7 +296,7 @@ const resolvers = {
             for (var j = 0; j < user.cart.length; j++) {
               if (i === j) {
                 const updatedProductToCart = {
-                  product: args.product,
+                  ...user.cart[i],
                   amount: user.cart[i].amount+=1
                 }
                 updatedCart = updatedCart.concat(updatedProductToCart)
@@ -311,7 +329,38 @@ const resolvers = {
           invalidArgs: args,
         })
       }
+    },
+    removeFromCart: async (root, args, context) => {
+      const user = await User.findById(args.user)
+      const product = await Product.findOne({name: args.product})
+      var remove = false
+
+      const copy = [...user.cart]
+      for (var i = 0; i < copy.length; i++) {
+        if (user.cart[i].product === args.product) {
+          if (user.cart[i].amount > 1) {
+            copy[i].amount-=1
+            break
+          } else {
+            remove = true
+            const removeFromUser = await User.findByIdAndUpdate(user.id, { $pull: { "cart": { product: args.product } } }, {new: true})
+            break
+          }
+        }
+      }
+
+      const newUser = {...user, cart: copy}
+      if (!remove) {
+        try {
+          const updatedUser = await User.findByIdAndUpdate(user.id, newUser, {new: true})
+        } catch (error) {
+          throw new UserInputError(error.message, {
+            invalidArgs: args,
+          })
+        }
+      }
     }
+  
   }
 }
 
