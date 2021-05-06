@@ -5,7 +5,7 @@ import {
   useHistory
 } from "react-router-dom"
 
-const RegistrationForm = ({ setError }) => {
+const RegistrationForm = ({ setNotification }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConf, setPasswordConf] = useState('')
@@ -13,7 +13,7 @@ const RegistrationForm = ({ setError }) => {
 
     const [ createUser, result ] = useMutation(CREATE_USER, {  
         onError: (error) => {
-          setError(error)
+          setNotification(error.graphQLErrors[0].message)
         },
     })
 
@@ -23,7 +23,7 @@ const RegistrationForm = ({ setError }) => {
         setPassword('')
         setPasswordConf('')
 
-        history.push('/')
+        history.push('/login')
       }  
     }, [result.data]) 
 

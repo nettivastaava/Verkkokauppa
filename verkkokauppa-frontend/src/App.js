@@ -11,7 +11,7 @@ import {
 } from "react-router-dom"
 
 const App = () =>  {
-  const [errorMessage, setErrorMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState('')
   const [notification, setNotification] = useState('')
   const userData = useQuery(ME)
   const [ decreaseQuantity, result ] = useMutation(DECREASE_QUANTITY, {
@@ -32,7 +32,7 @@ const App = () =>  {
   const notify = (message) => {
     setErrorMessage(message)
     setTimeout(() => {
-      setErrorMessage(null)
+      setErrorMessage('')
     }, 10000)
   }
 
@@ -66,6 +66,7 @@ const App = () =>  {
     return (
       <div>
         <h1>Web Store</h1>
+        <Notification message={notification} />
         <Menu />
         <Switch>
           <Route path= "/login">
@@ -76,7 +77,7 @@ const App = () =>  {
           </Route>
           <Route path= "/register">
             <RegistrationForm
-              setError={notify}
+              setNotification={setNotification}
             />
           </Route>
           <Route path= "/products">

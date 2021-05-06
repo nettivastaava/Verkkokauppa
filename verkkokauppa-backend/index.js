@@ -219,7 +219,7 @@ const resolvers = {
     },
     createUser: async (root, args) => {
       if (args.password !== args.passwordConf) {
-        throw new UserInputError("make sure the password matches the confirmation", {
+        throw new UserInputError("Make sure the password matches the confirmation", {
           invalidArgs: args,
         })
       }
@@ -315,7 +315,6 @@ const resolvers = {
               })
             }
 
-            break
           }
         }
       }
