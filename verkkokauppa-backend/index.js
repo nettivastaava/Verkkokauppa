@@ -101,10 +101,10 @@ const typeDefs = gql`
     addToCart(
       productName: String!
       price: Float!
-    ): Product
+    ): User
     removeFromCart(
       productName: String!
-    ): Product
+    ): User
   }
 `
 
@@ -307,6 +307,7 @@ const resolvers = {
             const newUser = {...user, cart: updatedCart}
             try {
               const updatedUser = await User.findByIdAndUpdate(user.id, newUser, {new: true})
+              return updatedUser
             } catch (error) {
               throw new UserInputError(error.message, {
                 invalidArgs: args,
@@ -324,6 +325,7 @@ const resolvers = {
 
       try {
         await user.save()
+        return user
       } catch (error) {
         throw new UserInputError(error.message, {
           invalidArgs: args,
@@ -332,7 +334,7 @@ const resolvers = {
     },
     removeFromCart: async (root, args, context) => {
       const user = await context.currentUser
-      const product = await Product.findOne({name: args.productName})
+
       var remove = false
 
       const copy = [...user.cart]
@@ -344,7 +346,7 @@ const resolvers = {
           } else {
             remove = true
             const removeFromUser = await User.findByIdAndUpdate(user.id, { $pull: { "cart": { productName: args.productName } } }, {new: true})
-            break
+            return removeFromUser
           }
         }
       }
@@ -353,6 +355,7 @@ const resolvers = {
       if (!remove) {
         try {
           const updatedUser = await User.findByIdAndUpdate(user.id, newUser, {new: true})
+          return updatedUser
         } catch (error) {
           throw new UserInputError(error.message, {
             invalidArgs: args,

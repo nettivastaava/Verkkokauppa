@@ -106,8 +106,8 @@ export const ADD_TO_CART = gql`
 `
 
 export const REMOVE_FROM_CART = gql`
-  mutation removeFromCart($user: String!, $product: String!) {
-    removeFromCart(user: $user, product: $product) {
+  mutation removeFromCart($productName: String!) {
+    removeFromCart(productName: $productName) {
       username
       cart {
         productName

@@ -66,7 +66,7 @@ const App = () =>  {
   }
 
   const removeProductFromCart = (productToBeRemoved) => {
-    const productName = productToBeRemoved.name
+    const productName = productToBeRemoved.productName
     removeFromCart({ variables: { productName }})
     setNotification(`Removed ${productName} from cart`)
       setTimeout(() => {
@@ -131,8 +131,9 @@ const App = () =>  {
           <Route path= "/shopping-cart">
             <ShoppingCart
               user = {userData.data.me}
-              removeFromCart={removeProductFromCart}
               checkout={checkout}
+              setNotification={setNotification}
+              setError={notify}
             />
           </Route>
           <Route path= "/products">
