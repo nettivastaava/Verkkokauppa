@@ -42,23 +42,6 @@ const App = () =>  {
     )
   }
 
-  const checkout = async () => {
-    for (var i = 0; i < myCart.length; i++) {
-      const productToBePaid = myCart[i]
-      
-      const name = productToBePaid.name
-      const quantity = productToBePaid.amount
-
-      decreaseQuantity({ variables: { name, quantity } })
-  
-    }
-    setMyCart([])
-    setNotification(`Your purchase was successful`)
-      setTimeout(() => {
-        setNotification('')
-      }, 5000)
-  }
-
   const addProductToCart =  (productToBeAdded) => {
     const productName = productToBeAdded.name
     const price = productToBeAdded.price
@@ -75,7 +58,6 @@ const App = () =>  {
     setToken(null)
     localStorage.clear()
     client.resetStore()
-    setMyCart([])
   }
 
   
@@ -116,7 +98,6 @@ const App = () =>  {
           <Route path= "/shopping-cart">
             <ShoppingCart
               user = {userData.data.me}
-              checkout={checkout}
               setNotification={setNotification}
               setError={notify}
             />

@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
-import { REMOVE_FROM_CART, ALL_PRODUCTS, ME } from '../queries'
+import { REMOVE_FROM_CART, CHECKOUT, ME } from '../queries'
 
-const ShoppingCart = ({ user, checkout, setNotification, setError }) => {
+const ShoppingCart = ({ user, setNotification, setError }) => {
   const [shoppingCart, setShoppingCart] = useState([])
   const [ removeFromCart, removeResult ] = useMutation(REMOVE_FROM_CART, {
+    refetchQueries: [ { query: ME } ],
+    onError: (error) => {
+      setError(error)
+    },
+  })
+  const [ checkout, checkoutResult ] = useMutation(CHECKOUT, {
     refetchQueries: [ { query: ME } ],
     onError: (error) => {
       setError(error)
@@ -38,6 +44,16 @@ const ShoppingCart = ({ user, checkout, setNotification, setError }) => {
 
     total =-productToBeRemoved.price
   }
+
+  const checkoutFunc = async () => {
+    for (var i = 0; i < shoppingCart.length; i++) {
+    checkout()
+    setNotification(`Your purchase was successful`)
+      setTimeout(() => {
+        setNotification('')
+      }, 5000)
+    }
+  }
   
   return(
     <div>
@@ -65,7 +81,7 @@ const ShoppingCart = ({ user, checkout, setNotification, setError }) => {
           <div>grand total: {total}$</div>
         </tbody>
       </table>
-      <button onClick={() => checkout()}>checkout</button>
+      <button onClick={() => checkoutFunc()}>checkout</button>
     </div>
   )
 }

@@ -123,3 +123,16 @@ export const TOTAL_PRICE = gql`
     totalPrice
   }
 `
+
+export const CHECKOUT = gql`
+  mutation {
+    checkout {
+      username
+      cart {
+        productName
+        price
+        amount
+      }
+    }
+  }
+`
