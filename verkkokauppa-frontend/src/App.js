@@ -5,7 +5,7 @@ import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
 import Notification from './components/Notification'
-import { ME, DECREASE_QUANTITY, ALL_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, TOTAL_PRICE } from './queries'
+import { ME, DECREASE_QUANTITY, ALL_PRODUCTS, ADD_TO_CART } from './queries'
 import {
   Switch, Route, Link, useRouteMatch
 } from "react-router-dom"
@@ -21,12 +21,6 @@ const App = () =>  {
     },
   })
   const [ addToCart, addResult ] = useMutation(ADD_TO_CART, {
-    refetchQueries: [ { query: ALL_PRODUCTS } ],
-    onError: (error) => {
-      notify(error)
-    },
-  })
-  const [ removeFromCart, removeResult ] = useMutation(REMOVE_FROM_CART, {
     refetchQueries: [ { query: ALL_PRODUCTS } ],
     onError: (error) => {
       notify(error)
@@ -63,15 +57,6 @@ const App = () =>  {
       setTimeout(() => {
         setNotification('')
       }, 5000)
-  }
-
-  const removeProductFromCart = (productToBeRemoved) => {
-    const productName = productToBeRemoved.productName
-    removeFromCart({ variables: { productName }})
-    setNotification(`Removed ${productName} from cart`)
-      setTimeout(() => {
-        setNotification('')
-      }, 5000) 
   }
 
   const addProductToCart =  (productToBeAdded) => {

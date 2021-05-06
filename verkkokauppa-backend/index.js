@@ -105,6 +105,7 @@ const typeDefs = gql`
     removeFromCart(
       productName: String!
     ): User
+    checkout: User
   }
 `
 
@@ -362,8 +363,27 @@ const resolvers = {
           })
         }
       }
+    },
+    checkout: async (root, args, context) => {
+      const user = await context.currentUser
+
+      for (var i = 0; i < user.cart.length; i++) {
+        const product = await Product.findOne({ name: user.cart[i].productName })
+        if (product.quantity >= user.cart[i].amount) {
+          product.units_sold = product.units_sold + user.cart[i].amount
+          product.quantity = product.quantity - user.cart[i].amount
+
+          const removeFromUser = await User.findByIdAndUpdate(user.id, { $pull: { "cart": { productName: user.cart[i].productName } } }, {new: true})
+          try {
+            await product.save()
+          } catch (error) {
+            throw new UserInputError(error.message, {
+              invalidArgs: args,
+            })
+          }
+        }
+      }
     }
-  
   }
 }
 
