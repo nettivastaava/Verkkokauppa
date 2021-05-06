@@ -72,7 +72,7 @@ const App = () =>  {
           <Route path= "/login">
             <LoginForm
               setToken={setToken}
-              setError={notify}
+              setNotification={setNotification}
             />      
           </Route>
           <Route path= "/register">

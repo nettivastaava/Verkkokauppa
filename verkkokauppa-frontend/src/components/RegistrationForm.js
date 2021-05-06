@@ -14,6 +14,9 @@ const RegistrationForm = ({ setNotification }) => {
     const [ createUser, result ] = useMutation(CREATE_USER, {  
         onError: (error) => {
           setNotification(error.graphQLErrors[0].message)
+          setTimeout(() => {
+            setNotification('')
+          }, 10000)
         },
     })
 

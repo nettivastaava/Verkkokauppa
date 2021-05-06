@@ -5,7 +5,7 @@ import {
   useHistory
 } from "react-router-dom"
 
-const LoginForm = ({ setError, setToken, show, setPage }) => {
+const LoginForm = ({ setToken, setNotification }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const history = useHistory()
@@ -13,7 +13,10 @@ const LoginForm = ({ setError, setToken, show, setPage }) => {
   const [ login, result ] = useMutation(LOGIN, {
     refetchQueries: [ { query: ME } ],  
     onError: (error) => {
-      setError(error.graphQLErrors[0].message)
+      setNotification(error.graphQLErrors[0].message)
+      setTimeout(() => {
+        setNotification('')
+      }, 10000)
     },
   })
 

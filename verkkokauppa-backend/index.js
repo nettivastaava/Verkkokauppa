@@ -247,7 +247,7 @@ const resolvers = {
         : await bcrypt.compare(args.password, user.passwordHash)
 
       if (!(user && passwordCorrect)) {
-        throw new UserInputError("invalid credentials", {
+        throw new UserInputError("Invalid credentials", {
           invalidArgs: args,
         })
       }
