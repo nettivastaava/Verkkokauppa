@@ -32,4 +32,5 @@
 | 4.5.2021 | 5 | Ostoskorin toiminnallisuus muutettu käyttämään tietokantaa |
 | 5.5.2021 | 5 | Uudistetun ostoskorin toiminnallisuus front-endissä |
 | 6.5.2021 | 3 | Tietokantaa käyttävä maksutoiminnallisuus |
-| yht | 93 | |
+| 6.5.2021 | 1 | Lisätty virheilmoituksia helpottamaan käyttökokemusta |
+| yht | 94 | |
