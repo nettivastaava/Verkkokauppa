@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useMutation } from '@apollo/client'
+import { from, useMutation } from '@apollo/client'
 import { CREATE_USER } from '../queries'
 import {
   useHistory
 } from "react-router-dom"
+import { Form, Button } from 'react-bootstrap'
 
 const RegistrationForm = ({ setNotification }) => {
     const [username, setUsername] = useState('')
@@ -39,29 +40,29 @@ const RegistrationForm = ({ setNotification }) => {
     return (
       <div>
         <h2>Create a new account</h2>
-        <form onSubmit={submit}>
-          <div>
-            username <input
+        <Form onSubmit={submit}>
+          <Form.Group>
+            <Form.Label>username:</Form.Label>
+            <Form.Control
+              type='text'
               value={username}
               onChange={({ target }) => setUsername(target.value)}
             />
-          </div>
-          <div>
-            password <input
+            <Form.Label>password:</Form.Label>
+            <Form.Control
               type='password'
               value={password}
               onChange={({ target }) => setPassword(target.value)}
             />
-          </div>
-          <div>
-            confirm password <input
+            <Form.Label>password confirmation:</Form.Label>
+            <Form.Control
               type='password'
               value={passwordConf}
               onChange={({ target }) => setPasswordConf(target.value)}
             />
-          </div>
-          <button type='submit'>register</button>
-        </form>
+          <Button type='submit'>register</Button>
+          </Form.Group>
+        </Form>
       </div>
     )   
 }

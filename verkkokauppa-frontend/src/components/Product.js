@@ -4,6 +4,7 @@ import Comments from './Comments'
 import { ME, ALL_COMMENTS, ALL_PRODUCTS, ADD_COMMENT } from '../queries'
 import { checkDocument } from '@apollo/client/utilities'
 import { useRouteMatch } from 'react-router'
+import { Table, Form, Button } from 'react-bootstrap'
 
 const Product = ({ shownProduct, addToCart, setError }) => {
   const [content, setContent] = useState('')
@@ -82,7 +83,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
       </div>
     )
   }
-  const button = <button id='buy-button' onClick={() => addToCart(shownProduct)}>add to cart</button>
+  const button = <Button id='buy-button' onClick={() => addToCart(shownProduct)}>add to cart</Button>
 
   const postReview = async (event) => {
     
@@ -95,7 +96,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   return (
     <div>
       <h2>{shownProduct.name}</h2>
-      <table>
+      <Table striped>
         <tbody>
           <tr>
             <th></th>
@@ -118,18 +119,18 @@ const Product = ({ shownProduct, addToCart, setError }) => {
             <td>{button}</td>
           </tr>
         </tbody>
-      </table>
+      </Table>
       {comments.map(c =>
         <div key={c.id}>
           <div>{c.content}</div>
         </div>
       )}
-      <form onSubmit={postReview}>
+      <Form onSubmit={postReview}>
         <textarea value={content} onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
         <div>
-          <button type='submit'>Review this product!</button>
+          <Button type='submit'>Review this product!</Button>
         </div>
-      </form>
+      </Form>
     </div>
   )
 }

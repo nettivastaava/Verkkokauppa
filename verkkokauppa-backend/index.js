@@ -114,7 +114,6 @@ const resolvers = {
       productCount: () => Product.collection.countDocuments(),
       allProducts: async (root, args) => {
         const products = await Product.find({}).populate('comments')
-        console.log('products, ', products)
 
         if (!args.category) {
           return products.sort((p1, p2) => p2.units_sold - p1.units_sold)
@@ -278,8 +277,6 @@ const resolvers = {
     addToCart: async (root, args, context) => {
       const user = await context.currentUser
       const product = await Product.findOne({name: args.productName})
-
-      console.log("TÄSSÄ ", user)
 
       const productToCart = {
         productName: args.productName,

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import { REMOVE_FROM_CART, CHECKOUT, ME } from '../queries'
+import { Form, Button, Table } from 'react-bootstrap'
 
 const ShoppingCart = ({ user, setNotification, setError }) => {
   const [shoppingCart, setShoppingCart] = useState([])
@@ -58,7 +59,7 @@ const ShoppingCart = ({ user, setNotification, setError }) => {
   return(
     <div>
       <h2>Your shopping cart</h2>
-      <table>
+      <Table striped>
         <tbody>
           <tr>
             <th></th>
@@ -78,9 +79,12 @@ const ShoppingCart = ({ user, setNotification, setError }) => {
               <td><button onClick={() => removeProductFromCart(p)}>remove</button></td>
             </tr>
           )}
-          <div>grand total: {total}$</div>
+          <tr>
+            <th>grand total:</th>
+            <th>{total}$</th>
+          </tr>
         </tbody>
-      </table>
+      </Table>
       <button onClick={() => checkoutFunc()}>checkout</button>
     </div>
   )

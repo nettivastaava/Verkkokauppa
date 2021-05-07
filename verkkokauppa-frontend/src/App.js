@@ -51,7 +51,6 @@ const App = () =>  {
       setTimeout(() => {
         setNotification('')
       }, 5000)
-
   }
 
   const logout = () => {
@@ -60,11 +59,9 @@ const App = () =>  {
     client.resetStore()
   }
 
-  
-
   if (!localStorage.getItem('shop-user-token')) {
     return (
-      <div>
+      <div className="container">
         <h1>Web Store</h1>
         <Notification message={notification} />
         <Menu />
@@ -90,7 +87,6 @@ const App = () =>  {
   }
 
   return (
-    <div>
       <div>
         <h1>Web Store</h1>
         <Notification message={notification} />
@@ -113,8 +109,6 @@ const App = () =>  {
           </Route>
         </Switch>
       </div>
-    </div>
-    
   );
 }
 

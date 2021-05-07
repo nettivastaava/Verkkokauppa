@@ -3,6 +3,7 @@ import { useQuery, useLazyQuery } from '@apollo/client'
 import { ALL_PRODUCTS, ALL_CATEGORIES, ME } from '../queries'
 import Product from './Product'
 import { Switch, Route, useRouteMatch } from 'react-router'
+import { Table, Button } from 'react-bootstrap'
 
 const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   const categoriesResult = useQuery(ALL_CATEGORIES)
@@ -10,9 +11,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   const [category, setCategory] = useState('')
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
-  const [productToShow, setProductToShow] = useState(null)
   
-
   useEffect(() => {
     if (categoriesResult.data) {
       setCategories(categoriesResult.data.allCategories)
@@ -44,6 +43,15 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
       setCategory(category)
     }
   }
+
+  const styles = {
+    buttonStyle: {
+        marginTop: "3px",
+        marginBottom: "3px",
+        marginRight: "3px",
+        marginLeft: "3px"
+    }
+}
   
   return (
     <div>
@@ -62,19 +70,16 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
       
       <div>
         {categories.map(c => 
-          <button onClick={() => showCategory(c)}>{c}</button>
+          <Button style={styles.buttonStyle} onClick={() => showCategory(c)}>{c}</Button>
         )}
-        <button onClick={() => showCategory('')}>trending</button>
+        <Button style={styles.buttonStyle} onClick={() => showCategory('')}>trending</Button>
       </div>
-      <table>
+      <Table striped>
         <tbody>
           <tr>
             <th></th>
             <th>
               price
-            </th>
-            <th>
-              description
             </th>
             <th>
               quantity
@@ -84,12 +89,11 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
             <tr key={p.name}>
               <td><a href={`/products/${p.id}`} >{p.name}</a></td>
               <td>{p.price}$</td>
-              <td>{p.description}</td>
               <td>{p.quantity}</td>
             </tr>
           )}
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 }

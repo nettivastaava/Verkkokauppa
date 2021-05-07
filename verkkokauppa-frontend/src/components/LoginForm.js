@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useMutation, useQuery, useLazyQuery } from '@apollo/client'
+import { useMutation, useQuery, useLazyQuery, from } from '@apollo/client'
 import { LOGIN, ME } from '../queries'
 import {
   useHistory
 } from "react-router-dom"
+import { Form, Button } from 'react-bootstrap'
 
 const LoginForm = ({ setToken, setNotification }) => {
   const [username, setUsername] = useState('')
@@ -40,22 +41,23 @@ const LoginForm = ({ setToken, setNotification }) => {
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={submit}>
-        <div>
-          username <input
+      <Form onSubmit={submit}>
+        <Form.Group>
+          <Form.Label>username:</Form.Label>
+          <Form.Control
+            type='text'
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
-        </div>
-        <div>
-          password <input
+          <Form.Label>password:</Form.Label>
+          <Form.Control           
             type='password'
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
-        </div>
-        <button type='submit'>login</button>
-      </form>
+          <Button type='submit'>login</Button>
+        </Form.Group>
+      </Form>
       <p>New user? Register <a href='/register'>here</a></p>
     </div>
   )
