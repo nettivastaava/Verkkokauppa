@@ -33,4 +33,5 @@
 | 5.5.2021 | 5 | Uudistetun ostoskorin toiminnallisuus front-endissä |
 | 6.5.2021 | 3 | Tietokantaa käyttävä maksutoiminnallisuus |
 | 6.5.2021 | 1 | Lisätty virheilmoituksia helpottamaan käyttökokemusta |
-| yht | 94 | |
+| 7.5.2021 | 3 | Tyylitelty sovellusta Bootstrap-kirjaston avulla |
+| yht | 97 | |
