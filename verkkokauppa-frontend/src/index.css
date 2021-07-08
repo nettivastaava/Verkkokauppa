@@ -31,3 +31,10 @@ code {
   padding: 10px;
   margin-bottom: 10px;
 }
+
+.header h1, h2 {
+  font-family: 'Dancing Script';
+  font-size: 30px;
+  text-shadow: 1px 1px white;
+  color: black;
+}

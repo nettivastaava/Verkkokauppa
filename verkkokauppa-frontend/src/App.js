@@ -5,6 +5,8 @@ import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
 import Notification from './components/Notification'
+import image from './logos/pw_logo.png'
+import { Image } from 'react-bootstrap'
 import { ME, DECREASE_QUANTITY, ALL_PRODUCTS, ADD_TO_CART } from './queries'
 import {
   Switch, Route, Link, useRouteMatch
@@ -29,6 +31,11 @@ const App = () =>  {
   const [token, setToken] = useState(null)
   const client = useApolloClient()
   const [myCart, setMyCart] = useState([])
+
+  useEffect(() => {
+    document.title = 'Pennywise Web Store'
+  }, [])
+
   const notify = (message) => {
     setErrorMessage(message)
     setTimeout(() => {
@@ -62,7 +69,10 @@ const App = () =>  {
   if (!localStorage.getItem('shop-user-token')) {
     return (
       <div className="container">
-        <h1>Web Store</h1>
+        <div className="header">
+          <Image width="140" height="140" src={image} />
+          <h1>Pennywise Web Store</h1>
+        </div>
         <Notification message={notification} />
         <Menu />
         <Switch>
@@ -87,8 +97,11 @@ const App = () =>  {
   }
 
   return (
-      <div>
-        <h1>Web Store</h1>
+      <div className="container">
+        <div className="header">
+          <Image width="140" height="140" src={image} />
+          <h1>Pennywise Web Store</h1>
+        </div>
         <Notification message={notification} />
         <Menu logout={logout}/>
         <Switch>
