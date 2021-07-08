@@ -35,4 +35,5 @@
 | 6.5.2021 | 1 | Lisätty virheilmoituksia helpottamaan käyttökokemusta |
 | 7.5.2021 | 3 | Tyylitelty sovellusta Bootstrap-kirjaston avulla |
 | 9.5.2021 | 3 | Yritetty viedä sovellusta Herokuun (pelkkä back-end toimii toistaiseksi) |
-| yht | 100 | |
+| 8.7.2021 | 2.5 | Lisätty logo sovellukselle + pientä refaktorointia |
+| yht | 102.5 | |
