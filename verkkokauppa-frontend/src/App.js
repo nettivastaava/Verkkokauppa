@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
 import Notification from './components/Notification'
+import Menu from './components/Menu'
 import image from './logos/pw_logo.png'
 import { Image } from 'react-bootstrap'
 import { ME, DECREASE_QUANTITY, ALL_PRODUCTS, ADD_TO_CART } from './queries'
@@ -123,29 +124,6 @@ const App = () =>  {
         </Switch>
       </div>
   );
-}
-
-const Menu = ({ logout }) => {
-  const padding = {
-    paddingRight: 5
-  }
-
-  if (!localStorage.getItem('shop-user-token')) {
-    return(
-      <div>
-        <a href='/products' style={padding}>products</a>
-        <a href='/login' style={padding}>login</a>
-      </div>
-    )
-  }
-
-  return(
-    <div>
-      <a href='/products' style={padding}>products</a>
-      <a href='/shopping-cart' style={padding}>shopping cart</a>
-      <a href='/' onClick={logout}>logout</a>
-    </div>
-  )
 }
 
 export default App;
