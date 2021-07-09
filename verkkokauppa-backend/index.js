@@ -1,12 +1,18 @@
 const { ApolloServer, UserInputError, gql } = require('apollo-server')
 const { v1: uuid } = require('uuid')
 const mongoose = require('mongoose')
+const express = require('express')
+const cors = require('cors')
 const Product = require('./models/product')
 const User = require('./models/user')
 const Comment = require('./models/comment')
 const config = require('./utils/config')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const app = express()
+
+app.use(express.static('build'))
+app.use(cors())
 
 console.log('connecting to', config.MONGODB_URI)
 
