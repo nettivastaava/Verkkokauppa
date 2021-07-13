@@ -38,4 +38,5 @@
 | 8.7.2021 | 3 | Lisätty logo sovellukselle + pientä refaktorointia |
 | 9.7.2021 | 4 | Jatkettu Herokuun deployaamista |
 | 13.7.2021 | 3 | Sovellus viety onnistuneesti Herokuun |
-| yht | 110 | |
+| 13.7.2021 | 2 | Testitietokannan ja -kirjastojen alustaminen |
+| yht | 112 | |
