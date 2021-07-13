@@ -36,5 +36,6 @@
 | 7.5.2021 | 3 | Tyylitelty sovellusta Bootstrap-kirjaston avulla |
 | 9.5.2021 | 3 | Yritetty viedä sovellusta Herokuun (pelkkä back-end toimii toistaiseksi) |
 | 8.7.2021 | 3 | Lisätty logo sovellukselle + pientä refaktorointia |
-| 9.7.2021 | 4 | Jatkettu herokuun deployaamista |
-| yht | 107 | |
+| 9.7.2021 | 4 | Jatkettu Herokuun deployaamista |
+| 13.7.2021 | 3 | Sovellus viety onnistuneesti Herokuun |
+| yht | 110 | |
