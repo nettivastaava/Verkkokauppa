@@ -34,5 +34,8 @@
 | 6.5.2021 | 3 | Tietokantaa käyttävä maksutoiminnallisuus |
 | 6.5.2021 | 1 | Lisätty virheilmoituksia helpottamaan käyttökokemusta |
 | 7.5.2021 | 3 | Tyylitelty sovellusta Bootstrap-kirjaston avulla |
-| 9.5.2021 | 3 | Yritetty viedä sovellusta Herokuun (pelkkä back-end toimii toistaiseksi) |
-| yht | 100 | |
+| 9.5.2021 | 3 | Yritetty viedä sovellusta Herokuun |
+| 8.7.2021 | 3 | Lisätty logo sovellukselle + pientä refaktorointia |
+| 9.7.2021 | 4 | Jatkettu Herokuun deployaamista |
+| 13.7.2021 | 3 | Sovellus viety onnistuneesti Herokuun |
+| yht | 110 | |
