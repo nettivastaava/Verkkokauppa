@@ -39,4 +39,5 @@
 | 9.7.2021 | 4 | Jatkettu Herokuun deployaamista |
 | 13.7.2021 | 3 | Sovellus viety onnistuneesti Herokuun |
 | 13.7.2021 | 2 | Testitietokannan ja -kirjastojen alustaminen |
-| yht | 112 | |
+| 14.7.2021 | 2 | Ensimmäiset Cypress-testit ja backend-testauksen hahmottelua |
+| yht | 114 | |
