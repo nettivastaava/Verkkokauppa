@@ -45,17 +45,19 @@ const LoginForm = ({ setToken, setNotification }) => {
         <Form.Group>
           <Form.Label>username:</Form.Label>
           <Form.Control
+            id='username'
             type='text'
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
           <Form.Label>password:</Form.Label>
-          <Form.Control           
+          <Form.Control  
+            id='password'         
             type='password'
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
-          <Button type='submit'>login</Button>
+          <Button id='login-button' type='submit'>login</Button>
         </Form.Group>
       </Form>
       <p>New user? Register <a href='/register'>here</a></p>

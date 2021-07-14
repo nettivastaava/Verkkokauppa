@@ -9,7 +9,7 @@ const Menu = ({ logout }) => {
     return(
       <div>
         <a href='/products' style={padding}>products</a>
-        <a href='/login' style={padding}>login</a>
+        <a href='/login' id='login' style={padding}>login</a>
       </div>
     )
   }
