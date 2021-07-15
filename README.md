@@ -1,3 +1,3 @@
 # Verkkokauppa
 
-Tämä on harjoitusprojektini kurssille Full Stack -websovelluskehitys harjoitustyö .
+Tämä on harjoitusprojektini kurssille Full Stack -websovelluskehitys harjoitustyö.
