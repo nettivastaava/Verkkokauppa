@@ -44,18 +44,27 @@ const RegistrationForm = ({ setNotification }) => {
           <Form.Group>
             <Form.Label>username:</Form.Label>
             <Form.Control
+              required
+              minLength='3'
+              maxLength='16'
               type='text'
               value={username}
               onChange={({ target }) => setUsername(target.value)}
             />
             <Form.Label>password:</Form.Label>
             <Form.Control
+              required
+              minLength='8'
+              maxLength='32'
               type='password'
               value={password}
               onChange={({ target }) => setPassword(target.value)}
             />
             <Form.Label>password confirmation:</Form.Label>
             <Form.Control
+              required
+              minLength='8'
+              maxLength='32'
               type='password'
               value={passwordConf}
               onChange={({ target }) => setPasswordConf(target.value)}
