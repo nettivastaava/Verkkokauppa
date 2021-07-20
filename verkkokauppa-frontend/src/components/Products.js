@@ -88,7 +88,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
           {products.map(p =>
             <tr key={p.name}>
               <td><a href={`/products/${p.id}`} >{p.name}</a></td>
-              <td>{p.price}$</td>
+              <td>${p.price}</td>
               <td>{p.quantity}</td>
             </tr>
           )}

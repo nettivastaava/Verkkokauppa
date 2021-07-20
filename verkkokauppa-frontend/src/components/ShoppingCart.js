@@ -74,14 +74,14 @@ const ShoppingCart = ({ user, setNotification, setError }) => {
           {shoppingCart.map(p =>
             <tr key={p.product}>
               <td>{p.productName}</td>
-              <td>{p.price}$</td>
+              <td>${p.price}</td>
               <td>{p.amount}</td>
               <td><button onClick={() => removeProductFromCart(p)}>remove</button></td>
             </tr>
           )}
           <tr>
             <th>grand total:</th>
-            <th>{total}$</th>
+            <th>${total}</th>
           </tr>
         </tbody>
       </Table>

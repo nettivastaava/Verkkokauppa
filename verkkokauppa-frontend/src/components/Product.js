@@ -57,7 +57,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     return (
       <div>
         <h2>{shownProduct.name}</h2>
-        <table>
+        <Table striped>
           <tbody>
             <tr>
               <th></th>
@@ -73,12 +73,12 @@ const Product = ({ shownProduct, addToCart, setError }) => {
             </tr>
             <tr>
               <td>{shownProduct.name}</td>
-              <td>{shownProduct.price}$</td>
+              <td>${shownProduct.price}</td>
               <td>{shownProduct.description}</td>
               <td>{shownProduct.quantity}</td>
             </tr>
           </tbody>
-        </table>
+        </Table>
         Log in to see the reviews for this product
       </div>
     )
@@ -113,7 +113,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
           </tr>
           <tr>
             <td>{shownProduct.name}</td>
-            <td>{shownProduct.price}$</td>
+            <td>${shownProduct.price}</td>
             <td>{shownProduct.description}</td>
             <td>{shownProduct.quantity}</td>
             <td>{button}</td>
