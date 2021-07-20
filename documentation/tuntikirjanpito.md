@@ -40,4 +40,5 @@
 | 13.7.2021 | 3 | Sovellus viety onnistuneesti Herokuun |
 | 13.7.2021 | 2 | Testitietokannan ja -kirjastojen alustaminen |
 | 14.7.2021 | 2 | Ensimmäiset Cypress-testit ja backend-testauksen hahmottelua |
-| yht | 114 | |
+| 19.7.2021 | 3 | Syötteiden validointia ja refaktorointia |
+| yht | 117 | |
