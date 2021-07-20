@@ -41,4 +41,5 @@
 | 13.7.2021 | 2 | Testitietokannan ja -kirjastojen alustaminen |
 | 14.7.2021 | 2 | Ensimmäiset Cypress-testit ja backend-testauksen hahmottelua |
 | 19.7.2021 | 3 | Syötteiden validointia ja refaktorointia |
-| yht | 117 | |
+| 20.7.2021 | 3 | Cypress-testit rekisteröitymiselle ja kirjautumiselle |
+| yht | 120 | |
