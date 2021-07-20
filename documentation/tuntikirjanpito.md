@@ -42,4 +42,5 @@
 | 14.7.2021 | 2 | Ensimmäiset Cypress-testit ja backend-testauksen hahmottelua |
 | 19.7.2021 | 3 | Syötteiden validointia ja refaktorointia |
 | 20.7.2021 | 3 | Cypress-testit rekisteröitymiselle ja kirjautumiselle |
-| yht | 120 | |
+| 20.7.2021 | 2 | Pieniä parannuksia käyttöliittymään |
+| yht | 122 | |
