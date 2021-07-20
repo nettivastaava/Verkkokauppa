@@ -14,7 +14,7 @@ const RegistrationForm = ({ setNotification }) => {
 
     const [ createUser, result ] = useMutation(CREATE_USER, {  
         onError: (error) => {
-          setNotification(error.graphQLErrors[0].message)
+          setNotification('Registration failed')
           setTimeout(() => {
             setNotification('')
           }, 10000)
@@ -44,6 +44,7 @@ const RegistrationForm = ({ setNotification }) => {
           <Form.Group>
             <Form.Label>username:</Form.Label>
             <Form.Control
+              id='username'
               required
               minLength='3'
               maxLength='16'
@@ -53,6 +54,7 @@ const RegistrationForm = ({ setNotification }) => {
             />
             <Form.Label>password:</Form.Label>
             <Form.Control
+              id='password'
               required
               minLength='8'
               maxLength='32'
@@ -62,6 +64,7 @@ const RegistrationForm = ({ setNotification }) => {
             />
             <Form.Label>password confirmation:</Form.Label>
             <Form.Control
+              id='passwordConf'
               required
               minLength='8'
               maxLength='32'
@@ -69,7 +72,7 @@ const RegistrationForm = ({ setNotification }) => {
               value={passwordConf}
               onChange={({ target }) => setPasswordConf(target.value)}
             />
-          <Button type='submit'>register</Button>
+          <Button id='register-button' type='submit'>register</Button>
           </Form.Group>
         </Form>
       </div>

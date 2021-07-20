@@ -14,7 +14,7 @@ const LoginForm = ({ setToken, setNotification }) => {
   const [ login, result ] = useMutation(LOGIN, {
     refetchQueries: [ { query: ME } ],  
     onError: (error) => {
-      setNotification(error.graphQLErrors[0].message)
+      setNotification('Invalid credentials')
       setTimeout(() => {
         setNotification('')
       }, 10000)
@@ -60,7 +60,7 @@ const LoginForm = ({ setToken, setNotification }) => {
           <Button id='login-button' type='submit'>login</Button>
         </Form.Group>
       </Form>
-      <p>New user? Register <a href='/register'>here</a></p>
+      <p>New user? Register <a id='register-link'href='/register'>here</a></p>
     </div>
   )
 }
