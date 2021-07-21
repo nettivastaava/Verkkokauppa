@@ -43,4 +43,5 @@
 | 19.7.2021 | 3 | Syötteiden validointia ja refaktorointia |
 | 20.7.2021 | 3 | Cypress-testit rekisteröitymiselle ja kirjautumiselle |
 | 20.7.2021 | 2 | Pieniä parannuksia käyttöliittymään |
-| yht | 122 | |
+| 21.7.2021 | 3 | Tutkittu eri mahdollisuuksia yhdistää kommentti käyttäjään järkevästi |
+| yht | 125 | |
