@@ -51,7 +51,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
         marginRight: "3px",
         marginLeft: "3px"
     }
-}
+  }
   
   return (
     <div>

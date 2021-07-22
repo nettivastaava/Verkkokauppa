@@ -39,7 +39,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
 
   useEffect(() => {    
     if (userData.data && userData.data.me) {    
-      setUser(userData.data.me.id)    
+      setUser(userData.data.me.username)    
     }  
   }, [userData])
 
@@ -52,6 +52,8 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   if (!shownProduct) {
     return null
   }
+  console.log('tuote ', shownProduct)
+  console.log('kommentit ', comments)
 
   if (!localStorage.getItem('shop-user-token')) {
     return (
@@ -120,11 +122,22 @@ const Product = ({ shownProduct, addToCart, setError }) => {
           </tr>
         </tbody>
       </Table>
-      {comments.map(c =>
-        <div key={c.id}>
-          <div>{c.content}</div>
-        </div>
-      )}
+      <Table striped>
+        <tbody>
+        {comments.map(c =>
+          <tr key={c.id}>
+            <th>
+              {c.user} commented:
+            </th>
+            <tr>
+              <th>
+                {c.content}
+              </th>
+            </tr>
+          </tr>
+          )}
+        </tbody>
+      </Table>
       <Form onSubmit={postReview}>
         <textarea value={content} onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
         <div>
