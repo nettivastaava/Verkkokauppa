@@ -44,5 +44,6 @@
 | 20.7.2021 | 3 | Cypress-testit rekisteröitymiselle ja kirjautumiselle |
 | 20.7.2021 | 2 | Pieniä parannuksia käyttöliittymään |
 | 21.7.2021 | 3 | Tutkittu eri mahdollisuuksia yhdistää kommentti käyttäjään järkevästi |
-| 22.7.2021 | 4 | Muutoksia skeemoihin + kivemman näköinen kommenttiosio
-| yht | 129 | |
+| 22.7.2021 | 4 | Muutoksia skeemoihin + kivemman näköinen kommenttiosio |
+| 23.7.2021 | 3 | Refaktorointia ja ehdollista renderöintiä |
+| yht | 132 | |
