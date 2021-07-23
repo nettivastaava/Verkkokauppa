@@ -45,5 +45,5 @@
 | 20.7.2021 | 2 | Pieniä parannuksia käyttöliittymään |
 | 21.7.2021 | 3 | Tutkittu eri mahdollisuuksia yhdistää kommentti käyttäjään järkevästi |
 | 22.7.2021 | 4 | Muutoksia skeemoihin + kivemman näköinen kommenttiosio |
-| 23.7.2021 | 3 | Refaktorointia ja ehdollista renderöintiä |
-| yht | 132 | |
+| 23.7.2021 | 4 | Refaktorointia ja ehdollista renderöintiä |
+| yht | 133 | |
