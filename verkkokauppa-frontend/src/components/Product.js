@@ -19,7 +19,6 @@ const Product = ({ shownProduct, addToCart, setError }) => {
       setError(error)
     },
   })
-
   useEffect(() => {
     if (!shownProduct || !localStorage.getItem('shop-user-token') || !document.getElementById('buy-button')) {
       return
@@ -37,10 +36,15 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     
   })
 
-  useEffect( async () => {    
+  useEffect(() => {    
     if (userData.data && userData.data.me) {    
       setUser(userData.data.me.username)  
-      /* let reviewCheck =  await comments.filter(c => c.user === userData.data.me.username)  
+    }  
+  }, [userData])
+
+  useEffect( async () => {
+    if (userData.data && userData.data.me && shownProduct) {
+      let reviewCheck =  await comments.filter(c => c.user === userData.data.me.username)  
       console.log('tämä on tämä ', reviewCheck)
       console.log('pit ', comments.length)
   
@@ -48,9 +52,9 @@ const Product = ({ shownProduct, addToCart, setError }) => {
         setAllowReview(false)
       } else {
         setAllowReview(true)
-      } */
-    }  
-  }, [userData])
+      }
+    }
+  })
 
   if (userData.loading) {
     return (
@@ -61,7 +65,9 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   if (!shownProduct) {
     return null
   }
+
   console.log('tuote ', shownProduct)
+  console.log('kom', comments.length)
   console.log('onko sallittu ', allowReview)
 
   if (!localStorage.getItem('shop-user-token')) {
