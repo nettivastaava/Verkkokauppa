@@ -10,9 +10,9 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   const [content, setContent] = useState('')
   const [comments, setComments] = useState([])
   const userData = useQuery(ME)
+  const [allowReview, setAllowReview] = useState(true)
   const [getComments, commentsResult] = useLazyQuery(ALL_COMMENTS)
   const [user, setUser] = useState(null)
-
   const [ createReview, result ] = useMutation(ADD_COMMENT, {  
     refetchQueries: [ { query: ALL_PRODUCTS } ],
     onError: (error) => {
@@ -37,9 +37,18 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     
   })
 
-  useEffect(() => {    
+  useEffect( async () => {    
     if (userData.data && userData.data.me) {    
-      setUser(userData.data.me.username)    
+      setUser(userData.data.me.username)  
+      /* let reviewCheck =  await comments.filter(c => c.user === userData.data.me.username)  
+      console.log('tämä on tämä ', reviewCheck)
+      console.log('pit ', comments.length)
+  
+      if (reviewCheck.length > 0) {
+        setAllowReview(false)
+      } else {
+        setAllowReview(true)
+      } */
     }  
   }, [userData])
 
@@ -53,7 +62,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     return null
   }
   console.log('tuote ', shownProduct)
-  console.log('kommentit ', comments)
+  console.log('onko sallittu ', allowReview)
 
   if (!localStorage.getItem('shop-user-token')) {
     return (
@@ -94,6 +103,15 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     createReview({ variables: { user, product, content } })
     setContent('')
   }
+
+  const reviewForm = () => (
+    <Form onSubmit={postReview}>
+      <textarea value={content} onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
+      <div>
+        <Button type='submit'>Review this product!</Button>
+      </div>
+    </Form>
+  )
 
   return (
     <div>
@@ -138,12 +156,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
           )}
         </tbody>
       </Table>
-      <Form onSubmit={postReview}>
-        <textarea value={content} onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
-        <div>
-          <Button type='submit'>Review this product!</Button>
-        </div>
-      </Form>
+      {allowReview !== false && reviewForm()}
     </div>
   )
 }
