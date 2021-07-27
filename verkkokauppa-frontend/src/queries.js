@@ -13,6 +13,7 @@ export const ALL_PRODUCTS = gql`
         user
         product
         content
+        grade
       }
       units_sold
     }
@@ -73,11 +74,12 @@ export const FIND_PRODUCT = gql`
 `
 
 export const ADD_COMMENT = gql`
-  mutation addComment($user: String!, $product: String!, $content: String!) {
-    addComment(user: $user, product: $product, content: $content) {
+  mutation addComment($user: String!, $product: String!, $content: String! $grade: Int!) {
+    addComment(user: $user, product: $product, content: $content, grade: $grade) {
       user
       product
       content
+      grade
     }
   }
 `

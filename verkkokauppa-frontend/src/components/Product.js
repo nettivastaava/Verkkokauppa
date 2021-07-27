@@ -9,6 +9,7 @@ import { Table, Form, Button } from 'react-bootstrap'
 const Product = ({ shownProduct, addToCart, setError }) => {
   const [content, setContent] = useState('')
   const [comments, setComments] = useState([])
+  const [grade, setGrade] = useState(null)
   const userData = useQuery(ME)
   const [allowReview, setAllowReview] = useState(true)
   const [getComments, commentsResult] = useLazyQuery(ALL_COMMENTS)
@@ -45,8 +46,6 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   useEffect( async () => {
     if (userData.data && userData.data.me && shownProduct) {
       let reviewCheck =  await comments.filter(c => c.user === userData.data.me.username)  
-      console.log('tämä on tämä ', reviewCheck)
-      console.log('pit ', comments.length)
   
       if (reviewCheck.length > 0) {
         setAllowReview(false)
@@ -106,15 +105,28 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     
     event.preventDefault()
     const product = shownProduct.id
-    createReview({ variables: { user, product, content } })
+    createReview({ variables: { user, product, content, grade } })
     setContent('')
+    setGrade(null)
   }
 
   const reviewForm = () => (
     <Form onSubmit={postReview}>
+      <h3>Review this product</h3>
+      <Form.Label>Grade (1-5): </Form.Label>
+      <input 
+        id='grade'         
+        type='number'
+        min='1'
+        max='5'
+        size= '1'
+        value={grade}
+        onChange={({ target }) => setGrade(parseInt(target.value))}
+      />
+      <br></br>
       <textarea value={content} onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
       <div>
-        <Button type='submit'>Review this product!</Button>
+        <Button type='submit'>Review this product</Button>
       </div>
     </Form>
   )
@@ -151,7 +163,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
         {comments.map(c =>
           <tr key={c.id}>
             <th>
-              {c.user} commented:
+              {c.user} gave grade {c.grade} and commented:
             </th>
             <tr>
               <th>
