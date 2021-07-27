@@ -46,5 +46,5 @@
 | 21.7.2021 | 3 | Tutkittu eri mahdollisuuksia yhdistää kommentti käyttäjään järkevästi |
 | 22.7.2021 | 4 | Muutoksia skeemoihin + kivemman näköinen kommenttiosio |
 | 23.7.2021 | 4 | Refaktorointia ja ehdollista renderöintiä |
-| 27.7.2021 | 1 | Arvosanan antaminen tuottelle |
-| yht | 134 | |
+| 27.7.2021 | 4 | Arvosanan antaminen tuottelle + arvosanojen keskiarvo |
+| yht | 137 | |
