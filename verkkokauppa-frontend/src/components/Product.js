@@ -86,12 +86,16 @@ const Product = ({ shownProduct, addToCart, setError }) => {
               <th>
                 quantity
               </th>
+              <th>
+                average grade
+              </th>
             </tr>
             <tr>
               <td>{shownProduct.name}</td>
               <td>${shownProduct.price}</td>
               <td>{shownProduct.description}</td>
               <td>{shownProduct.quantity}</td>
+              <td>{shownProduct.average_grade}</td>
             </tr>
           </tbody>
         </Table>
@@ -147,6 +151,9 @@ const Product = ({ shownProduct, addToCart, setError }) => {
             <th>
               quantity
             </th>
+            <th>
+              average grade
+            </th>
             <th></th>
           </tr>
           <tr>
@@ -154,6 +161,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
             <td>${shownProduct.price}</td>
             <td>{shownProduct.description}</td>
             <td>{shownProduct.quantity}</td>
+            <td>{shownProduct.average_grade}</td>
             <td>{button}</td>
           </tr>
         </tbody>
