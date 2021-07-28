@@ -16,6 +16,7 @@ export const ALL_PRODUCTS = gql`
         grade
       }
       units_sold
+      average_grade
     }
   }
   `
@@ -69,6 +70,7 @@ export const FIND_PRODUCT = gql`
       name
       price
       quantity
+      average_grade
     }
   }
 `
