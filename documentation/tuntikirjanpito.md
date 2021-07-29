@@ -48,5 +48,5 @@
 | 23.7.2021 | 4 | Refaktorointia ja ehdollista renderöintiä |
 | 27.7.2021 | 4 | Arvosanan antaminen tuottelle + arvosanojen keskiarvo |
 | 28.7.2021 | 2 | Korjattu bugi keskiarvon laskemisessa ja esittämisessä |
-| 28.7.2021 | 1 | Ulkoasun parantelua |
-| yht | 140 | |
+| 29.7.2021 | 5 | Ulkoasun parantelua |
+| yht | 144 | |
