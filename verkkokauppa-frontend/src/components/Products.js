@@ -68,7 +68,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
       </Switch>
       <h2>Search products</h2>
       
-      <div>
+      <div className="navBar">
         {categories.map(c => 
           <Button style={styles.buttonStyle} onClick={() => showCategory(c)}>{c}</Button>
         )}

@@ -7,7 +7,7 @@ const Menu = ({ logout }) => {
   
   if (!localStorage.getItem('shop-user-token')) {
     return(
-      <div>
+      <div className="navBar">
         <a href='/products' style={padding}>products</a>
         <a href='/login' id='login' style={padding}>login</a>
       </div>
@@ -15,7 +15,7 @@ const Menu = ({ logout }) => {
   }
   
   return(
-    <div>
+    <div className="navBar">
       <a href='/products' style={padding}>products</a>
       <a href='/shopping-cart' style={padding}>shopping cart</a>
       <a href='/' onClick={logout}>logout</a>

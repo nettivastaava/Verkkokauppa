@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color:#B3B7BD;
 }
 
 code {
@@ -32,10 +33,29 @@ code {
   margin-bottom: 10px;
 }
 
-.header h1, h2 {
-  font-family: 'Dancing Script';
-  font-size: 30px;
-  text-shadow: 1px 1px white;
+.logoDetails {
+  float:left; 
+  width: 140px;
+  height: 140px;
+} 
+
+.header h1 {
+  background-color:#F7F7F7;
+  font-family: 'Cursive';
+  font-size: 40px;
+  text-shadow: 1px 1px rgb(116, 78, 22);
   color: black;
+  width: 100%;
+  height: 140px;
+  line-height: 140px;
 }
+
+.container {
+  background-color: white;
+}
+
+.navBar {
+  margin-bottom: 10px;
+}
+
 

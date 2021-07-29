@@ -6,7 +6,7 @@ import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
 import Notification from './components/Notification'
 import Menu from './components/Menu'
-import image from './logos/pw_logo.png'
+import image from './logos/new_logo.png'
 import { Image } from 'react-bootstrap'
 import { ME, DECREASE_QUANTITY, ALL_PRODUCTS, ADD_TO_CART } from './queries'
 import {
@@ -71,7 +71,7 @@ const App = () =>  {
     return (
       <div className="container">
         <div className="header">
-          <Image width="140" height="140" src={image} />
+          <Image src={image} className="logoDetails"/>
           <h1>Pennywise Web Store</h1>
         </div>
         <Notification message={notification} />
@@ -100,7 +100,7 @@ const App = () =>  {
   return (
       <div className="container">
         <div className="header">
-          <Image width="140" height="140" src={image} />
+          <Image src={image} className="logoDetails"/>
           <h1>Pennywise Web Store</h1>
         </div>
         <Notification message={notification} />
