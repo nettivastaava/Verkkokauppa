@@ -166,22 +166,16 @@ const Product = ({ shownProduct, addToCart, setError }) => {
           </tr>
         </tbody>
       </Table>
-      <Table striped>
-        <tbody>
         {comments.map(c =>
-          <tr key={c.id}>
-            <th>
+          <div key={c.id}>
+            <div>
               {c.user} gave grade {c.grade} and commented:
-            </th>
-            <tr>
-              <th>
+            </div>
+              <div className="review">
                 {c.content}
-              </th>
-            </tr>
-          </tr>
-          )}
-        </tbody>
-      </Table>
+              </div>
+          </div>
+        )}
       {allowReview !== false && reviewForm()}
     </div>
   )
