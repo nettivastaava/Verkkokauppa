@@ -50,4 +50,5 @@
 | 28.7.2021 | 2 | Korjattu bugi keskiarvon laskemisessa ja esittämisessä |
 | 29.7.2021 | 6 | Ulkoasun parantelua |
 | 30.7.2021 | 2 | Lisää ulkoasun hiomista |
-| yht | 147 | |
+| 30.7.2021 | 2 | Kommentin poistaminen backendissä |
+| yht | 149 | |
