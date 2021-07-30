@@ -16,7 +16,7 @@ const Menu = ({ logout }) => {
   }
   
   return(
-    <div className="navBar">
+    <div className="menuBar">
       <a className="menuLink" href='/products' style={padding}>products</a>
       <a className="menuLink" href='/shopping-cart' style={padding}>shopping cart</a>
       <a className="menuLink" href='/' onClick={logout}>logout</a>
