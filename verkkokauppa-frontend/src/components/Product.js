@@ -72,7 +72,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   if (!localStorage.getItem('shop-user-token')) {
     return (
       <div>
-        <h2>{shownProduct.name}</h2>
+        <h2 className="midHeader">{shownProduct.name}</h2>
         <Table striped>
           <tbody>
             <tr>
@@ -137,7 +137,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
 
   return (
     <div>
-      <h2>{shownProduct.name}</h2>
+      <h2 className="midHeader">{shownProduct.name}</h2>
       <Table striped>
         <tbody>
           <tr>

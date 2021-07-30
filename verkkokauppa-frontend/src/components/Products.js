@@ -66,13 +66,13 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
           />
         </Route>
       </Switch>
-      <h2>Search products</h2>
+      <h2 className="midHeader">Search products</h2>
       
       <div className="navBar">
         {categories.map(c => 
-          <Button style={styles.buttonStyle} onClick={() => showCategory(c)}>{c}</Button>
+          <Button className="categoryButton"style={styles.buttonStyle} onClick={() => showCategory(c)}>{c}</Button>
         )}
-        <Button style={styles.buttonStyle} onClick={() => showCategory('')}>trending</Button>
+        <Button className="categoryButton" style={styles.buttonStyle} onClick={() => showCategory('')}>trending</Button>
       </div>
       <Table striped>
         <tbody>
@@ -87,7 +87,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
           </tr>
           {products.map(p =>
             <tr key={p.name}>
-              <td><a href={`/products/${p.id}`} >{p.name}</a></td>
+              <td><a className="textLink" href={`/products/${p.id}`} >{p.name}</a></td>
               <td>${p.price}</td>
               <td>{p.quantity}</td>
             </tr>
