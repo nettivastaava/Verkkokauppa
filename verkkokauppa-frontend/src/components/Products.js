@@ -47,9 +47,9 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   const styles = {
     buttonStyle: {
         marginTop: "3px",
-        marginBottom: "3px",
-        marginRight: "3px",
-        marginLeft: "3px"
+        marginBottom: "5px",
+        marginRight: "10px",
+        marginLeft: "10px"
     }
   }
   
@@ -66,7 +66,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
           />
         </Route>
       </Switch>
-      <h2 className="midHeader">Search products</h2>
+      <h2 className="midHeader">Search products by category</h2>
       
       <div className="navBar">
         {categories.map(c => 
