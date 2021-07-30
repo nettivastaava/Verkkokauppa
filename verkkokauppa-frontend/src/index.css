@@ -107,4 +107,8 @@ code {
   display: inline-block;
 }
 
+.bottomPadding{
+  padding-bottom: 10px;
+}
+
 

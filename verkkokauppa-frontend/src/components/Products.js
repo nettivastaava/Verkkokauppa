@@ -54,7 +54,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   }
   
   return (
-    <div>
+    <div className="bottomPadding">
       <Switch>
         <Route path= "/products/:id">
           <Product

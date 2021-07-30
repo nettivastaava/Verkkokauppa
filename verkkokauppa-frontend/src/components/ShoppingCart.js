@@ -24,7 +24,7 @@ const ShoppingCart = ({ user, setNotification, setError }) => {
 
   if (shoppingCart < 1) {
     return (
-      <div>
+      <div className="bottomPadding">
         <h2>Your shopping cart</h2>
         Your shopping cart is currently empty.
       </div>
@@ -57,7 +57,7 @@ const ShoppingCart = ({ user, setNotification, setError }) => {
   }
   
   return(
-    <div>
+    <div className="bottomPadding">
       <h2>Your shopping cart</h2>
       <Table striped>
         <tbody>
