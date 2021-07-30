@@ -38,7 +38,7 @@ const RegistrationForm = ({ setNotification }) => {
     }
 
     return (
-      <div>
+      <div className="bottomPadding">
         <h2>Create a new account</h2>
         <Form onSubmit={submit}>
           <Form.Group>
@@ -72,7 +72,7 @@ const RegistrationForm = ({ setNotification }) => {
               value={passwordConf}
               onChange={({ target }) => setPasswordConf(target.value)}
             />
-          <Button id='register-button' type='submit'>register</Button>
+          <Button className="generalButton" id='register-button' type='submit'>register</Button>
           </Form.Group>
         </Form>
       </div>

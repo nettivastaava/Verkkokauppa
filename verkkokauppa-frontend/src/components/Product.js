@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery, useLazyQuery, useMutation } from '@apollo/client'
 import Comments from './Comments'
-import { ME, ALL_COMMENTS, ALL_PRODUCTS, ADD_COMMENT } from '../queries'
+import { ME, ALL_COMMENTS, ALL_PRODUCTS, ADD_COMMENT, REMOVE_COMMENT } from '../queries'
 import { checkDocument } from '@apollo/client/utilities'
 import { useRouteMatch } from 'react-router'
 import { Table, Form, Button } from 'react-bootstrap'
@@ -14,8 +14,15 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   const [allowReview, setAllowReview] = useState(true)
   const [getComments, commentsResult] = useLazyQuery(ALL_COMMENTS)
   const [user, setUser] = useState(null)
+  const [commentId, setCommentId] = useState(null)
   const [ createReview, result ] = useMutation(ADD_COMMENT, {  
     refetchQueries: [ { query: ALL_PRODUCTS } ],
+    onError: (error) => {
+      setError(error)
+    },
+  })
+  const [ removeReview, removeResult ] = useMutation(REMOVE_COMMENT, {
+    refetchQueries: [ { query: ALL_PRODUCTS }],
     onError: (error) => {
       setError(error)
     },
@@ -103,16 +110,28 @@ const Product = ({ shownProduct, addToCart, setError }) => {
       </div>
     )
   }
-  const button = <Button id='buy-button' onClick={() => addToCart(shownProduct)}>add to cart</Button>
+  const button = <Button className="generalButton" id='buy-button' onClick={() => addToCart(shownProduct)}>add to cart</Button>
 
   const postReview = async (event) => {
-    
     event.preventDefault()
+
     const product = shownProduct.id
     createReview({ variables: { user, product, content, grade } })
     setContent('')
     setGrade(null)
   }
+
+  const deleteReview = async () => {
+
+    const productId = shownProduct.id
+    removeReview({ variables: { productId } })
+  }
+
+  const deleteButton = () => (
+    <div>
+      <Button className="generalButton" onClick={() => deleteReview()}>delete your review</Button>
+    </div>
+  )
 
   const reviewForm = () => (
     <Form onSubmit={postReview}>
@@ -130,7 +149,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
       <br></br>
       <textarea value={content} onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
       <div>
-        <Button type='submit'>Review this product</Button>
+        <Button className="generalButton" type='submit'>Review this product</Button>
       </div>
     </Form>
   )
@@ -171,9 +190,12 @@ const Product = ({ shownProduct, addToCart, setError }) => {
             <div>
               {c.user} gave grade {c.grade} and commented:
             </div>
-              <div className="review">
-                {c.content}
-              </div>
+            <div className="review">
+              {c.content}
+            </div>
+            <div>
+              {userData.data.me.username === c.user && deleteButton()}
+            </div>
           </div>
         )}
       {allowReview !== false && reviewForm()}

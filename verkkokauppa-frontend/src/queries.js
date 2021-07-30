@@ -10,6 +10,7 @@ export const ALL_PRODUCTS = gql`
       categories
       description
       comments {
+        id
         user
         product
         content
@@ -137,6 +138,15 @@ export const CHECKOUT = gql`
         price
         amount
       }
+    }
+  }
+`
+
+export const REMOVE_COMMENT = gql`
+  mutation removeComment($productId: String!) {
+    removeComment(productId: $productId) {
+      name
+      id
     }
   }
 `

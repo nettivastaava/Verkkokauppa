@@ -98,6 +98,14 @@ code {
   display: inline-block;
 }
 
+.generalButton {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-color: black;
+  border-width: 2px;
+  text-align:center;
+}
+
 .menuLink {
   color: black;
   font-size: 20px;

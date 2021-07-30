@@ -39,7 +39,7 @@ const LoginForm = ({ setToken, setNotification }) => {
   }
 
   return (
-    <div>
+    <div className="bottomPadding">
       <h2>Login</h2>
       <Form onSubmit={submit}>
         <Form.Group>
@@ -57,7 +57,7 @@ const LoginForm = ({ setToken, setNotification }) => {
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
-          <Button id='login-button' type='submit'>login</Button>
+          <Button className="generalButton" id='login-button' type='submit'>login</Button>
         </Form.Group>
       </Form>
       <p>New user? Register <a id='register-link'href='/register'>here</a></p>
