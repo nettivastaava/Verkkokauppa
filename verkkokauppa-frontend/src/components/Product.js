@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useQuery, useLazyQuery, useMutation } from '@apollo/client'
-import Comments from './Comments'
-import { ME, ALL_COMMENTS, ALL_PRODUCTS, ADD_COMMENT, REMOVE_COMMENT } from '../queries'
+import { useQuery, useMutation } from '@apollo/client'
+import { ME, ALL_PRODUCTS, ADD_COMMENT, REMOVE_COMMENT } from '../queries'
 import { checkDocument } from '@apollo/client/utilities'
 import { useRouteMatch } from 'react-router'
 import { Table, Form, Button } from 'react-bootstrap'
@@ -12,9 +11,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   const [grade, setGrade] = useState(null)
   const userData = useQuery(ME)
   const [allowReview, setAllowReview] = useState(true)
-  const [getComments, commentsResult] = useLazyQuery(ALL_COMMENTS)
   const [user, setUser] = useState(null)
-  const [commentId, setCommentId] = useState(null)
   const [ createReview, result ] = useMutation(ADD_COMMENT, {  
     refetchQueries: [ { query: ALL_PRODUCTS } ],
     onError: (error) => {
@@ -22,7 +19,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     },
   })
   const [ removeReview, removeResult ] = useMutation(REMOVE_COMMENT, {
-    refetchQueries: [ { query: ALL_PRODUCTS }],
+    refetchQueries: [ { query: ALL_PRODUCTS } ],
     onError: (error) => {
       setError(error)
     },
@@ -31,7 +28,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     if (!shownProduct || !localStorage.getItem('shop-user-token') || !document.getElementById('buy-button')) {
       return
     }
-
+    console.log('kommentit ', comments)
     setComments(shownProduct.comments) 
 
     const buyButton =  document.getElementById('buy-button')
@@ -49,6 +46,12 @@ const Product = ({ shownProduct, addToCart, setError }) => {
       setUser(userData.data.me.username)  
     }  
   }, [userData])
+
+  useEffect(() => {    
+    if (removeResult.data) {    
+      console.log('DATA ', removeResult)
+    }  
+  }, [removeResult])
 
   useEffect( async () => {
     if (userData.data && userData.data.me && shownProduct) {
@@ -74,7 +77,6 @@ const Product = ({ shownProduct, addToCart, setError }) => {
 
   console.log('tuote ', shownProduct)
   console.log('kom', comments.length)
-  console.log('onko sallittu ', allowReview)
 
   if (!localStorage.getItem('shop-user-token')) {
     return (
@@ -121,16 +123,19 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     setGrade(null)
   }
 
-  const deleteReview = async () => {
+  const deleteReview = async (event) => {
+    event.preventDefault()
 
     const productId = shownProduct.id
     removeReview({ variables: { productId } })
   }
 
   const deleteButton = () => (
-    <div>
-      <Button className="generalButton" onClick={() => deleteReview()}>delete your review</Button>
-    </div>
+    <Form onSubmit={deleteReview}>
+      <div>
+        <Button type="submit" className="generalButton">delete your review</Button>
+      </div>
+    </Form>
   )
 
   const reviewForm = () => (
