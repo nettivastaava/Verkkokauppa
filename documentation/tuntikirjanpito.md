@@ -51,4 +51,5 @@
 | 29.7.2021 | 6 | Ulkoasun parantelua |
 | 30.7.2021 | 2 | Lisää ulkoasun hiomista |
 | 30.7.2021 | 4 | Kommentin poistaminen |
-| yht | 151 | |
+| 31.7.2021 | 2 | Keskiarvo lasketaan uusiksi, mikäli arvio poistetaan |
+| yht | 153 | |
