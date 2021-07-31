@@ -53,4 +53,4 @@
 | 30.7.2021 | 4 | Kommentin poistaminen |
 | 31.7.2021 | 2 | Keskiarvo lasketaan uusiksi, mikäli arvio poistetaan |
 | 31.7.2021 | 1 | Lisätty varmistusikkunoita käyttäjälle + päivitetty sovelluksen favicon-ikoni"
-| yht | 154 | |
+| yht | 159 | |
