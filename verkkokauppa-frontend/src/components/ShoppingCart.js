@@ -47,12 +47,14 @@ const ShoppingCart = ({ user, setNotification, setError }) => {
   }
 
   const checkoutFunc = async () => {
-    for (var i = 0; i < shoppingCart.length; i++) {
-    checkout()
-    setNotification(`Your purchase was successful`)
-      setTimeout(() => {
-        setNotification('')
-      }, 5000)
+    if (window.confirm(`Confirm your purchase of $${total}`)) {
+      for (var i = 0; i < shoppingCart.length; i++) {
+      checkout()
+      setNotification(`Your purchase was successful`)
+        setTimeout(() => {
+          setNotification('')
+        }, 5000)
+      }
     }
   }
   

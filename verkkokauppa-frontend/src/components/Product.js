@@ -124,10 +124,12 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   }
 
   const deleteReview = async (event) => {
-    event.preventDefault()
+    if (window.confirm(`Confirm to delete your review`)) {
+      event.preventDefault()
 
-    const productId = shownProduct.id
-    removeReview({ variables: { productId } })
+      const productId = shownProduct.id
+      removeReview({ variables: { productId } })
+    }
   }
 
   const deleteButton = () => (
