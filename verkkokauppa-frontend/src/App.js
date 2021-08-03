@@ -32,10 +32,7 @@ const App = () =>  {
   const [token, setToken] = useState(null)
   const client = useApolloClient()
   const [myCart, setMyCart] = useState([])
-
-  useEffect(() => {
-    document.title = 'Pennywise Web Store'
-  }, [])
+  document.title = 'Pennywise Web Store'
 
   const notify = (message) => {
     setErrorMessage(message)

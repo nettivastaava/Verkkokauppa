@@ -12,6 +12,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   const userData = useQuery(ME)
   const [allowReview, setAllowReview] = useState(true)
   const [user, setUser] = useState(null)
+  const [commentsVisible, setCommentsVisible] = useState(false)
   const [ createReview, result ] = useMutation(ADD_COMMENT, {  
     refetchQueries: [ { query: ALL_PRODUCTS } ],
     onError: (error) => {
@@ -161,6 +162,9 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     </Form>
   )
 
+  const hideWhenVisible = { display: commentsVisible ? 'none' : '' }
+  const showWhenVisible = { display: commentsVisible ? '' : 'none' }
+
   return (
     <div>
       <h2 className="midHeader">{shownProduct.name}</h2>
@@ -192,6 +196,10 @@ const Product = ({ shownProduct, addToCart, setError }) => {
           </tr>
         </tbody>
       </Table>
+      <div style={hideWhenVisible}>
+        <Button className="generalButton" id='visibilityButton' onClick={() => setCommentsVisible(true)}>show comments</Button>
+      </div>
+      <div style={showWhenVisible}>
         {comments.map(c =>
           <div key={c.id}>
             <div>
@@ -205,8 +213,10 @@ const Product = ({ shownProduct, addToCart, setError }) => {
             </div>
           </div>
         )}
-      {allowReview !== false && reviewForm()}
-    </div>
+        <Button className="generalButton" onClick={() => setCommentsVisible(false)}>hide comments</Button>
+      </div>
+    {allowReview !== false && reviewForm()}
+  </div>
   )
 }
 

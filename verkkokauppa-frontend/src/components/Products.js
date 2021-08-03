@@ -15,7 +15,6 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   useEffect(() => {
     if (categoriesResult.data) {
       setCategories(categoriesResult.data.allCategories)
-      console.log('CAT ', categoriesResult.data.allCategories)
       getProducts()
     }
   }, [categoriesResult, getProducts])
@@ -23,7 +22,6 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   useEffect(() => {    
     if (result.data) {      
       setProducts(result.data.allProducts)   
-      console.log('PRODS ', result.data.allProducts) 
     }  
   }, [result])
 
