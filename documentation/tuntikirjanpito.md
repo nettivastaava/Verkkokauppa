@@ -54,5 +54,5 @@
 | 31.7.2021 | 2 | Keskiarvo lasketaan uusiksi, mikäli arvio poistetaan |
 | 31.7.2021 | 1 | Lisätty varmistusikkunoita käyttäjälle + päivitetty sovelluksen favicon-ikoni |
 | 2.8.2021 | 2 | Refaktoroitu backendiä ja jatkettu Cypress-testejä |
-| 3.8.2021 | 2 | Jatkettu testausta |
-| yht | 163 | |
+| 3.8.2021 | 3 | Jatkettu testausta ja korjattu bugeja. Mahdollisuus piilottaa arviot näkyvistä |
+| yht | 164 | |
