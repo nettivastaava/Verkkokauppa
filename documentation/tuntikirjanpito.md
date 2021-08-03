@@ -52,4 +52,6 @@
 | 30.7.2021 | 2 | Lisää ulkoasun hiomista |
 | 30.7.2021 | 4 | Kommentin poistaminen |
 | 31.7.2021 | 2 | Keskiarvo lasketaan uusiksi, mikäli arvio poistetaan |
-| yht | 153 | |
+| 31.7.2021 | 1 | Lisätty varmistusikkunoita käyttäjälle + päivitetty sovelluksen favicon-ikoni |
+| 2.8.2021 | 2 | Refaktoroitu backendiä ja jatkettu Cypress-testejä |
+| yht | 161 | |
