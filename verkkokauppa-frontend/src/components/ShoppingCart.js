@@ -78,7 +78,7 @@ const ShoppingCart = ({ user, setNotification, setError }) => {
               <td>{p.productName}</td>
               <td>${p.price}</td>
               <td>{p.amount}</td>
-              <td><button onClick={() => removeProductFromCart(p)}>remove</button></td>
+              <td><Button className="generalButton" onClick={() => removeProductFromCart(p)}>remove</Button></td>
             </tr>
           )}
           <tr>
@@ -87,7 +87,7 @@ const ShoppingCart = ({ user, setNotification, setError }) => {
           </tr>
         </tbody>
       </Table>
-      <button onClick={() => checkoutFunc()}>checkout</button>
+      <Button className="generalButton" onClick={() => checkoutFunc()}>checkout</Button>
     </div>
   )
 }

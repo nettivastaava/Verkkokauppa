@@ -22,4 +22,12 @@ describe('Login ', function() {
 
     cy.contains('logout')
   })
+  it('Logged user can log out', function() {
+    cy.get('#username').type('Harri')
+    cy.get('#password').type('salainen')
+    cy.get('#login-button').click()
+
+    cy.get('#logout').click()
+    cy.contains('login')
+  })
 })

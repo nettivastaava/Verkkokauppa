@@ -15,13 +15,15 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   useEffect(() => {
     if (categoriesResult.data) {
       setCategories(categoriesResult.data.allCategories)
+      console.log('CAT ', categoriesResult.data.allCategories)
       getProducts()
     }
   }, [categoriesResult, getProducts])
 
   useEffect(() => {    
     if (result.data) {      
-      setProducts(result.data.allProducts)    
+      setProducts(result.data.allProducts)   
+      console.log('PRODS ', result.data.allProducts) 
     }  
   }, [result])
 
@@ -87,7 +89,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
           </tr>
           {products.map(p =>
             <tr key={p.name}>
-              <td><a className="textLink" href={`/products/${p.id}`} >{p.name}</a></td>
+              <td><a className="textLink" id={p.id} href={`/products/${p.id}`} >{p.name}</a></td>
               <td>${p.price}</td>
               <td>{p.quantity}</td>
             </tr>

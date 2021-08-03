@@ -154,9 +154,9 @@ const Product = ({ shownProduct, addToCart, setError }) => {
         onChange={({ target }) => setGrade(parseInt(target.value))}
       />
       <br></br>
-      <textarea value={content} onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
+      <textarea value={content} id="commentField" onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
       <div>
-        <Button className="generalButton" type='submit'>Review this product</Button>
+        <Button className="generalButton" id="submitReview" type='submit'>Review this product</Button>
       </div>
     </Form>
   )
