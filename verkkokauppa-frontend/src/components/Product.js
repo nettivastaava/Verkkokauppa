@@ -12,7 +12,8 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   const userData = useQuery(ME)
   const [allowReview, setAllowReview] = useState(true)
   const [user, setUser] = useState(null)
-  const [commentsVisible, setCommentsVisible] = useState(false)
+  const [noCommentsYet, setNoCommentsYet] = useState(true)
+  const [commentsVisible, setCommentsVisible] = useState(true)
   const [ createReview, result ] = useMutation(ADD_COMMENT, {  
     refetchQueries: [ { query: ALL_PRODUCTS } ],
     onError: (error) => {
@@ -30,7 +31,14 @@ const Product = ({ shownProduct, addToCart, setError }) => {
       return
     }
     console.log('kommentit ', comments)
+    
     setComments(shownProduct.comments) 
+
+    if (comments.length > 0) {
+      setNoCommentsYet(false)
+    } else {
+      setNoCommentsYet(true)
+    }
 
     const buyButton =  document.getElementById('buy-button')
 
@@ -162,6 +170,34 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     </Form>
   )
 
+  const noCommentsText = () => (
+    <div>No comments yet</div>
+  )
+
+  const commentSection = () => (
+    <div>
+       <div style={hideWhenVisible}>
+        <Button className="generalButton" id='visibilityButton' onClick={() => setCommentsVisible(true)}>show comments</Button>
+      </div>
+      <div style={showWhenVisible}>
+        <Button className="generalButton" onClick={() => setCommentsVisible(false)}>hide comments</Button>
+        {comments.map(c =>
+          <div key={c.id}>
+            <div>
+              <b>{c.user}</b> gave grade <b>{c.grade}</b> and commented:
+            </div>
+            <div className="review">
+              {c.content}
+            </div>
+            <div>
+              {userData.data.me.username === c.user && deleteButton()}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+
   const hideWhenVisible = { display: commentsVisible ? 'none' : '' }
   const showWhenVisible = { display: commentsVisible ? '' : 'none' }
 
@@ -196,27 +232,10 @@ const Product = ({ shownProduct, addToCart, setError }) => {
           </tr>
         </tbody>
       </Table>
-      <div style={hideWhenVisible}>
-        <Button className="generalButton" id='visibilityButton' onClick={() => setCommentsVisible(true)}>show comments</Button>
-      </div>
-      <div style={showWhenVisible}>
-        {comments.map(c =>
-          <div key={c.id}>
-            <div>
-              {c.user} gave grade {c.grade} and commented:
-            </div>
-            <div className="review">
-              {c.content}
-            </div>
-            <div>
-              {userData.data.me.username === c.user && deleteButton()}
-            </div>
-          </div>
-        )}
-        <Button className="generalButton" onClick={() => setCommentsVisible(false)}>hide comments</Button>
-      </div>
-    {allowReview !== false && reviewForm()}
-  </div>
+      {noCommentsYet === true && noCommentsText()}
+      {noCommentsYet === false && commentSection()}
+      {allowReview !== false && reviewForm()}
+    </div>
   )
 }
 
