@@ -171,7 +171,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
   )
 
   const noCommentsText = () => (
-    <div>No comments yet</div>
+    <div>This item has not been reviewed yet</div>
   )
 
   const commentSection = () => (

@@ -52,6 +52,9 @@ code {
 
 .container {
   background-color: white;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
 }
 
 .navBar {
@@ -115,8 +118,13 @@ code {
   display: inline-block;
 }
 
-.bottomPadding{
+.bottomPadding {
   padding-bottom: 10px;
+}
+
+.textField {
+  border-color: black;
+  border-width: 1px;
 }
 
 

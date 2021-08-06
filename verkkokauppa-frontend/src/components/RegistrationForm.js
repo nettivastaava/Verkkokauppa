@@ -44,6 +44,7 @@ const RegistrationForm = ({ setNotification }) => {
           <Form.Group>
             <Form.Label>username:</Form.Label>
             <Form.Control
+              className="textField"
               id='username'
               required
               minLength='3'
@@ -54,6 +55,7 @@ const RegistrationForm = ({ setNotification }) => {
             />
             <Form.Label>password:</Form.Label>
             <Form.Control
+              className="textField"
               id='password'
               required
               minLength='8'
@@ -64,6 +66,7 @@ const RegistrationForm = ({ setNotification }) => {
             />
             <Form.Label>password confirmation:</Form.Label>
             <Form.Control
+              className="textField"
               id='passwordConf'
               required
               minLength='8'

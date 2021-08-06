@@ -45,6 +45,7 @@ const LoginForm = ({ setToken, setNotification }) => {
         <Form.Group>
           <Form.Label>username:</Form.Label>
           <Form.Control
+            className="textField"
             id='username'
             type='text'
             value={username}
@@ -52,6 +53,7 @@ const LoginForm = ({ setToken, setNotification }) => {
           />
           <Form.Label>password:</Form.Label>
           <Form.Control  
+            className="textField"
             id='password'         
             type='password'
             value={password}
