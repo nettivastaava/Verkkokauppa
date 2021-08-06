@@ -55,4 +55,5 @@
 | 31.7.2021 | 1 | Lisätty varmistusikkunoita käyttäjälle + päivitetty sovelluksen favicon-ikoni |
 | 2.8.2021 | 2 | Refaktoroitu backendiä ja jatkettu Cypress-testejä |
 | 3.8.2021 | 3 | Jatkettu testausta ja korjattu bugeja. Mahdollisuus piilottaa arviot näkyvistä |
-| yht | 164 | |
+| 5.8.2021 | 1 | Paranneltu käyttökokemusta ehdollisella renderöinnillä |
+| yht | 165 | |
