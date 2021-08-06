@@ -56,4 +56,5 @@
 | 2.8.2021 | 2 | Refaktoroitu backendiä ja jatkettu Cypress-testejä |
 | 3.8.2021 | 3 | Jatkettu testausta ja korjattu bugeja. Mahdollisuus piilottaa arviot näkyvistä |
 | 5.8.2021 | 1 | Paranneltu käyttökokemusta ehdollisella renderöinnillä |
-| yht | 165 | |
+| 6.8.2021 | 1 | Pieniä muutoksia komponenttien ulkoasuun |
+| yht | 166 | |
