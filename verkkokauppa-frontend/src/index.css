@@ -118,6 +118,15 @@ code {
   display: inline-block;
 }
 
+.menuLinkLogged {
+  color: black;
+  font-size: 20px;
+  text-align:center;
+  padding:20px;
+  width: calc(100% / 4);  
+  display: inline-block;
+}
+
 .bottomPadding {
   padding-bottom: 10px;
 }

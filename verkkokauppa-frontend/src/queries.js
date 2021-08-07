@@ -150,3 +150,11 @@ export const REMOVE_COMMENT = gql`
     }
   }
 `
+
+export const CHANGE_PASSWORD = gql`
+  mutation changePassword($oldPassword: String!, $newPassword: String!, $confirmNew: String!) {
+    changePassword(oldPassword: $oldPassword, newPassword: $newPassword, confirmNew: $confirmNew) {
+      username
+    }
+  }
+`

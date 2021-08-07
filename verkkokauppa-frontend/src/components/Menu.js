@@ -17,9 +17,10 @@ const Menu = ({ logout }) => {
   
   return(
     <div className="menuBar">
-      <a className="menuLink" href='/products' id="products" style={padding}>products</a>
-      <a className="menuLink" href='/shopping-cart' id="cart" style={padding}>shopping cart</a>
-      <a className="menuLink" href='/' id="logout" onClick={logout}>logout</a>
+      <a className="menuLinkLogged" href='/products' id="products" style={padding}>products</a>
+      <a className="menuLinkLogged" href='/shopping-cart' id="cart" style={padding}>shopping cart</a>
+      <a className="menuLinkLogged" href='/settings' id="settings" style={padding}>user settings</a>
+      <a className="menuLinkLogged" href='/' id="logout" onClick={logout}>logout</a>
     </div>
   )
 }

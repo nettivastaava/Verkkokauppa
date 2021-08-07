@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
 import Notification from './components/Notification'
+import UserPage from './components/UserPage'
 import Menu from './components/Menu'
 import image from './logos/new_logo.png'
 import { Image } from 'react-bootstrap'
@@ -116,6 +117,11 @@ const App = () =>  {
               setMyCart={setMyCart}
               addToCart={addProductToCart}
               setError={notify}
+            />
+          </Route>
+          <Route path= "/settings">
+            <UserPage 
+              setNotification={setNotification}
             />
           </Route>
         </Switch>

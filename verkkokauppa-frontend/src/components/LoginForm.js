@@ -10,7 +10,6 @@ const LoginForm = ({ setToken, setNotification }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const history = useHistory()
-
   const [ login, result ] = useMutation(LOGIN, {
     refetchQueries: [ { query: ME } ],  
     onError: (error) => {
