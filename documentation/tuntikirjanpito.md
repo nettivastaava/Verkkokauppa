@@ -57,4 +57,6 @@
 | 3.8.2021 | 3 | Jatkettu testausta ja korjattu bugeja. Mahdollisuus piilottaa arviot näkyvistä |
 | 5.8.2021 | 1 | Paranneltu käyttökokemusta ehdollisella renderöinnillä |
 | 6.8.2021 | 1 | Pieniä muutoksia komponenttien ulkoasuun |
-| yht | 166 | |
+| 7.8.2021 | 3 | Asetukset-sivu käyttäjälle + mahdollisuus päivittää salasana |
+| 14.8.2021 | 1 | Korjattu bugi salasanan vaihtoon liittyvässä ilmoituksessa |
+| yht | 170 | |
