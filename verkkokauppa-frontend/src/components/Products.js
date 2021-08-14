@@ -11,6 +11,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   const [category, setCategory] = useState('')
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
+  const [productsToShow, setProductsToShow] = useState([])
   
   useEffect(() => {
     if (categoriesResult.data) {
@@ -21,7 +22,8 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
 
   useEffect(() => {    
     if (result.data) {      
-      setProducts(result.data.allProducts)   
+      setProducts(result.data.allProducts) 
+      setProductsToShow(result.data.allProducts)  
     }  
   }, [result])
 
@@ -42,6 +44,13 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
     } else {
       setCategory(category)
     }
+  }
+
+  const filterByGrade = (grade) => {
+    console.log('test', grade)
+
+    const filteredProducts = products.filter(product => product.average_grade >= grade)
+    setProductsToShow(filteredProducts)
   }
 
   const styles = {
@@ -74,6 +83,14 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
         )}
         <Button className="categoryButton" style={styles.buttonStyle} onClick={() => showCategory('')}>trending</Button>
       </div>
+      Show products with grade at least 
+      <input 
+        type='number'
+        min='1'
+        max='5'
+        size= '1'
+        onChange={({ target }) => filterByGrade(target.value)}
+      /> 
       <Table striped>
         <tbody>
           <tr>
@@ -85,7 +102,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
               quantity
             </th>
           </tr>
-          {products.map(p =>
+          {productsToShow.map(p =>
             <tr key={p.name}>
               <td><a className="textLink" id={p.id} href={`/products/${p.id}`} >{p.name}</a></td>
               <td>${p.price}</td>

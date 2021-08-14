@@ -94,7 +94,6 @@ const Product = ({ shownProduct, addToCart, setError }) => {
         <Table striped>
           <tbody>
             <tr>
-              <th></th>
               <th>
                 price
               </th>
@@ -109,7 +108,6 @@ const Product = ({ shownProduct, addToCart, setError }) => {
               </th>
             </tr>
             <tr>
-              <td>{shownProduct.name}</td>
               <td>${shownProduct.price}</td>
               <td>{shownProduct.description}</td>
               <td>{shownProduct.quantity}</td>
@@ -207,7 +205,6 @@ const Product = ({ shownProduct, addToCart, setError }) => {
       <Table striped>
         <tbody>
           <tr>
-            <th></th>
             <th>
               price
             </th>
@@ -223,7 +220,6 @@ const Product = ({ shownProduct, addToCart, setError }) => {
             <th></th>
           </tr>
           <tr>
-            <td>{shownProduct.name}</td>
             <td>${shownProduct.price}</td>
             <td>{shownProduct.description}</td>
             <td>{shownProduct.quantity}</td>
