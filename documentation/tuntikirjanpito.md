@@ -61,4 +61,4 @@
 | 14.8.2021 | 1 | Korjattu bugi salasanan vaihtoon liittyvässä ilmoituksessa |
 | 14.8.2021 | 1 | Tuotteiden filtteröinti arvosanan perusteella |
 | 15.8.2021 | 2 | Tuotteiden filtteröinti nimen perusteella + siistitty koodia |
-| yht | 173 | |
+| yht | 168 | |
