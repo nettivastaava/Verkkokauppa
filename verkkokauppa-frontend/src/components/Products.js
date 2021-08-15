@@ -86,7 +86,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
         type='number'
         min='1'
         max='5'
-        size= '1'
+        size= '2'
         onChange={({ target }) => filterByGrade(target.value)}
       /> 
       <Table striped>
