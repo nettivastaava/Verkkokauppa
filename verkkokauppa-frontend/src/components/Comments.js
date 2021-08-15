@@ -26,7 +26,6 @@ const Comments = ({ productToView, setError, loggedUser }) => {
     }
     console.log('COMM', productToView.name)
     if (meResult.data) {
-      console.log(meResult.data.me)
       setUser(meResult.data.me.id)
     }
   })
@@ -34,9 +33,6 @@ const Comments = ({ productToView, setError, loggedUser }) => {
   const postReview = async (event) => {
     event.preventDefault()
     const product = productToView.id
-
-    console.log(user)
-    console.log(product)
 
     createReview({ variables: { user, product, content } })
     setContent('')

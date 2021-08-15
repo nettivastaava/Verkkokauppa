@@ -47,8 +47,6 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   }
 
   const filterByGrade = (grade) => {
-    console.log('test', grade)
-
     const filteredProducts = products.filter(product => product.average_grade >= grade)
     setProductsToShow(filteredProducts)
   }

@@ -51,7 +51,7 @@ const App = () =>  {
   const addProductToCart =  (productToBeAdded) => {
     const productName = productToBeAdded.name
     const price = productToBeAdded.price
-    console.log('prod ', productName)
+
     addToCart({ variables: { productName, price } })
     setNotification(`Added ${productName} to cart`)
       setTimeout(() => {

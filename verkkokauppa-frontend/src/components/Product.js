@@ -30,7 +30,6 @@ const Product = ({ shownProduct, addToCart, setError }) => {
     if (!shownProduct || !localStorage.getItem('shop-user-token') || !document.getElementById('buy-button')) {
       return
     }
-    console.log('kommentit ', comments)
     
     setComments(shownProduct.comments) 
 
@@ -55,12 +54,6 @@ const Product = ({ shownProduct, addToCart, setError }) => {
       setUser(userData.data.me.username)  
     }  
   }, [userData])
-
-  useEffect(() => {    
-    if (removeResult.data) {    
-      console.log('DATA ', removeResult)
-    }  
-  }, [removeResult])
 
   useEffect( async () => {
     if (userData.data && userData.data.me && shownProduct) {
