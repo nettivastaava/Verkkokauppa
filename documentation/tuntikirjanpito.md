@@ -60,4 +60,5 @@
 | 7.8.2021 | 3 | Asetukset-sivu käyttäjälle + mahdollisuus päivittää salasana |
 | 14.8.2021 | 1 | Korjattu bugi salasanan vaihtoon liittyvässä ilmoituksessa |
 | 14.8.2021 | 1 | Tuotteiden filtteröinti arvosanan perusteella |
-| yht | 171 | |
+| 15.8.2021 | 2 | Tuotteiden filtteröinti nimen perusteella + siistitty koodia |
+| yht | 173 | |
