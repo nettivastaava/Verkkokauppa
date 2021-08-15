@@ -116,6 +116,11 @@ code {
   display: inline-block;
 }
 
+.filterOptions {
+  text-align:center;
+  width: calc(100% / 2);
+}
+
 .menuLinkLogged {
   color: black;
   font-size: 20px;
@@ -133,5 +138,11 @@ code {
   border-color: black;
   border-width: 1px;
 }
+
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+}  
 
 

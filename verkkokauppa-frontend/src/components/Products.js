@@ -12,6 +12,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
   const [productsToShow, setProductsToShow] = useState([])
+  const [filter, setFilter] = useState('')
   
   useEffect(() => {
     if (categoriesResult.data) {
@@ -81,14 +82,27 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
         )}
         <Button className="categoryButton" style={styles.buttonStyle} onClick={() => showCategory('')}>trending</Button>
       </div>
-      Show products with grade at least 
-      <input 
-        type='number'
-        min='1'
-        max='5'
-        size= '2'
-        onChange={({ target }) => filterByGrade(target.value)}
-      /> 
+      <div>
+        <div className="float-child">
+          Search product by name:
+          <input 
+            type='text'
+            min='1'
+            max='48'
+            onChange={({ target }) => setFilter(target.value)}
+          />
+        </div>
+        <div className="float-child">
+          Show products with grade at least 
+          <input 
+            type='number'
+            min='1'
+            max='5'
+            size= '2'
+            onChange={({ target }) => filterByGrade(target.value)}
+          /> 
+        </div>
+      </div>
       <Table striped>
         <tbody>
           <tr>
@@ -100,7 +114,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
               quantity
             </th>
           </tr>
-          {productsToShow.map(p =>
+          {productsToShow.filter(product => product.name.toLowerCase().includes(filter.toLowerCase())).map(p =>
             <tr key={p.name}>
               <td><a className="textLink" id={p.id} href={`/products/${p.id}`} >{p.name}</a></td>
               <td>${p.price}</td>
