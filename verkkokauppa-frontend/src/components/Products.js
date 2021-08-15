@@ -86,6 +86,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
         <div className="float-child">
           Search product by name:
           <input 
+            id="nameFilter"
             type='text'
             min='1'
             max='48'
@@ -95,6 +96,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
         <div className="float-child">
           Show products with grade at least 
           <input 
+            id='gradeFilter'
             type='number'
             min='1'
             max='5'
