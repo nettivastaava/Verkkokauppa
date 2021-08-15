@@ -62,4 +62,5 @@
 | 14.8.2021 | 1 | Tuotteiden filtteröinti arvosanan perusteella |
 | 15.8.2021 | 2 | Tuotteiden filtteröinti nimen perusteella + siistitty koodia |
 | 15.8.2021 | 2 | Jatkettu Cypress-testejä + testattu sovellusta manuaalisesti |
-| yht | 170 | |
+| 15.8.2021 | 1 | Yritetty refaktoroida backendiä |
+| yht | 171 | |
