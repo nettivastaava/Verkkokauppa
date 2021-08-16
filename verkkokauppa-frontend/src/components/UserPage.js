@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { CHANGE_PASSWORD, ME } from '../queries'
-import { Table, Form, Button } from 'react-bootstrap'
-import { useQuery, useMutation } from '@apollo/client'
+import { Form, Button } from 'react-bootstrap'
+import { useMutation } from '@apollo/client'
 
 const UserPage = ({ setNotification }) => {
   const [oldPassword, setOldPassword] = useState('')

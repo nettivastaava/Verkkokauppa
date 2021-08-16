@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import { ME, ALL_PRODUCTS, ADD_COMMENT, REMOVE_COMMENT } from '../queries'
-import { checkDocument } from '@apollo/client/utilities'
-import { useRouteMatch } from 'react-router'
 import { Table, Form, Button } from 'react-bootstrap'
 
 const Product = ({ shownProduct, addToCart, setError }) => {

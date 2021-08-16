@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useQuery, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { REMOVE_FROM_CART, CHECKOUT, ME } from '../queries'
-import { Form, Button, Table } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 
 const ShoppingCart = ({ user, setNotification, setError }) => {
   const [shoppingCart, setShoppingCart] = useState([])

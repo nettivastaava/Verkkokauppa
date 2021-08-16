@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useQuery, useApolloClient, useMutation, useLazyQuery } from '@apollo/client'
+import React, { useState } from 'react'
+import { useQuery, useApolloClient, useMutation } from '@apollo/client'
 import Products from './components/Products'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
@@ -11,7 +11,7 @@ import image from './logos/new_logo.png'
 import { Image } from 'react-bootstrap'
 import { ME, DECREASE_QUANTITY, ALL_PRODUCTS, ADD_TO_CART } from './queries'
 import {
-  Switch, Route, Link, useRouteMatch
+  Switch, Route
 } from "react-router-dom"
 
 const App = () =>  {
@@ -30,7 +30,7 @@ const App = () =>  {
       notify(error)
     },
   })
-  const [token, setToken] = useState(null)
+
   const client = useApolloClient()
   const [myCart, setMyCart] = useState([])
   document.title = 'Pennywise Web Store'
@@ -60,7 +60,6 @@ const App = () =>  {
   }
 
   const logout = () => {
-    setToken(null)
     localStorage.clear()
     client.resetStore()
   }
@@ -77,7 +76,6 @@ const App = () =>  {
         <Switch>
           <Route path= "/login">
             <LoginForm
-              setToken={setToken}
               setNotification={setNotification}
             />      
           </Route>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery, useLazyQuery } from '@apollo/client'
-import { ALL_PRODUCTS, ALL_CATEGORIES, ME } from '../queries'
+import { ALL_PRODUCTS, ALL_CATEGORIES } from '../queries'
 import Product from './Product'
 import { Switch, Route, useRouteMatch } from 'react-router'
 import { Table, Button } from 'react-bootstrap'

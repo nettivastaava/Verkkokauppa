@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useMutation, useQuery, useLazyQuery, from } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { LOGIN, ME } from '../queries'
 import {
   useHistory
 } from "react-router-dom"
 import { Form, Button } from 'react-bootstrap'
 
-const LoginForm = ({ setToken, setNotification }) => {
+const LoginForm = ({ setNotification }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const history = useHistory()
@@ -23,7 +23,7 @@ const LoginForm = ({ setToken, setNotification }) => {
   useEffect(() => { 
     if ( result.data ) {
       const token = result.data.login.value
-      setToken(token)
+
       localStorage.setItem('shop-user-token', token)
       localStorage.setItem('username', username)
       history.push('/')
