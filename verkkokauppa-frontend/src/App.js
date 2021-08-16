@@ -101,7 +101,10 @@ const App = () =>  {
           <h1>Pennywise Web Store</h1>
         </div>
         <Notification message={notification} />
-        <Menu logout={logout}/>
+        <Menu 
+          logout={logout}
+          user={userData.data.me}
+        />
         <Switch>
           <Route path= "/shopping-cart">
             <ShoppingCart

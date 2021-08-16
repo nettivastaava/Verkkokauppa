@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Menu = ({ logout }) => {
+const Menu = ({ logout, user }) => {
   const padding = {
     paddingRight: 5
   }
@@ -11,6 +11,17 @@ const Menu = ({ logout }) => {
         <a className="menuLink" href='/products' id="products" style={padding}>products</a>
         <a className="menuLink" href='/login' id='login' style={padding}>login</a>
         <a className="menuLink" href='/register' style={padding}>register</a>
+      </div>
+    )
+  }
+
+  if (user.role === "admin") {
+    return(
+      <div className="menuBar">
+        <a className="menuLinkLogged" href='/products' id="products" style={padding}>products</a>
+        <a className="menuLinkLogged" href='/shop-settings' id="shop-settings" style={padding}>manage inventory</a>
+        <a className="menuLinkLogged" href='/settings' id="settings" style={padding}>user settings</a>
+        <a className="menuLinkLogged" href='/' id="logout" onClick={logout}>logout</a>
       </div>
     )
   }
