@@ -63,4 +63,5 @@
 | 15.8.2021 | 2 | Tuotteiden filtteröinti nimen perusteella + siistitty koodia |
 | 15.8.2021 | 2 | Jatkettu Cypress-testejä + testattu sovellusta manuaalisesti |
 | 15.8.2021 | 1 | Yritetty refaktoroida backendiä |
-| yht | 171 | |
+| 16.8.2021 | 4 | Käyttäjäroolit ja mahdollisuus ylläpitäjille lisätä uusia tavaroita kauppaan |
+| yht | 175 | |
