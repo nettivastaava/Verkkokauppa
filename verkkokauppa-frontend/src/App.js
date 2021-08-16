@@ -6,6 +6,7 @@ import RegistrationForm from './components/RegistrationForm'
 import ShoppingCart from './components/ShoppingCart'
 import Notification from './components/Notification'
 import UserPage from './components/UserPage'
+import AddProductForm from './components/AddProductForm'
 import Menu from './components/Menu'
 import image from './logos/new_logo.png'
 import { Image } from 'react-bootstrap'
@@ -119,6 +120,12 @@ const App = () =>  {
           </Route>
           <Route path= "/settings">
             <UserPage 
+              setNotification={setNotification}
+            />
+          </Route>
+          <Route path= "/shop-settings">
+            <AddProductForm 
+              user = {userData.data.me}
               setNotification={setNotification}
             />
           </Route>

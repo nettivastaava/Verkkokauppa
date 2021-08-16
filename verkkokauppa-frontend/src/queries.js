@@ -44,6 +44,7 @@ export const ME = gql`
         amount
         price
       }
+      role
     }
   }
   `
@@ -155,6 +156,14 @@ export const CHANGE_PASSWORD = gql`
   mutation changePassword($oldPassword: String!, $newPassword: String!, $confirmNew: String!) {
     changePassword(oldPassword: $oldPassword, newPassword: $newPassword, confirmNew: $confirmNew) {
       username
+    }
+  }
+`
+
+export const ADD_PRODUCT = gql`
+  mutation addProduct($name: String!, $price: Float!, $quantity: Int!, $categories: [String!]!, $description: String) {
+    addProduct(name: $name, price: $price, quantity: $quantity, categories: $categories, description: $description) {
+      name
     }
   }
 `
