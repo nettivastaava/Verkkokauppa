@@ -5,5 +5,6 @@ Valtaosa sovelluksen toiminnallisuudesta, kuten tuotteiden lisääminen koriin, 
 Sovellukseen on luotu valmiiksi userit:
 - Kallu, salasanalla koiranen
 - Pallekallejallu, salasanalla kissanen
+
 sekä admin:
 - Big Boss, salasanalla kissanen
