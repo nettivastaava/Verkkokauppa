@@ -64,5 +64,5 @@
 | 15.8.2021 | 2 | Jatkettu Cypress-testejä + testattu sovellusta manuaalisesti |
 | 15.8.2021 | 1 | Yritetty refaktoroida backendiä |
 | 16.8.2021 | 4 | Käyttäjäroolit ja mahdollisuus ylläpitäjille lisätä uusia tavaroita kauppaan |
-| 16.8.2021 | 1 | Viimeistelty sovellusta palautuskuntoon |
-| yht | 176 | |
+| 16.8.2021 | 2 | Viimeistelty sovellusta palautuskuntoon |
+| yht | 177 | |
