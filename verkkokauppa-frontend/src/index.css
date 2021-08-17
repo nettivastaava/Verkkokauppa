@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Cursive';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Verdana';
   background-color:#B3B7BD;
 }
 
@@ -39,7 +37,6 @@ code {
 
 .header h1 {
   background-color:#F7F7F7;
-  font-family: 'Cursive';
   font-size: 40px;
   text-shadow: 1px 1px rgb(116, 78, 22);
   color: black;

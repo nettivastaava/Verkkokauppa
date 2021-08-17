@@ -57,6 +57,11 @@ const AddProductForm = ({ user, setNotification }) => {
   return (
     <div>
       <h2>Add new product</h2>
+      {categories.map(c =>
+        <div key={c}>
+          {c}
+        </div>
+      )}
       <Form onSubmit={addCategory}>
             <Form.Label>categories:</Form.Label>
             <Form.Control  
@@ -102,7 +107,7 @@ const AddProductForm = ({ user, setNotification }) => {
             value={quantity}
             onChange={({ target }) => setQuantity(parseInt(target.value))}
           />
-          <Form.Label>description:</Form.Label>
+          <Form.Label>description (optional):</Form.Label>
           <Form.Control  
             className="textField"
             id='description'         

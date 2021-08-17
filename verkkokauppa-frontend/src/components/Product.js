@@ -143,6 +143,7 @@ const Product = ({ shownProduct, addToCart, setError }) => {
       <h3>Review this product</h3>
       <Form.Label>Grade (1-5): </Form.Label>
       <input 
+        required
         id='grade'         
         type='number'
         min='1'
@@ -152,7 +153,15 @@ const Product = ({ shownProduct, addToCart, setError }) => {
         onChange={({ target }) => setGrade(parseInt(target.value))}
       />
       <br></br>
-      <textarea value={content} id="commentField" onChange={({ target }) => setContent(target.value)} className="text" cols="50" rows ="5"></textarea>
+      <textarea 
+        required
+        value={content}
+        id="commentField"
+        onChange={({ target }) => setContent(target.value)}
+        className="text"
+        cols="50"
+        rows ="5"
+      ></textarea>
       <div>
         <Button className="generalButton" id="submitReview" type='submit'>Review this product</Button>
       </div>
