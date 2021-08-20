@@ -1,4 +1,7 @@
 import React from 'react'
+import {
+  Link
+} from "react-router-dom"
 
 const Menu = ({ logout, user }) => {
   const padding = {
@@ -8,9 +11,9 @@ const Menu = ({ logout, user }) => {
   if (!localStorage.getItem('shop-user-token')) {
     return(
       <div className="menuBar">
-        <a className="menuLink" href='/products' id="products" style={padding}>products</a>
-        <a className="menuLink" href='/login' id='login' style={padding}>login</a>
-        <a className="menuLink" href='/register' style={padding}>register</a>
+        <Link className="menuLink" to='/products' id="products" style={padding}>products</Link>
+        <Link className="menuLink" to='/login' id='login' style={padding}>login</Link>
+        <Link className="menuLink" to='/register' style={padding}>register</Link>
       </div>
     )
   }
@@ -18,20 +21,20 @@ const Menu = ({ logout, user }) => {
   if (user.role === "admin") {
     return(
       <div className="menuBar">
-        <a className="menuLinkLogged" href='/products' id="products" style={padding}>products</a>
-        <a className="menuLinkLogged" href='/shop-settings' id="shop-settings" style={padding}>manage inventory</a>
-        <a className="menuLinkLogged" href='/settings' id="settings" style={padding}>user settings</a>
-        <a className="menuLinkLogged" href='/' id="logout" onClick={logout}>logout</a>
+        <Link className="menuLinkLogged" to='/products' id="products" style={padding}>products</Link>
+        <Link className="menuLinkLogged" to='/shop-settings' id="shop-settings" style={padding}>manage inventory</Link>
+        <Link className="menuLinkLogged" to='/settings' id="settings" style={padding}>user settings</Link>
+        <Link className="menuLinkLogged" to='/' id="logout" onClick={logout}>logout</Link>
       </div>
     )
   }
   
   return(
     <div className="menuBar">
-      <a className="menuLinkLogged" href='/products' id="products" style={padding}>products</a>
-      <a className="menuLinkLogged" href='/shopping-cart' id="cart" style={padding}>shopping cart</a>
-      <a className="menuLinkLogged" href='/settings' id="settings" style={padding}>user settings</a>
-      <a className="menuLinkLogged" href='/' id="logout" onClick={logout}>logout</a>
+      <Link className="menuLinkLogged" to='/products' id="products" style={padding}>products</Link>
+      <Link className="menuLinkLogged" to='/shopping-cart' id="cart" style={padding}>shopping cart</Link>
+      <Link className="menuLinkLogged" to='/settings' id="settings" style={padding}>user settings</Link>
+      <Link className="menuLinkLogged" to='/' id="logout" onClick={logout}>logout</Link>
     </div>
   )
 }

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client'
 import { LOGIN, ME } from '../queries'
-import {
-  useHistory
-} from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import { Form, Button } from 'react-bootstrap'
 
 const LoginForm = ({ setNotification }) => {
@@ -61,7 +59,7 @@ const LoginForm = ({ setNotification }) => {
           <Button className="generalButton" id='login-button' type='submit'>login</Button>
         </Form.Group>
       </Form>
-      <p>New user? Register <a id='register-link'href='/register'>here</a></p>
+      <p>New user? Register <Link id='register-link' to='/register'>here</Link></p>
     </div>
   )
 }

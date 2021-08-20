@@ -3,6 +3,7 @@ import { useQuery, useLazyQuery } from '@apollo/client'
 import { ALL_PRODUCTS, ALL_CATEGORIES } from '../queries'
 import Product from './Product'
 import { Switch, Route, useRouteMatch } from 'react-router'
+import { Link } from 'react-router-dom'
 import { Table, Button } from 'react-bootstrap'
 
 const Products = ({ myCart, setMyCart, addToCart, setError }) => {
@@ -118,7 +119,7 @@ const Products = ({ myCart, setMyCart, addToCart, setError }) => {
           </tr>
           {productsToShow.filter(product => product.name.toLowerCase().includes(filter.toLowerCase())).map(p =>
             <tr key={p.name}>
-              <td><a className="textLink" id={p.id} href={`/products/${p.id}`} >{p.name}</a></td>
+              <td><Link className="textLink" id={p.id} to={`/products/${p.id}`} >{p.name}</Link></td>
               <td>${p.price}</td>
               <td>{p.quantity}</td>
             </tr>
