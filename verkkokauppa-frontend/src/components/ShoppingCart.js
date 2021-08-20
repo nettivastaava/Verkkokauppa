@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client'
-import { REMOVE_FROM_CART, CHECKOUT, ME } from '../queries'
+import { REMOVE_FROM_CART, CHECKOUT, ME, ALL_PRODUCTS } from '../queries'
 import { Button, Table } from 'react-bootstrap'
 
 const ShoppingCart = ({ user, setNotification, setError }) => {
@@ -12,7 +12,7 @@ const ShoppingCart = ({ user, setNotification, setError }) => {
     },
   })
   const [ checkout, checkoutResult ] = useMutation(CHECKOUT, {
-    refetchQueries: [ { query: ME } ],
+    refetchQueries: [ { query: ME }, { query: ALL_PRODUCTS} ],
     onError: (error) => {
       setError(error)
     },

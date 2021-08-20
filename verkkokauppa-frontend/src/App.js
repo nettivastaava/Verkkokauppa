@@ -26,7 +26,7 @@ const App = () =>  {
     },
   })
   const [ addToCart, addResult ] = useMutation(ADD_TO_CART, {
-    refetchQueries: [ { query: ALL_PRODUCTS } ],
+    refetchQueries: [ { query: ALL_PRODUCTS }, { query: ME} ],
     onError: (error) => {
       notify(error)
     },
