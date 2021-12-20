@@ -8,4 +8,4 @@ In order to run this project locally, you need to have git and node installed. T
 
 - Run `npm start` in the root of both repositories
 
-- If everything worked out well, the application should start in port 3000
+- If everything worked out well, the application should be available on port 3000
