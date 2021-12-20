@@ -4,7 +4,7 @@ This is my software project for the course Full Stack -web development project (
   
 [Installation manual](https://github.com/nettivastaava/Verkkokauppa/blob/master/documentation/installation.md)
   
-[User manual](https://github.com/nettivastaava/Verkkokauppa/blob/master/documentation/kayttoohje.md)
+[User manual](https://github.com/nettivastaava/Verkkokauppa/blob/master/documentation/user_manual.md)
 
 [Working hours (finnish)](https://github.com/nettivastaava/Verkkokauppa/blob/master/documentation/tuntikirjanpito.md)
 
