@@ -9,6 +9,6 @@ Harjoitusprojektini kurssille Full Stack -websovelluskehitys harjoitustyö. Työ
 
 [Työaikakirjanpito](https://github.com/nettivastaava/Verkkokauppa/blob/master/documentation/tuntikirjanpito.md)
 
-Sovellusta pääsee testaamaan [Herokussa](https://shielded-anchorage-20174.herokuapp.com/)
+Application is running on [Heroku](https://shielded-anchorage-20174.herokuapp.com/)
 
-## [Sovelluksen backend](https://github.com/nettivastaava/Verkkokauppa-backend)
+## [Backend repo](https://github.com/nettivastaava/Verkkokauppa-backend)
