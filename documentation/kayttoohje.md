@@ -1,12 +1,6 @@
-# Käyttöohje
+# User manual
 
-Valtaosa sovelluksen toiminnallisuudesta, kuten tuotteiden lisääminen koriin, maksaminen ja tuotteiden arvioiminen on mahdollista ainoastaan kirjautuneille käyttäjille. Sovellukessa on kahdentyyppisiä käyttäjiä, user ja admin, joiden ainoa ero on, että admin pystyy lisäämään kauppaan uusia tuotteita "manage inventory" -välilehdeltä.
+Most of the application's functionality, such as adding items to cart and rating products is only available for registered users. There are two types of users, regular users and admins. As an admin, you will be able to add more products to the store from the "manage inventory" tab.
 
-Sovellukseen on luotu valmiiksi userit:
-- username: Kallu, password: koiranen
-- username: Testaaja, password: kissanen
+In order to register, click the link "register" on the top-right corner. After a successful registration, you can login from the link next to the registration link.
 
-sekä admin:
-- username: Admin, password: kissanen
-
-Kirjautumaan pääsee login-välilehdeltä ja uuden käyttäjän (user-tyyppisen) voi luoda register-linkin takaa. Tuotteita pääsee selaamaan products-välilehdeltä. Näytettäviä tuotteita on mahdollista filtteröidä kategorian, nimen tai tuotteelle annetun arvosanan perusteella. Klikkaamalla tuotteen nimeä pääsee katsomaan tuotteen tarkempia tietoja sekä kirjautuneena käyttäjänä arvostelemaan tuotteen ja lukemaan toisten käyttäjien antamia arvioita. Mikäli tuotetta löytyy varastosta, on käyttäjän mahdollista lisätä tuote ostoskoriin. Ostoskorin sisältöä pääsee tarkastelemaan päävalikon linkin shopping cart takaa. Sieltä käsin on mahdollista poistaa tuotteita korista tai edetä maksamaan ostokset. Lisäksi kirjautuneen käyttäjän on mahdollista päivittää itselleen uusi salasana settings-välilehdellä.
